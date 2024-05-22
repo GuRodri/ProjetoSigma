@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { FooterContainer, FooterContainerEndereço, FooterContainerInferior, FooterContainerMenu, FooterContainerCentral, FooterContainerColunas, FooterButton } from './style';
+import {
+  FooterContainer,
+  FooterContainerEndereço,
+  FooterContainerInferior,
+  FooterContainerMenu,
+  FooterContainerCentral,
+  FooterContainerColunas,
+  FooterButton
+} from './style';
 import { SubTitle, SmallTitle } from '../../containers/Home/style';
 
 const Footer = () => {
@@ -7,12 +15,37 @@ const Footer = () => {
 
   const handleToggleMoreInfo = () => {
     setShowMoreInfo(!showMoreInfo);
+    if (!showMoreInfo) {
+      // Rola a página até o final para exibir todo o conteúdo do footer
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
   };
 
   return (
     <FooterContainer>
-      <FooterButton onClick={handleToggleMoreInfo}><a>Mais Informações</a></FooterButton>
-      <FooterContainerCentral style={{ display: showMoreInfo ? 'flex' : 'none' }}>
+      <FooterButton onClick={handleToggleMoreInfo}>Mais Informações</FooterButton>
+      <FooterContainerCentral show={showMoreInfo.toString()}>
+        <FooterContainerColunas>
+          <SubTitle>Institucional</SubTitle> 
+          <SmallTitle>Sigma Hardware+logo</SmallTitle>
+          <SmallTitle>Nos conheça melhor</SmallTitle>
+        </FooterContainerColunas>
+        <FooterContainerColunas>
+          <SubTitle>Institucional</SubTitle> 
+          <SmallTitle>Sigma Hardware+logo</SmallTitle>
+          <SmallTitle>Nos conheça melhor</SmallTitle>
+        </FooterContainerColunas>
+        <FooterContainerColunas>
+          <SubTitle>Institucional</SubTitle> 
+          <SmallTitle>Sigma Hardware+logo</SmallTitle>
+          <SmallTitle>Nos conheça melhor</SmallTitle>
+        </FooterContainerColunas>
+        <FooterContainerColunas>
+          <SubTitle>Institucional</SubTitle> 
+          <SmallTitle>Sigma Hardware+logo</SmallTitle>
+          <SmallTitle>Nos conheça melhor</SmallTitle>
+        </FooterContainerColunas>
+
         <FooterContainerColunas>
           <SubTitle>Institucional</SubTitle> 
           <SmallTitle>Sigma Hardware+logo</SmallTitle>
@@ -74,3 +107,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+

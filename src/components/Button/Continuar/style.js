@@ -5,8 +5,7 @@ export const MyButton = styled.button `
     justify-content: center;
     color:#050505;
     background-color: #25D62C;
-    min-width: 239px;
-    min-height: 49px;
+    min-width: 160px;
     text-align: center;
     height: 2.6875;
     border-radius: 10px;

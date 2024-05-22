@@ -1,12 +1,13 @@
+// style.js
 import styled from 'styled-components';
 
 export const FooterButton = styled.button`
-  background-color:transparent;
+  background-color: transparent;
   border: none;
-  padding: .2em;
+  padding: 0.2em;
   display: flex;
   justify-content: center;
-   a {	
+   a {  
     font-size: .75em;
     text-decoration: none;
     color: #d9d9d9;
@@ -26,13 +27,14 @@ export const FooterContainer = styled.footer`
 `;
 
 export const FooterContainerCentral = styled.div`
-  display: flex;
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   flex-direction: row;
   justify-content: space-around;
   background-color: #252c37;
   border-top: .12em solid #101419;
-
+  transition: all 0.3s ease;
 `;
+
 export const FooterContainerColunas = styled.div`
   display: flex;
   flex-direction: column;

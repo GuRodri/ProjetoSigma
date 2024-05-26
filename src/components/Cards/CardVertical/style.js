@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardHome = styled.div`
+export const CardHome2 = styled.div`
   display: flex;
   flex-direction: column;
   color: #d9d9d9;

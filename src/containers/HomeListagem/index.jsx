@@ -7,16 +7,7 @@ function HomeListagem() {
     return (
         <ContainerHome>
             <ContainerListagem>
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />   
+                <CardVertical /> 
             </ContainerListagem>    
         </ContainerHome>
     );

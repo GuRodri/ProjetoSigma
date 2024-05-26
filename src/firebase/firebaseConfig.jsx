@@ -15,18 +15,12 @@ const firebaseConfig = {
   measurementId: "G-JJWHJZ87NC"
 };
 
-// Inicialize o Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 const analytics = getAnalytics(app);
 
-// Obtenha uma instância do Firestore
-const db = getFirestore(app);
-
-// Obtenha uma instância do Auth
-const auth = getAuth(app);
-
-// Defina o provedor do Google
 const googleProvider = new GoogleAuthProvider();
 
-export { db, auth, googleProvider };
+export { db, auth, googleProvider, analytics };
 

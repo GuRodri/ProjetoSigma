@@ -1,6 +1,6 @@
 //Código para cadastro de usuários DIRETAMENTE DO BACKEND((funcional))
 
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
 import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
 import EstiloInputData from "../../components/Inputs/EstiloInput";
@@ -12,7 +12,7 @@ const UserRole = {
   ADMIN: 1,
 };
 
-function CadastroUsuarios() {
+function CadastroUsuariosAdmin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nome, setNome] = useState('');
@@ -104,6 +104,13 @@ function CadastroUsuarios() {
                             <label>Telefone</label>
                             <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                         </Campos>
+                        <Campos>
+                            <label>Tipo de Usuario</label>
+                            <Select1 value={role} onChange={handleRoleChange}>
+                                <option value={UserRole.COMUM}>Comum</option>
+                                <option value={UserRole.ADMIN}>Admin</option>
+                            </Select1>
+                        </Campos>
                     </Colunas>
                 </ContainerColunas>
                 <BCadastrar />
@@ -112,10 +119,10 @@ function CadastroUsuarios() {
     );
 }
 
-export default CadastroUsuarios;
+export default CadastroUsuariosAdmin;*/
 
 //Código para cadastro de usuários no Firebase, mas que envia uma cópia dos dados para o backend((em desenvolvimento))
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
 import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
 import useSignup from '../../hooks/useSignup';
@@ -126,7 +133,7 @@ const UserRole = {
     ADMIN: 1,
 };
 
-function CadastroUsuarios() {
+function CadastroUsuariosAdmin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nome, setNome] = useState('');
@@ -220,7 +227,7 @@ function CadastroUsuarios() {
     );
 }
 
-export default CadastroUsuarios;*/
+export default CadastroUsuariosAdmin;
 
 
 

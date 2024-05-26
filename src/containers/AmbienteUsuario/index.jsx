@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Card} from "./style";
-import CardAmbienteAdmin from "../../components/Cards/CardAmbienteAdmin";
+import CardAmbienteUsuario from "../../components/Cards/CardAmbienteUsuario";
 
 
 function AmbienteUsuario() {
@@ -9,7 +9,7 @@ function AmbienteUsuario() {
         <Container>
             <h1>Olá, em que podemos ajudar?</h1>
             <Card>
-                <CardAmbienteAdmin />
+                <CardAmbienteUsuario />
             </Card>
         </Container>
     );

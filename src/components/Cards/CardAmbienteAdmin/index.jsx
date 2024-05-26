@@ -1,25 +1,34 @@
 import React from 'react';
 import {Container ,CardContainer, Description, Image } from './style';
+import { NavLink } from 'react-router-dom';
 
 
 const CardAmbienteAdmin = () => {
   return (
     <Container>
       <CardContainer>
-        <Description>Produtos</Description>
-        <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        <NavLink to='/lista-produtos'>
+          <Description>Produtos</Description>
+          <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        </NavLink>
       </CardContainer>
       <CardContainer>
-        <Description>Anuncios</Description>
-        <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        <NavLink to='/cadastro-anuncios'>
+          <Description>Anuncios</Description>
+          <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        </NavLink>
       </CardContainer>
       <CardContainer>
-        <Description>Usuarios</Description>
-        <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        <NavLink to='/lista-usuarios'>
+          <Description>Usuarios</Description>
+          <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        </NavLink>
       </CardContainer>
       <CardContainer>
-        <Description>Jogos</Description>
-        <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        <NavLink to='/lista-jogos'>
+          <Description>Jogos</Description>
+          <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        </NavLink>
       </CardContainer>
     </Container>
     

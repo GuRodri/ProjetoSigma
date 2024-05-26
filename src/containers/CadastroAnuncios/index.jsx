@@ -1,52 +1,141 @@
 import React, { useState } from "react";
-import { Campos, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, CamposMenores, CamposMenoresSubdivisao2, } from "./style";
+import {
+  Campos,
+  Colunas,
+  Container,
+  ContainerColunas,
+  Form,
+  Input,
+  TituloCadastro,
+  CamposMenores,
+  CamposMenoresSubdivisao2,
+} from "./style";
 import BCadastrar from "../../components/Button/Cadastrar";
+import apiCliente from "../../services/apiCliente";
 
 function CadastroAnuncios() {
-    const [dataNascimento, setDataNascimento] = useState(null);
+  const [idProduto, setIDProduto] = useState("");
+  const [titulo, setTitulo] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [preco, setPreco] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [referenciaImagem, setReferenciaImagem] = useState("");
+  const [ativo, setAtivo] = useState(true); // Defina o estado para ativo como true
 
-    return (
-        <Container>
-            <Form>
-                <TituloCadastro>Cadastro de Anúncios</TituloCadastro>
-                <ContainerColunas>
-                    <Colunas>
-                        <Campos>
-                            <label>Título</label>
-                            <Input type="text" placeholder="Título do Anúncio" />
-                        </Campos>
-                        <Campos>
-                            <label>Descrição</label>
-                            <Input type="text" placeholder="Descrição do anuncio" />
-                        </Campos>
-                        <CamposMenores>
-                            <CamposMenoresSubdivisao2>
-                                <label>Preço</label>
-                                <Input type="number" placeholder="Digite o Preço" step="0.01" min="0.01" />     
-                            </CamposMenoresSubdivisao2>
-                            <CamposMenoresSubdivisao2>
-                                <label>Quantidade</label>
-                                <Input type="number" placeholder="Digite a Quantidade" step="1" min="1" />
-                            </CamposMenoresSubdivisao2>
-                            <CamposMenoresSubdivisao2>
-                            <label>Ativo?</label>
-                            <Select1 placeholder="Selecione">
-                                <option value="sim">Sim</option>
-                                <option value="nao">Não</option>
-                            </Select1>
-                            </CamposMenoresSubdivisao2>
-                        </CamposMenores>
-                        <Campos>
-                            <label>Imagem do Anúncio</label>
-                            <Input type="password" placeholder="Senha" />
-                        </Campos>
-                    </Colunas>
-                </ContainerColunas>
-                
-                <BCadastrar />
-            </Form>
-        </Container>
-    );
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    const currentDate = new Date().toISOString();
+
+    console.log({
+      idProduto,
+      titulo,
+      descricao,
+      preco,
+      quantidade,
+      ativo,
+      data: currentDate,
+      referenciaImagem,
+    });
+    try {
+      // Envia os dados do anúncio para o backend usando a instância apiCliente
+      await apiCliente.post("/api/anuncio", {
+        idProduto,
+        titulo,
+        descricao,
+        preco,
+        quantidade,
+        ativo,
+        data: currentDate,
+        referenciaImagem,
+      });
+
+      alert("Anúncio cadastrado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao cadastrar anúncio: ", error);
+      alert(error.message);
+    }
+  };
+
+  return (
+    <Container>
+      <Form onSubmit={handleSignup}>
+        <TituloCadastro>Cadastro de Anúncios</TituloCadastro>
+        <ContainerColunas>
+          <Colunas>
+            <Campos>
+              <label>Título</label>
+              <Input
+                type="text"
+                placeholder="Título do Anúncio"
+                value={titulo}
+                onChange={(e) => setTitulo(e.target.value)}
+                required
+              />
+            </Campos>
+            <Campos>
+              <label>Descrição</label>
+              <Input
+                type="text"
+                placeholder="Descrição do anúncio"
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+                required
+              />
+            </Campos>
+            <CamposMenores>
+              <CamposMenoresSubdivisao2>
+                <label>Preço</label>
+                <Input
+                  type="number"
+                  placeholder="Digite o Preço"
+                  step="0.01"
+                  min="0.01"
+                  value={preco}
+                  onChange={(e) => setPreco(e.target.value)}
+                  required
+                />
+              </CamposMenoresSubdivisao2>
+              <CamposMenoresSubdivisao2>
+                <label>Id Produto</label>
+                <Input
+                  type="number"
+                  placeholder="Digite o Id do Produto"
+                  value={idProduto}
+                  onChange={(e) => setIDProduto(e.target.value)}
+                  required
+                />
+              </CamposMenoresSubdivisao2>
+              <CamposMenoresSubdivisao2>
+                <label>Quantidade</label>
+                <Input
+                  type="number"
+                  placeholder="Digite a Quantidade"
+                  step="1"
+                  min="1"
+                  value={quantidade}
+                  onChange={(e) => setQuantidade(e.target.value)}
+                  required
+                />
+              </CamposMenoresSubdivisao2>
+            </CamposMenores>
+            <Campos>
+              <label>Imagem do Anúncio</label>
+              <Input
+                type="url"
+                placeholder="URL da imagem"
+                value={referenciaImagem}
+                onChange={(e) => setReferenciaImagem(e.target.value)}
+                required
+              />
+            </Campos>
+          </Colunas>
+        </ContainerColunas>
+
+        <BCadastrar />
+      </Form>
+    </Container>
+  );
 }
 
 export default CadastroAnuncios;

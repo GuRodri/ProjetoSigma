@@ -13,9 +13,13 @@ import CarrinhoCompras from './containers/CarrinhoCompras';
 import HomeListagem from './containers/HomeListagem';
 import Login from './containers/Login';
 import ListaUsuarios from './containers/ListaUsuarios';
+import ListaProdutos from './containers/ListaProdutos';
+import ListaJogos from './containers/ListaJogos';
+import ListaAnuncios from './containers/ListaAnuncios';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
+import Favoritos from './containers/Favoritos';
 
 const App = () => {
   return (
@@ -35,6 +39,10 @@ const App = () => {
               <Route path='/home-listagem' element={<HomeListagem />} />
               <Route path='/login' element={<Login />} />
               <Route path='/lista-usuarios' element={<ListaUsuarios />} />
+              <Route path='/lista-produtos' element={<ListaProdutos />} />
+              <Route path='/lista-jogos' element={<ListaJogos />} />
+              <Route path='/lista-anuncios' element={<ListaAnuncios />} />
+              <Route path='/favoritos' element={<Favoritos />} />
         </Routes>
       </div>
     <Footer />

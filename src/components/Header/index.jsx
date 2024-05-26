@@ -4,6 +4,7 @@ import PesquisarIcon from '../../assets/icons/search-normal.svg';
 import LogoImage from '../../assets/icons/logo.svg';
 import LoginIconImage from '../../assets/icons/logar.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
+import MenuHamburger from '../MenuHamburguer';
 
 const Header = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,6 +43,7 @@ const Header = ({ onSearch }) => {
       <NavLink to="/login">
         <LoginIcon src={LoginIconImage} alt="Logar" />
       </NavLink>
+      <MenuHamburger />
     </SearchBarContainer>
   );
 };

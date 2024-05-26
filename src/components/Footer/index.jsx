@@ -30,27 +30,6 @@ const Footer = () => {
           <SmallTitle>Sigma Hardware+logo</SmallTitle>
           <SmallTitle>Nos conheça melhor</SmallTitle>
         </FooterContainerColunas>
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
 
         <FooterContainerColunas>
           <SubTitle>Produtos</SubTitle> 

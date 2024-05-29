@@ -1,6 +1,6 @@
 //Código para cadastro de usuários DIRETAMENTE DO BACKEND((funcional))
 
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
 import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
 import EstiloInputData from "../../components/Inputs/EstiloInput";
@@ -112,14 +112,13 @@ function CadastroUsuarios() {
     );
 }
 
-export default CadastroUsuarios;
+export default CadastroUsuarios;*/
 
 //Código para cadastro de usuários no Firebase, mas que envia uma cópia dos dados para o backend((em desenvolvimento))
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
 import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
 import useSignup from '../../hooks/useSignup';
-import { auth, db, analytics, googleProvider } from '../../firebase/firebaseConfig';
 
 const UserRole = {
     COMUM: 0,
@@ -220,7 +219,4 @@ function CadastroUsuarios() {
     );
 }
 
-export default CadastroUsuarios;*/
-
-
-
+export default CadastroUsuarios;

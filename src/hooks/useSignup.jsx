@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { auth } from '../firebase/firebaseConfig';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import apiCliente from '../services/apiCliente';
 
 const useSignup = () => {
   const [error, setError] = useState(null);
@@ -11,27 +13,37 @@ const useSignup = () => {
     setError(null);
     try {
       // Registra o usuário no Firebase
-      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('User created:', userCredential.user);
       const user = userCredential.user;
 
+      // Formata a data para ISO 8601
+      const formattedDate = new Date(dataNascimento).toISOString();
+      const currentDate = new Date().toISOString();
+
       // Envia os dados do usuário para o backend
-      const response = await axios.post('http://https://localhost:7059//api/usuarios', {
+      await apiCliente.post('/api/usuario', { 
         email,
         nome,
         sobrenome,
+        cpf,
         senha: password,
         genero,
-        dataNascimento,
+        dataNascimento: formattedDate,
         telefone,
-        cpf,
-        role
+        role,
+        ativo: true,
+        data: currentDate
       });
 
       setLoading(false);
+      alert('Usuário cadastrado com sucesso!');
       return user; // Retorna o usuário registrado (opcional)
     } catch (error) {
+      console.error("Erro ao cadastrar usuário: ", error);
       setError(error);
       setLoading(false);
+      alert(error.message);
     }
   };
 

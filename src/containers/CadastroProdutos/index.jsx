@@ -17,14 +17,14 @@ import apiCliente from "../../services/apiCliente";
 
 function CadastroProdutos() {
   const [nomeProduto, setNomeProduto] = useState("");
-  const [descricao, setDescricao] = useState("");
+  const [descricaoProduto, setDescricaoProduto] = useState("");
   const [categoria, setCategoria] = useState("");
   const [marca, setMarca] = useState("");
   const [imagemProduto, setImagemProduto] = useState("");
   const [fichaTecnica, setFichaTecnica] = useState("");
   const [ativo, setAtivo] = useState(true);
   const [preco, setPreco] = useState("");
-  const [estoque, setEstoque] = useState("");
+  const [quantidadeEstoque, setQuantidadeEstoque] = useState("");
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -33,28 +33,28 @@ function CadastroProdutos() {
 
     console.log({
       nomeProduto,
-      descricao,
+      descricaoProduto,
       categoria,
       marca,
       imagemProduto,
       fichaTecnica,
       ativo,
       preco,
-      estoque,
+      quantidadeEstoque,
       data: currentDate,
     });
     try {
       // Envia os dados do produto para o backend usando a instância apiCliente
       await apiCliente.post("/api/produto", {
         nomeProduto,
-        descricao,
+        descricaoProduto,
         categoria,
         marca,
         imagemProduto,
         fichaTecnica,
         ativo,
         preco,
-        estoque,
+        quantidadeEstoque,
         data: currentDate,
       });
 
@@ -86,8 +86,8 @@ function CadastroProdutos() {
               <Input
                 type="text"
                 placeholder="Descrição"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
+                value={descricaoProduto}
+                onChange={(e) => setDescricaoProduto(e.target.value)}
                 required
               />
             </Campos>
@@ -153,8 +153,8 @@ function CadastroProdutos() {
                 <InputMenor
                   type="number"
                   placeholder="Estoque"
-                  value={estoque}
-                  onChange={(e) => setEstoque(e.target.value)}
+                  value={quantidadeEstoque}
+                  onChange={(e) => setQuantidadeEstoque(e.target.value)}
                   required
                 />
               </CamposMenoresSubdivisao>

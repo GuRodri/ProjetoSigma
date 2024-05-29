@@ -27,7 +27,7 @@ export const FooterContainer = styled.footer`
 `;
 
 export const FooterContainerCentral = styled.div`
-  display: ${({ show }) => (show ? 'flex' : 'none')};
+  display: ${({ $show }) => ($show ? 'flex' : 'none')};
   flex-direction: row;
   justify-content: space-around;
   background-color: #252c37;

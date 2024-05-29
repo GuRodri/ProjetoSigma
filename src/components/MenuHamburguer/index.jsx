@@ -12,17 +12,16 @@ const MenuHamburger = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
-  
 
   return (
     <>
-      <HamburgerButton onClick={toggleMenu} isOpen={isOpen}>
+      <HamburgerButton onClick={toggleMenu} $isOpen={isOpen}>
         <div />
         <div />
         <div />
       </HamburgerButton>
-      <Overlay isOpen={isOpen} onClick={toggleMenu} />
-      <MenuContainer isOpen={isOpen} onMouseLeave={closeMenu}>
+      <Overlay $isOpen={isOpen} onClick={toggleMenu} />
+      <MenuContainer $isOpen={isOpen} onMouseLeave={closeMenu}>
        <NavLink to="/ambiente-usuario">Perfil Usuário</NavLink>
        <NavLink to="/ambiente-administrador">Perfil Administrador</NavLink>
        <NavLink to="/">Favoritos</NavLink>

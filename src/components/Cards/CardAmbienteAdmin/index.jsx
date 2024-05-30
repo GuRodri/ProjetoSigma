@@ -13,7 +13,7 @@ const CardAmbienteAdmin = () => {
         </NavLink>
       </CardContainer>
       <CardContainer>
-        <NavLink to='/cadastro-anuncios'>
+        <NavLink to='/lista-anuncios'>
           <Description>Anuncios</Description>
           <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
         </NavLink>

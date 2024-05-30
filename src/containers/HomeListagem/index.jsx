@@ -1,13 +1,15 @@
+import React, { useContext } from 'react';
 import CardVertical from "../../components/Cards/CardVertical";
-import { ContainerHome } from "./style";
-import { ContainerListagem } from "./style";
-
+import { ContainerHome, ContainerListagem } from "./style";
+import { SearchContext } from '../../context/SearchContext';
 
 function HomeListagem() {
+    const { globalSearchTerm } = useContext(SearchContext);
+
     return (
         <ContainerHome>
             <ContainerListagem>
-                <CardVertical /> 
+                <CardVertical searchTerm={globalSearchTerm} /> 
             </ContainerListagem>    
         </ContainerHome>
     );

@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, LoginIcon } from './style'; // Importando os estilos do componente
+import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, LoginIcon, Container } from './style';
 import PesquisarIcon from '../../assets/icons/search-normal.svg';
 import LogoImage from '../../assets/icons/logo.svg';
 import LoginIconImage from '../../assets/icons/logar.svg';
-import { NavLink, useNavigate } from 'react-router-dom';
-import MenuHamburger from '../MenuHamburguer';
+import { NavLink } from 'react-router-dom';
+import MenuHamburguer from '../MenuHamburguer';
+import { useSearch } from '../../context/SearchContext';
 
-const Header = ({ onSearch }) => {
+const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const { setGlobalSearchTerm } = useSearch();
 
   const handleInputChange = event => {
     setSearchTerm(event.target.value);
   };
 
   const handleSearch = () => {
-    onSearch(searchTerm);
+    setGlobalSearchTerm(searchTerm);
   };
 
   const handleKeyPress = event => {
@@ -36,14 +38,16 @@ const Header = ({ onSearch }) => {
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
         />
-        <NavLink to="/home-listagem">
+        <NavLink to={`/search?query=${encodeURIComponent(searchTerm)}`} onClick={handleSearch}>
           <SearchIcon src={PesquisarIcon} alt="Pesquisar" />
         </NavLink>
       </SearchInputContainer>
-      <NavLink to="/login">
-        <LoginIcon src={LoginIconImage} alt="Logar" />
-      </NavLink>
-      <MenuHamburger />
+      <Container>
+        <NavLink to="/login">
+          <LoginIcon src={LoginIconImage} alt="Logar" />
+        </NavLink>
+        <MenuHamburguer />
+      </Container>
     </SearchBarContainer>
   );
 };

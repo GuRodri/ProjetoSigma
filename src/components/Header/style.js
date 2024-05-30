@@ -29,6 +29,17 @@ export const SearchInputContainer = styled.div`
   justify-content: center;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #101419;
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+  }
+`;
+
 export const SearchInput = styled.input`
   width: 100%;
   padding: 0.5rem;

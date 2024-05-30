@@ -5,7 +5,7 @@ import BExcluir from '../../Button/Excluir';
 import BEditar from '../../Button/Editar';
 import BDetalhes from '../../Button/Detalhes';
 
-const CardListaUsuarios = () => {
+const CardListaUsuarios = ({ searchTerm }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -43,23 +43,28 @@ const CardListaUsuarios = () => {
     }
   };
 
+  const filteredUsers = users.filter(user => {
+    const fullName = `${user.nome} ${user.sobrenome}`.toLowerCase();
+    return fullName.includes((searchTerm || '').toLowerCase());
+  });
+
   return (
     <>
-      {users.map((user) => (
+      {filteredUsers.map((user) => (
         <CardHome2 key={user.idUsuario}>
           <ContainerEspacamento>
             <ContainerTexto>
               <p>{user.idUsuario}</p>
             </ContainerTexto>
             <ContainerTexto>
-              <p> {`${user.nome} ${user.sobrenome}`}</p>
+              <p>{`${user.nome} ${user.sobrenome}`}</p>
             </ContainerTexto>
             <ContainerTexto>
-              <p> {user.email}</p>
+              <p>{user.email}</p>
             </ContainerTexto>
           </ContainerEspacamento>
           <ContainerBotao>
-            <button onClick={() => handleDisableUser(user.idUsuario)}>excluir</button> <BEditar /> <BDetalhes />
+            <button onClick={() => handleDisableUser(user.idUsuario)}>Excluir</button> <BEditar /> <BDetalhes />
           </ContainerBotao>
         </CardHome2>
       ))}

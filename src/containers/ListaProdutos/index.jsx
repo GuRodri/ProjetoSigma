@@ -4,7 +4,7 @@ import { ContainerCarrinho, Container } from './style';
 import Filtro from '../../components/Filtro';
 import apiCliente from '../../services/apiCliente';
 import CardListaProdutos from '../../components/Cards/CardListaProdutos';
-import { useSearch } from '../../context/SearchContext';
+import { useSearch } from '../../context/searchContext';
 
 const ListaProdutos = () => {
   const [produtos, setProdutos] = useState([]);

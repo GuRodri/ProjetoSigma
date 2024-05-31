@@ -1,5 +1,6 @@
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const useAuthentication = () => {
     const [error, setError] = useState(null);
@@ -7,6 +8,8 @@ const useAuthentication = () => {
     const [cancelled, setCancelled] = useState(false);
 
     const auth = getAuth();
+
+    const navigate = useNavigate();
 
     function checkIfIsCancelled() {
         if (cancelled) {
@@ -23,10 +26,11 @@ const useAuthentication = () => {
         try {
             console.log("Attempting login...");
             await signInWithEmailAndPassword(auth, data.email, data.password);
-            console.log("Login successful");
+            alert("Login efetuado com sucesso");
             setLoading(false);
+            navigate("/");
         } catch (error) {
-            console.error(error.message);
+            alert("Falha no Login, verifique suas credenciais e tente novamente.")
 
             let systemErrorMessage;
             if (error.message.includes("user-not-found")) {

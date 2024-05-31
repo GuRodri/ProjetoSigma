@@ -2,28 +2,20 @@ import React, { useState } from "react";
 import { Campos, Container, Form, Input, Texto } from "./style";
 import BContinuar from "../../components/Button/Continuar";
 import useAuthentication from "../../hooks/userAuthentication";
-import { NavLink, useNavigate } from "react-router-dom"; // Importe useNavigate
+import { NavLink } from "react-router-dom"; // Importe useNavigate
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login, loading, error } = useAuthentication();
-    const navigate = useNavigate(); // Use useNavigate para redirecionamento
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await login({ email, password });
-            alert('Login efetuado com sucesso');
-            navigate('/'); // Redireciona para a home
-        } catch (error) {
-            alert('Erro ao efetuar login. Verifique suas credenciais.');
-        }
+            await login({ email, password });        
     };
 
     return (
         <Container>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Exibição do erro */}
             <Form onSubmit={handleSubmit}>
                 <h3>Login</h3>
                 <Campos>

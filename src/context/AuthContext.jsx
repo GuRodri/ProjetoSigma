@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setCurrentUser(null);
+      alert("Usuario deslogado com sucesso");
     } catch (err) {
       console.error('Error logging out:', err);
       setError('Erro ao fazer logout.');

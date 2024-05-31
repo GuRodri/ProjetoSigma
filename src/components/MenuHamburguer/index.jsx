@@ -1,35 +1,45 @@
 import React, { useState } from 'react';
-import { HamburgerButton, MenuContainer, Overlay} from './style';
+import { FaBars } from 'react-icons/fa'; // Ícone de menu hambúrguer do react-icons
+import { Container, MenuIcon, MenuOptions, UserName } from './style'; // Importe UserName do seu estilo
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/authContext'; // Importe o contexto de autenticação
 
-const MenuHamburger = () => {
+const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { currentUser } = useAuth(); // Obtenha o usuário atual do contexto de autenticação
 
   const toggleMenu = () => {
-    setIsOpen(prevIsOpen => !prevIsOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
+    setIsOpen(!isOpen);
   };
 
   return (
-    <>
-      <HamburgerButton onClick={toggleMenu} $isOpen={isOpen}>
-        <div />
-        <div />
-        <div />
-      </HamburgerButton>
-      <Overlay $isOpen={isOpen} onClick={toggleMenu} />
-      <MenuContainer $isOpen={isOpen} onMouseLeave={closeMenu}>
-       <NavLink to="/ambiente-usuario">Perfil Usuário</NavLink>
-       <NavLink to="/ambiente-administrador">Perfil Administrador</NavLink>
-       <NavLink to="/">Favoritos</NavLink>
-       <NavLink to="/favoritos">Histórico de Compras</NavLink>
-       <NavLink to="/sobre-nos">Sobre Nós</NavLink>
-      </MenuContainer>
-    </>
+    <Container>
+      <MenuIcon onClick={toggleMenu}>
+        <FaBars />
+      </MenuIcon>
+      <MenuOptions open={isOpen}>
+        {currentUser && (
+          <>
+            <UserName>{currentUser.displayName}</UserName> {/* Exibe o nome do usuário logado, se estiver logado */}
+            {/* Adicione o ícone do usuário logado aqui, se disponível */}
+          </>
+        )}
+        {currentUser && currentUser.role === 0 && ( // Verifica se o usuário está logado e se é um usuário comum
+          <>
+            <NavLink to="/ambiente-usuario">Perfil Usuário</NavLink>
+            <NavLink to="/favoritos">Favoritos</NavLink>
+            <NavLink to="/historico-de-compras">Histórico de Compras</NavLink>
+          </>
+        )}
+        {currentUser && currentUser.role === 1 && ( // Verifica se o usuário está logado e se é um administrador
+          <>
+            <NavLink to="/ambiente-administrador">Perfil Administrador</NavLink>
+          </>
+        )}
+        <NavLink to="/sobre-nos">Sobre Nós</NavLink>
+      </MenuOptions>
+    </Container>
   );
 };
 
-export default MenuHamburger;
+export default HamburgerMenu;

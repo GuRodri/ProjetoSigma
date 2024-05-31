@@ -1,36 +1,36 @@
 import styled from 'styled-components';
 
-export const HamburgerButton = styled.button`
-  // Estilos omitidos para brevidade
+export const Container = styled.div`
+  position: relative;
+  display: inline-block;
+`;
 
-   div {
-    // Estilos omitidos para brevidade
-    
-    &:first-child {
-      transform: ${({ $isOpen }) => ($isOpen ? 'rotate(45deg)' : 'rotate(0)')};
-    }
+export const MenuIcon = styled.div`
+  cursor: pointer;
+  font-size: 28px;
+  color: #d9d9d9;
+`;
 
-    &:nth-child(2) {
-      opacity: ${({ $isOpen }) => ($isOpen ? '0' : '1')};
-      transform: ${({ $isOpen }) => ($isOpen ? 'translateX(20px)' : 'translateX(0)')};
-    }
+export const MenuOptions = styled.div`
+  display: ${({ open }) => (open ? 'block' : 'none')};
+  position: absolute;
+  top: 40px;
+  right: -45px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 
-    &:nth-child(3) {
-      transform: ${({ $isOpen }) => ($isOpen ? 'rotate(-45deg)' : 'rotate(0)')};
+  Navilink {
+    color: d9d9d9;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      background-color: #ddd;
     }
   }
 `;
-
-export const Overlay = styled.div`
-  // Estilos omitidos para brevidade
-`;
-
-export const MenuContainer = styled.nav`
-  // Estilos omitidos para brevidade
-  
-  transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(100%)')};
-  
-  &:hover {
-    ${({ $isOpen }) => !$isOpen && 'transform: translateX(100%);'}
-  }
+export const UserName = styled.span`
+  color: #d9d9d9;
 `;

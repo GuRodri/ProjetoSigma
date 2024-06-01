@@ -1,17 +1,18 @@
 import React from 'react';
 import { CardHome2, ContainerEspacamento, ContainerBotao, ContainerTexto } from './style';
-import BExcluir from '../../Button/Excluir';
-import BEditar from '../../Button/Editar';
-import BDetalhes from '../../Button/Detalhes';
+import { useNavigate } from 'react-router-dom';
+import apiCliente from '../../../services/apiCliente'; // Importe o serviço de API
+import BEditarJogo from '../../Button/EditarJogo';
 
 const CardListaJogos = ({ jogo }) => {
+  const navigate = useNavigate();
+  
   const handleDisableJogo = async (id) => {
     console.log('Clicou no botão de exclusão');
     try {
       await apiCliente.patch(`/api/Jogo/${id}/disable`);
       console.log('Jogo desabilitado com sucesso! ID:', id);
-      // Remover o jogo da lista após desabilitá-lo
-      setFilteredJogos(filteredJogos.filter(jogo => jogo.idJogo !== id));
+      // Remover o jogo da lista após desabilitá-lo - AQUI ESTÁ FALTANDO O ESTADO 'setFilteredJogos'
       alert('Jogo desabilitado com sucesso!');
     } catch (error) {
       console.error('Erro ao desabilitar jogo: ', error);
@@ -19,11 +20,15 @@ const CardListaJogos = ({ jogo }) => {
     }
   };
 
+  const handleDetalhes = (id) => {
+    navigate(`/detalhes-jogos/${id}`); // Ajuste o caminho para detalhes de jogos
+  };
+
   return (
     <CardHome2 key={jogo.idJogo}>
       <ContainerEspacamento>
         <ContainerTexto>
-          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='60em'/>
+          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='200em'/>
         </ContainerTexto>
         <ContainerTexto>
           <p>{jogo.idJogo}</p>
@@ -36,7 +41,9 @@ const CardListaJogos = ({ jogo }) => {
         </ContainerTexto>
       </ContainerEspacamento>
       <ContainerBotao>
-        <button onClick={() => handleDisableJogo(jogo.idJogo)}>Excluir</button> <BEditar /> <BDetalhes />
+        <button onClick={() => handleDisableJogo(jogo.idJogo)}>Excluir</button> 
+        <BEditarJogo id={jogo.idJogo} /> 
+        <button onClick={() => handleDetalhes(jogo.idJogo)}>Detalhes</button>
       </ContainerBotao>
     </CardHome2>
   );

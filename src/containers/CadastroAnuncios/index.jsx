@@ -18,7 +18,6 @@ function CadastroAnuncios() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
-  const [quantidade, setQuantidade] = useState("");
   const [referenciaImagem, setReferenciaImagem] = useState("");
   const [ativo, setAtivo] = useState(true); // Defina o estado para ativo como true
 
@@ -32,7 +31,6 @@ function CadastroAnuncios() {
       titulo,
       descricao,
       preco,
-      quantidade,
       ativo,
       data: currentDate,
       referenciaImagem,
@@ -44,7 +42,6 @@ function CadastroAnuncios() {
         titulo,
         descricao,
         preco,
-        quantidade,
         ativo,
         data: currentDate,
         referenciaImagem,
@@ -103,18 +100,6 @@ function CadastroAnuncios() {
                   placeholder="Digite o Id do Produto"
                   value={idProduto}
                   onChange={(e) => setIDProduto(e.target.value)}
-                  required
-                />
-              </CamposMenoresSubdivisao2>
-              <CamposMenoresSubdivisao2>
-                <label>Quantidade</label>
-                <Input
-                  type="number"
-                  placeholder="Digite a Quantidade"
-                  step="1"
-                  min="1"
-                  value={quantidade}
-                  onChange={(e) => setQuantidade(e.target.value)}
                   required
                 />
               </CamposMenoresSubdivisao2>

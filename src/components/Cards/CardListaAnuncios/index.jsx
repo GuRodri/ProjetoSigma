@@ -1,10 +1,12 @@
 import React from 'react';
 import { CardHome2, ContainerEspacamento, ContainerBotao, ContainerTexto } from './style';
-import BExcluir from '../../Button/Excluir';
-import BEditar from '../../Button/Editar';
-import BDetalhes from '../../Button/Detalhes';
+import apiCliente from '../../../services/apiCliente';
+import { useNavigate } from 'react-router-dom';
+import BEditarAnuncios from '../../Button/EditarAnuncio';
 
 const CardListaAnuncios = ({ anuncio }) => {
+  const navigate = useNavigate();
+  
   const handleDisableAnuncio = async (id) => {
     console.log('Clicou no botão de exclusão');
     try {
@@ -17,6 +19,10 @@ const CardListaAnuncios = ({ anuncio }) => {
       console.error('Erro ao desabilitar anúncio: ', error);
       alert('Erro ao desabilitar anúncio. Verifique o console para mais detalhes.');
     }
+  };
+
+  const handleDetalhes = (id) => {
+    navigate(`/detalhes-anuncios/${id}`);
   };
 
   return (
@@ -36,7 +42,9 @@ const CardListaAnuncios = ({ anuncio }) => {
         </ContainerTexto>
       </ContainerEspacamento>
       <ContainerBotao>
-        <button onClick={() => handleDisableAnuncio(anuncio.idAnuncio)}>Excluir</button> <BEditar /> <BDetalhes />
+        <button onClick={() => handleDisableAnuncio(anuncio.idAnuncio)}>Excluir</button> 
+        <BEditarAnuncios id={anuncio.idAnuncio} />
+        <button onClick={() => handleDetalhes(anuncio.idAnuncio)}>Detalhes</button>
       </ContainerBotao>
     </CardHome2>
   );

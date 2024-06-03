@@ -2,7 +2,6 @@ import React from 'react';
 import {Container ,CardContainer, Description, Image } from './style';
 import { NavLink } from 'react-router-dom';
 
-
 const CardAmbienteAdmin = () => {
   return (
     <Container>

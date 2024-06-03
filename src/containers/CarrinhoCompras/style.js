@@ -6,7 +6,7 @@ export const ContainerHome = styled.div `
     flex-wrap: wrap;
     align-items: center;
     padding: 1em;
-    min-height: 100%;
+    min-height: 77.8vh;
     justify-content: center;
     color: #d9d9d9;
 

@@ -18,9 +18,9 @@ export const ContainerTitulo = styled.div`
     background-color: transparent;
     
     h1 {
-        font-size: 1.5em; /* Ajuste o tamanho da fonte conforme necessário */
+        font-size: 1.5em;
         width: 100%;
-        text-align: center; /* Centralize o texto */
+        text-align: center;
     }
 `;
 

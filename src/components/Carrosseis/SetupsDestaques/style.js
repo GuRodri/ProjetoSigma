@@ -1,4 +1,3 @@
-// Estilos do CDestaques
 import styled from "styled-components";
 
 export const ContainerSetupsMaisVendidos = styled.div`
@@ -12,12 +11,9 @@ export const ContainerSetupsMaisVendidos = styled.div`
 `;
 
 export const ContainerTitulo = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     margin: 1em;
-    background-color: transparent;
-    
+    background-color: transparente;
+
     h1 {
         font-size: 1.5em;
         width: 100%;
@@ -27,15 +23,13 @@ export const ContainerTitulo = styled.div`
 
 export const ContainerSetups = styled.div`
     display: flex;
-    flex-direction: column; /* Alterado para column */
+    flex-direction: row-reverse;
     align-items: center;
     width: 100%;
 `;
 
 export const StyledSliderContainer = styled.div`
     width: 100%;
-    padding: 0 2em; /* Reduzido o padding para garantir espaço suficiente */
-    margin: 0 auto;
 `;
 
 export const StyledSliderSlide = styled.div`

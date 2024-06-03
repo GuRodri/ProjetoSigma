@@ -15,6 +15,7 @@ import apiCliente from "../../../services/apiCliente";
 function CDestaques() {
     const [produtos, setProdutos] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
         const fetchProdutos = async () => {
@@ -25,6 +26,7 @@ function CDestaques() {
                 setIsLoading(false);
             } catch (error) {
                 console.error('Erro ao buscar produtos:', error);
+                setHasError(true);
                 setIsLoading(false);
             }
         };
@@ -36,11 +38,11 @@ function CDestaques() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1, // Altere conforme necessário
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         autoplay: true,
-        autoplaySpeed: 5000, // Tempo de exibição de cada anúncio (5 segundos)
-        pauseOnHover: true // Pausa quando o mouse estiver sobre o carrossel
+        autoplaySpeed: 5000,
+        pauseOnHover: true 
     };
 
     return (
@@ -50,20 +52,20 @@ function CDestaques() {
             </ContainerTitulo>
             <ContainerSetups>
                 <StyledSliderContainer>
-                    {!isLoading && produtos.length > 0 && (
+                    {isLoading && <div>Carregando...</div>}
+                    {hasError && <div>Erro ao carregar produtos. Por favor, tente novamente mais tarde.</div>}
+                    {!isLoading && !hasError && produtos.length > 0 && (
                         <Slider {...settings}>
                             {produtos.map((produto) => (
                                 <StyledSliderSlide key={produto.idProduto}>
                                     <CardVertical 
-                                        key={produto.idProduto}
-                                        produto={produto}
+                                        produtos={[produto]} // Passando um array com um único produto
                                     />
                                 </StyledSliderSlide>
                             ))}
                         </Slider>
                     )}
-                    {isLoading && <div>Carregando...</div>}
-                    {!isLoading && produtos.length === 0 && <div>Nenhum produto disponível.</div>}
+                    {!isLoading && !hasError && produtos.length === 0 && <div>Nenhum produto disponível.</div>}
                 </StyledSliderContainer>
             </ContainerSetups>
         </ContainerSetupsMaisVendidos>

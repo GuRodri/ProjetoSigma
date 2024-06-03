@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import apiCliente from '../../../services/apiCliente';
+import React from 'react';
 import { CardHome2 } from './style';
 import Rating from '../../Rating';
 import { SmallTitle, SubTitle, Title } from '../../../containers/Home/style';
 import BDetalhes from '../../Button/Detalhes';
 
-const CardVertical = ({ searchTerm }) => {
-  const [produtos, setProdutos] = useState([]);
-
-  useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await apiCliente.get('/api/Produto');
-        const produtosAtivos = response.data.filter(produto => produto.ativo);
-        setProdutos(produtosAtivos);
-      } catch (error) {
-        console.error('Erro ao buscar produtos:', error);
-      }
-    };
-
-    fetchProdutos();
-  }, []);
-
+const CardVertical = ({ produtos = [], searchTerm }) => { // Valor padrão para produtos
   const filteredProdutos = produtos.filter(produto => {
     const nomeProduto = produto.nomeProduto || ''; 
     const term = searchTerm || ''; 

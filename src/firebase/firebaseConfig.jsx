@@ -1,8 +1,9 @@
-// Importe as funções necessárias dos SDKs do Firebase
+// src/firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import { GoogleAuthProvider, getAuth } from "firebase/auth"; // Importe o provedor do Google e a função getAuth
+import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage"; // Importe a função getStorage
 
 // Sua configuração do Firebase
 const firebaseConfig = {
@@ -19,8 +20,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
+const storage = getStorage(app); // Inicialize o storage
 
 const googleProvider = new GoogleAuthProvider();
 
-export { db, auth, googleProvider, analytics };
-
+export { db, auth, googleProvider, analytics, storage }; // Exporte o storage

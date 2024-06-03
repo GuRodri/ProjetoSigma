@@ -29,12 +29,6 @@ function CSetupsMaisVendidos() {
                         <StyledSliderSlide>
                             <CardVertical />
                         </StyledSliderSlide>
-                        <StyledSliderSlide>
-                            <CardVertical />
-                        </StyledSliderSlide>
-                        <StyledSliderSlide>
-                            <CardVertical />
-                        </StyledSliderSlide>
                     </Slider>
                 </StyledSliderContainer>
             </ContainerSetups>

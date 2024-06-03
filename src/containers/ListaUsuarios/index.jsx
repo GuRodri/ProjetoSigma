@@ -9,6 +9,7 @@ function ListaUsuarios() {
 
   return (
     <Container>
+      <h2>Lista de Usuarios</h2>
       <ContainerCarrinho>
         <NavLink to="/cadastro-usuarios">Adicionar</NavLink>
         <CardListaUsuarios searchTerm={globalSearchTerm} />

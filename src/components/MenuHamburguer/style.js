@@ -20,7 +20,7 @@ export const MenuOptions = styled.div`
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 
-  Navilink {
+  a {
     color: d9d9d9;
     padding: 12px 16px;
     text-decoration: none;

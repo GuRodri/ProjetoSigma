@@ -41,7 +41,7 @@ const CardListaProdutos = ({ searchTerm }) => {
   };
 
   const filteredProdutos = produtos.filter(produto => {
-    const nomeProduto = produto.nomeProduto.toLowerCase();
+    const nomeProduto = `${produto.nomeProduto}`.toLowerCase();
     return nomeProduto.includes((searchTerm || '').toLowerCase());
   });
 

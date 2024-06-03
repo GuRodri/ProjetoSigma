@@ -18,7 +18,7 @@ const Footer = () => {
     setShowMoreInfo(prevState => !prevState);
     if (!showMoreInfo) {
       // Rola a página até o final para exibir todo o conteúdo do footer
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      window.scrollTo({ bottom: document.body.scrollHeight, behavior: 'smooth' });
     }
   };
 
@@ -31,8 +31,42 @@ const Footer = () => {
           <SmallTitle>Sigma Hardware+logo</SmallTitle>
           <SmallTitle>Nos conheça melhor</SmallTitle>
         </FooterContainerColunas>
+        <FooterContainerColunas>
+          <SubTitle>Produtos</SubTitle> 
+          <SmallTitle>Setups Gamer Prontos</SmallTitle>
+          <SmallTitle>Monte o seu Setup Fácil</SmallTitle>
+          <SmallTitle>Demais Produtos</SmallTitle>
+        </FooterContainerColunas>
 
-        {/* Outras colunas omitidas para brevidade */}
+        <FooterContainerColunas>
+          <SubTitle>Atendimento</SubTitle> 
+          <SmallTitle>Email</SmallTitle>
+          <SmallTitle>Telefone</SmallTitle>
+          <SmallTitle>Whatsapp</SmallTitle>
+        </FooterContainerColunas>
+
+        <FooterContainerColunas>
+          <SubTitle>Redes Sociais</SubTitle> 
+          <SmallTitle>youtube</SmallTitle>
+          <SmallTitle>instagram</SmallTitle>
+          <SmallTitle>facebook</SmallTitle>
+          <SmallTitle>x</SmallTitle>
+        </FooterContainerColunas>
+
+        <FooterContainerColunas>
+          <SubTitle>Minha Conta</SubTitle> 
+          <SmallTitle>Entre agora</SmallTitle>
+        </FooterContainerColunas>
+
+        <FooterContainerColunas>
+          <SubTitle>Baixe Apps</SubTitle> 
+          <SmallTitle>Play Store</SmallTitle>
+        </FooterContainerColunas>
+
+        <FooterContainerColunas>
+          <SubTitle>Ajuda</SubTitle> 
+          <SmallTitle>Ajuda + icone</SmallTitle>
+        </FooterContainerColunas>
         
       </FooterContainerCentral>
       

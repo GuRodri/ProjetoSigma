@@ -30,6 +30,12 @@ const CardAmbienteAdmin = () => {
           <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
         </NavLink>
       </CardContainer>
+      <CardContainer>
+        <NavLink to='/cadastro-imagens'>
+          <Description>Imagens</Description>
+          <Image src="https://via.placeholder.com/150" style={{ width: "100%" }} alt="Imagem do Card" />
+        </NavLink>
+      </CardContainer>
     </Container>
     
   );

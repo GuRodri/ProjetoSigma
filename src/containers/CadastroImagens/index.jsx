@@ -38,7 +38,7 @@ const Cadastro = () => {
     if (e.target.files[0]) {
       newImages[index] = e.target.files[0];
       newPreviews[index] = URL.createObjectURL(e.target.files[0]);
-      newFileNames[index] = e.target.files[0].name;
+      newFileNames[index] = `${Date.now()}_${e.target.files[0].name}`; // Adiciona timestamp ao nome do arquivo
       setImages(newImages);
       setImagePreviews(newPreviews);
       setFileNames(newFileNames);
@@ -83,7 +83,7 @@ const Cadastro = () => {
       const uploadPromises = images.map((image, index) => {
         if (image) {
           return new Promise((resolve, reject) => {
-            const storageRef = ref(storage, `images/${image.name}`);
+            const storageRef = ref(storage, `images/${fileNames[index]}`);
             const uploadTask = uploadBytesResumable(storageRef, image);
 
             uploadTask.on(
@@ -121,7 +121,7 @@ const Cadastro = () => {
           const imageInfos = validUrls.map((url, index) => ({
             url,
             name: fileNames[index],
-            description: descriptions[index]
+            description: descriptions[index] || '' // Descrição opcional
           }));
           return cadastrarNoFirestore(imageInfos);
         })
@@ -165,7 +165,8 @@ const Cadastro = () => {
   return (
     <Container>
       <Title>Cadastro de Imagens</Title>
-      <Select onChange={handleTipoChange} value={tipo}>
+      <Select onChange={handleTipoChange} value={tipo} placeholder='tipo de cadastro'>
+        <option value="">Selecione o tipo de cadastro</option>
         <option value="produto">Produto</option>
         <option value="anuncio">Anuncio</option>
         <option value="jogo">Jogo</option>

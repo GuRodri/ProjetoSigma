@@ -28,7 +28,7 @@ const CardListaJogos = ({ jogo }) => {
     <CardHome2 key={jogo.idJogo}>
       <ContainerEspacamento>
         <ContainerTexto>
-          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='200em'/>
+          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='70em' border-radius='5px'/>
         </ContainerTexto>
         <ContainerTexto>
           <p>{jogo.idJogo}</p>
@@ -41,9 +41,9 @@ const CardListaJogos = ({ jogo }) => {
         </ContainerTexto>
       </ContainerEspacamento>
       <ContainerBotao>
-        <button onClick={() => handleDisableJogo(jogo.idJogo)}>Excluir</button> 
+        <button className='BExcluir' onClick={() => handleDisableJogo(jogo.idJogo)}>Excluir</button> 
         <BEditarJogo id={jogo.idJogo} /> 
-        <button onClick={() => handleDetalhes(jogo.idJogo)}>Detalhes</button>
+        <button className='BDetalhes' onClick={() => handleDetalhes(jogo.idJogo)}>Detalhes</button>
       </ContainerBotao>
     </CardHome2>
   );

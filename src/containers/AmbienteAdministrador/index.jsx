@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Card } from "./style";
 import CardAmbienteAdmin from "../../components/Cards/CardAmbienteAdmin";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "@/context/authContext";
 
 function AmbienteAdministrador() {
     const { currentUser } = useAuth();

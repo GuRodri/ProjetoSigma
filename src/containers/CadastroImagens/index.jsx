@@ -1,8 +1,8 @@
-// src/components/Cadastro.js
 import React, { useState, useRef } from 'react';
-import { storage, db } from '../../firebase/firebaseConfig'; // Importe o storage e o db do arquivo 
+import { storage, db } from '../../firebase/firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+
 import {
   Container,
   Title,
@@ -10,9 +10,11 @@ import {
   Input,
   FileInputContainer,
   FileInput,
+  CustomFileInputButton,
   Thumbnail,
   RemoveButton,
   UploadButton,
+  Centralizar,
   Progress,
   ImageLink,
   SuccessMessage
@@ -24,7 +26,6 @@ const Cadastro = () => {
   const [progresses, setProgresses] = useState([0, 0, 0]);
   const [urls, setUrls] = useState(['', '', '']);
   const [fileNames, setFileNames] = useState(['', '', '']);
-  const [descriptions, setDescriptions] = useState(['', '', '']);
   const [tipo, setTipo] = useState('produto');
   const [id, setId] = useState('');
   const [success, setSuccess] = useState(false);
@@ -49,15 +50,12 @@ const Cadastro = () => {
     const newImages = [...images];
     const newPreviews = [...imagePreviews];
     const newFileNames = [...fileNames];
-    const newDescriptions = [...descriptions];
     newImages[index] = null;
     newPreviews[index] = '';
     newFileNames[index] = '';
-    newDescriptions[index] = '';
     setImages(newImages);
     setImagePreviews(newPreviews);
     setFileNames(newFileNames);
-    setDescriptions(newDescriptions);
 
     if (fileInputRefs.current[index].current) {
       fileInputRefs.current[index].current.value = '';
@@ -72,41 +70,53 @@ const Cadastro = () => {
     setId(e.target.value);
   };
 
-  const handleDescriptionChange = (index, e) => {
-    const newDescriptions = [...descriptions];
-    newDescriptions[index] = e.target.value;
-    setDescriptions(newDescriptions);
-  };
-
-  const handleUpload = () => {
+  const handleUpload = async () => {
+    // Verifica se o ID já existe
+    const docRef = collection(db, tipo === 'produto' ? "Produto" : tipo === 'anuncio' ? "Anuncio" : "Jogo");
+    const q = query(docRef, where("idProduto", "==", id));
+    const querySnapshot = await getDocs(q);
+    
+    if (!querySnapshot.empty) {
+      alert("ID já cadastrado!");
+      return;
+    }
+    
+    // Se não existir, continua com o upload
     if (id && images.some(img => img !== null)) {
       const uploadPromises = images.map((image, index) => {
         if (image) {
           return new Promise((resolve, reject) => {
             const storageRef = ref(storage, `images/${fileNames[index]}`);
             const uploadTask = uploadBytesResumable(storageRef, image);
-
+  
             uploadTask.on(
               "state_changed",
               snapshot => {
                 const progress = Math.round(
                   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
-                const newProgresses = [...progresses];
-                newProgresses[index] = progress;
-                setProgresses(newProgresses);
+                setProgresses(prevProgresses => {
+                  const newProgresses = [...prevProgresses];
+                  newProgresses[index] = progress;
+                  return newProgresses;
+                });
               },
               error => {
                 console.error("Error uploading file:", error);
                 reject(error);
               },
               () => {
-                getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-                  const newUrls = [...urls];
-                  newUrls[index] = downloadURL;
-                  setUrls(newUrls);
-                  resolve();
-                }).catch(reject);
+                getDownloadURL(uploadTask.snapshot.ref)
+                  .then(downloadURL => {
+                    if (downloadURL !== '') { // Verificar se a URL não está vazia
+                      const newUrls = [...urls];
+                      newUrls[index] = downloadURL;
+                      console.log(`URL da imagem ${index}:`, downloadURL);
+                      setUrls(newUrls);
+                    }
+                    resolve();
+                  })
+                  .catch(reject);
               }
             );
           });
@@ -114,21 +124,15 @@ const Cadastro = () => {
           return Promise.resolve();
         }
       });
-
+  
       Promise.all(uploadPromises)
-        .then(() => {
-          const validUrls = urls.filter(url => url !== '');
-          const imageInfos = validUrls.map((url, index) => ({
-            url,
-            name: fileNames[index],
-            description: descriptions[index] || '' // Descrição opcional
-          }));
-          return cadastrarNoFirestore(imageInfos);
-        })
-        .then(() => {
-          setSuccess(true);
-          alert('Cadastro realizado com sucesso!');
-        })
+      .then(() => {
+        console.log("URLs das imagens:", urls); // Log das URLs das imagens após o upload
+        setSuccess(true);
+        cadastrarNoFirestore();
+        alert('Cadastro realizado com sucesso!');
+        resetForm();
+      })
         .catch(error => {
           console.error("Error uploading files:", error);
           alert('Erro ao enviar arquivos');
@@ -137,9 +141,24 @@ const Cadastro = () => {
       alert("Por favor, escolha pelo menos um arquivo e insira um ID!");
     }
   };
+  
+  const resetForm = () => {
+    setImages([null, null, null]);
+    setImagePreviews(['', '', '']);
+    setProgresses([0, 0, 0]);
+    setFileNames(['', '', '']);
+    setId('');
+    setTipo('produto');
+    fileInputRefs.current.forEach(ref => {
+      if (ref.current) ref.current.value = '';
+    });
+  };
 
-  const cadastrarNoFirestore = async (imageInfos) => {
+  const cadastrarNoFirestore = async () => {
     try {
+      const validUrls = urls.filter(url => url !== '');
+      const imageInfos = validUrls.map(url => ({ url }));
+      console.log("Objetos de imagem:", imageInfos); // Log dos objetos de imagem antes do cadastro no Firestore
       if (tipo === 'produto') {
         await addDoc(collection(db, "Produto"), {
           idProduto: id,
@@ -164,6 +183,7 @@ const Cadastro = () => {
 
   return (
     <Container>
+      <Centralizar>
       <Title>Cadastro de Imagens</Title>
       <Select onChange={handleTipoChange} value={tipo} placeholder='tipo de cadastro'>
         <option value="">Selecione o tipo de cadastro</option>
@@ -178,27 +198,58 @@ const Cadastro = () => {
         onChange={handleIdChange} 
       />
       {[0, 1, 2].map((index) => (
-        <FileInputContainer key={index}>
-          <FileInput
-            type="file"
-            onChange={(e) => handleChange(index, e)}
-            ref={fileInputRefs.current[index]}
-          />
-          {imagePreviews[index] && (
-            <>
-              <Thumbnail src={imagePreviews[index]} alt={`Preview ${index + 1}`} />
-              <RemoveButton onClick={() => handleRemove(index)}>x</RemoveButton>
-              <Input 
-                type="text" 
-                placeholder="Descrição" 
-                value={descriptions[index]} 
-                onChange={(e) => handleDescriptionChange(index, e)} 
-              />
-            </>
-          )}
-        </FileInputContainer>
+     <FileInputContainer key={index}>
+     <div style={{ display: "flex", alignItems: "center" }}>
+       <div style={{ marginRight: "4em" }}>
+         <CustomFileInputButton
+           onClick={() => fileInputRefs.current[index].current.click()}
+         >
+           Escolher Arquivo
+         </CustomFileInputButton>
+         <FileInput
+           type="file"
+           onChange={(e) => handleChange(index, e)}
+           ref={fileInputRefs.current[index]}
+           style={{ display: "none" }}
+         />
+       </div>
+       <div style={{ position: "relative" }}>
+         <Thumbnail
+           src={imagePreviews[index]}
+           alt={` Selecione  ${index + 1}`}
+         />
+         {progresses[index] > 0 && (
+           <div
+             style={{
+               position: "absolute",
+               bottom: 0,
+               left: 0,
+               width: "100%",
+               height: "10px",
+               backgroundColor: "#ccc",
+               borderRadius: "5px 5px 5px 5px"
+             }}
+           >
+             <div
+               style={{
+                 width: `${progresses[index]}%`,
+                 height: "100%",
+                 backgroundColor: "#007bff"
+               }}
+             ></div>
+           </div>
+         )}
+       </div>
+     </div>
+     {imagePreviews[index] && (
+       <>
+         <RemoveButton onClick={() => handleRemove(index)}>x</RemoveButton>
+       </>
+     )}
+   </FileInputContainer>
       ))}
       <UploadButton onClick={handleUpload}>Upload</UploadButton>
+      </Centralizar>
     </Container>
   );
 };

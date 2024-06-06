@@ -1,99 +1,121 @@
-// src/components/style.js
 import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  min-height: 77.8vh;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: auto;
+  min-height: 78vh;
+  color: #d9d9d9;
+`;
+
+export const Centralizar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5em 5em 2.5em 5em;
+  width: auto;
+  background-color: #101419;
+  border-radius: 20px;
+  border: 1px solid #726F6F;
 `;
 
 export const Title = styled.h1`
-  color: #333;
+  margin-bottom: 30px;
+
 `;
 
 export const Select = styled.select`
+  margin-bottom: 20px;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
+  width: 300px;
+  border-radius: 10px;
 `;
 
 export const Input = styled.input`
+  margin-bottom: 20px;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
+  width: 300px;
+  border-radius: 10px;
 `;
 
 export const FileInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
+  margin-bottom: 20px;
   position: relative;
+  align-items: center;
+  border-radius: 10px;
 `;
 
 export const FileInput = styled.input`
-  margin-right: 10px;
+  display: none;
+  border-radius: 10px;
+`;
+
+export const CustomFileInputButton = styled.button`
+  padding: 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 export const Thumbnail = styled.img`
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
 `;
 
 export const RemoveButton = styled.button`
   position: absolute;
-  right: -10px;
-  top: -10px;
+  top: 0;
+  right: 0;
   background: red;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
+  width: 1.2em;
 `;
 
 export const UploadButton = styled.button`
   padding: 10px 20px;
-  background-color: #4CAF50;
+  cursor: pointer;
+  background-color: #28a745;
   color: white;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 10px 0;
+  border-radius: 5px;
   &:hover {
-    background-color: #45a049;
+    background-color: #218838;
   }
 `;
 
-export const Progress = styled.progress`
+export const Progress = styled.div`
   width: 100%;
-  margin: 10px 0;
-`;
-
-export const ImageLink = styled.a`
-  color: #1a0dab;
+  height: 20px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  overflow: hidden;
   margin-top: 10px;
 `;
 
-export const SuccessMessage = styled.div`
-  margin-top: 20px;
-  color: #4CAF50;
+export const ProgressBar = styled.div`
+  height: 100%;
+  background-color: #4caf50;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+`;
+
+export const ImageLink = styled.a`
+  margin-top: 10px;
+  display: block;
+  color: blue;
+`;
+
+export const SuccessMessage = styled.p`
+  color: green;
   font-weight: bold;
 `;

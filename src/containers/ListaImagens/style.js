@@ -1,31 +1,31 @@
-// src/components/style.js
 import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 20px;
-  min-height: 77.8vh;
 `;
 
 export const Title = styled.h1`
-  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
 `;
 
-export const List = styled.div`
-  margin: 20px 0;
+export const List = styled.ul`
+  list-style: none;
+  padding: 0;
 `;
 
-export const ListItem = styled.div`
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
+export const ListItem = styled.li`
+  margin-bottom: 30px;
 `;
 
 export const Image = styled.img`
-  max-width: 100px;
-  margin-right: 10px;
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
 `;
 
 export const Description = styled.p`
-  margin: 5px 0;
+  font-size: 16px;
+  margin-bottom: 5px;
 `;

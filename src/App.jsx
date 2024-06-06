@@ -38,7 +38,6 @@ import ListaImagens from './containers/ListaImagens';
 
 const App = () => {
   return (
-    <SearchProvider>
       <AuthProvider>
         <Router>
           <Header />
@@ -80,7 +79,6 @@ const App = () => {
           <Footer />
         </Router>
       </AuthProvider>
-    </SearchProvider>
   );
 };
 

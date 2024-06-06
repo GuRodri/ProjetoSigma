@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Card} from "./style";
 import CardAmbienteUsuario from "../../components/Cards/CardAmbienteUsuario";
-import { useAuth } from "../../context/authContext"
+import { useAuth } from "../../context/authContext";
 
 
 function AmbienteUsuario() {

@@ -18,6 +18,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 import Favoritos from './containers/Favoritos';
+import { SearchProvider } from './context/searchContext.jsx';
 import ProtectedRoute from './routes/protectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 import { AuthProvider } from './context/authContext.jsx';
@@ -37,6 +38,7 @@ import ListaImagens from './containers/ListaImagens';
 
 const App = () => {
   return (
+    <SearchProvider>
       <AuthProvider>
         <Router>
           <Header />
@@ -78,6 +80,7 @@ const App = () => {
           <Footer />
         </Router>
       </AuthProvider>
+    </SearchProvider>
   );
 };
 

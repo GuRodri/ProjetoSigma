@@ -21,7 +21,7 @@ import Favoritos from './containers/Favoritos';
 import { SearchProvider } from './context/searchContext.jsx';
 import ProtectedRoute from './routes/protectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
-import { AuthProvider } from './context/authContext';
+import { AuthProvider } from './context/authContext.jsx';
 import Unauthorized from './components/Unauthorized';
 import UserProfile from './components/UserProfile';
 import HomeListagem from './containers/HomeListagem';

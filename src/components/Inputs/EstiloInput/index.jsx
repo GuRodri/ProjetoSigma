@@ -56,7 +56,7 @@ function StyledDatePicker() {
           </StyledSelect>
           <StyledSelect name="year" onChange={handleSelectChange} value={year}>
             <option value="">Ano</option>
-            {Array.from({ length: 120 }, (_, i) => (
+            {Array.from({ length: 104 }, (_, i) => (
               <option key={i + 1920} value={i + 1920}>
                 {i + 1920}
               </option>

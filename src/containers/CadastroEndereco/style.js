@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 77.8vh;
     background-color: transparent;
     text-align: center;
     color: #d9d9d9;

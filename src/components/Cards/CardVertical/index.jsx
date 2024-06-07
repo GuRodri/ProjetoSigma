@@ -1,30 +1,38 @@
 import React from 'react';
-import { CardHome } from './style';
+import { CardHome2 } from './style';
 import Rating from '../../Rating';
 import { SmallTitle, SubTitle, Title } from '../../../containers/Home/style';
 import BDetalhes from '../../Button/Detalhes';
 
+const CardVertical = ({ produtos = [], searchTerm }) => { // Valor padrão para produtos
+  const filteredProdutos = produtos.filter(produto => {
+    const nomeProduto = produto.nomeProduto || ''; 
+    const term = searchTerm || ''; 
+    return nomeProduto.toLowerCase().includes(term.toLowerCase());
+  });
 
-
-function CardVertical() {
-    return (
-        <CardHome>
-  <img src="https://via.placeholder.com/150" alt="Avatar" style={{ width: "100%" }} />
-  <div>
-    <SubTitle>Notebook acer nitro 5 core i25, 5tb</SubTitle>
-    <Title>R$ 5000,00</Title>
-    <SmallTitle>12x de R$ 500,00</SmallTitle>
-    <Rating />
-    <span>
-      <SmallTitle><span>Frete Grátis</span></SmallTitle>
-    </span>
-    <div className='button'> {/* Adicionando a classe 'button' aqui */}
-      <BDetalhes />
-    </div>
-  </div>
-</CardHome>
-    );
-}
+  return (
+    <>
+      {filteredProdutos.map((produto) => (
+        <CardHome2 key={produto.idProduto}>
+          <img src={produto.imagemProduto} alt="Imagem do Produto" width='150em'/>
+          <div>
+            <SubTitle>{produto.nomeProduto}</SubTitle>
+            <Title>{produto.preco}</Title>
+            <SmallTitle>12x de R$ 500,00</SmallTitle>
+            {produto.classificacao}
+            <Rating />
+            <span>
+              <SmallTitle><span>Frete Grátis</span></SmallTitle>
+            </span>
+            <div className='button'> 
+              <BDetalhes />
+            </div>
+          </div>
+        </CardHome2>
+      ))}
+    </>
+  );
+};
 
 export default CardVertical;
-

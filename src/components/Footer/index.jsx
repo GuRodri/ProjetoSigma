@@ -1,3 +1,4 @@
+// Footer.js
 import React, { useState } from 'react';
 import {
   FooterContainer,
@@ -14,44 +15,22 @@ const Footer = () => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   const handleToggleMoreInfo = () => {
-    setShowMoreInfo(!showMoreInfo);
+    setShowMoreInfo(prevState => !prevState);
     if (!showMoreInfo) {
       // Rola a página até o final para exibir todo o conteúdo do footer
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      window.scrollTo({ bottom: document.body.scrollHeight, behavior: 'smooth' });
     }
   };
 
   return (
     <FooterContainer>
       <FooterButton onClick={handleToggleMoreInfo}>Mais Informações</FooterButton>
-      <FooterContainerCentral show={showMoreInfo.toString()}>
+      <FooterContainerCentral $show={showMoreInfo}>
         <FooterContainerColunas>
           <SubTitle>Institucional</SubTitle> 
           <SmallTitle>Sigma Hardware+logo</SmallTitle>
           <SmallTitle>Nos conheça melhor</SmallTitle>
         </FooterContainerColunas>
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-
-        <FooterContainerColunas>
-          <SubTitle>Institucional</SubTitle> 
-          <SmallTitle>Sigma Hardware+logo</SmallTitle>
-          <SmallTitle>Nos conheça melhor</SmallTitle>
-        </FooterContainerColunas>
-
         <FooterContainerColunas>
           <SubTitle>Produtos</SubTitle> 
           <SmallTitle>Setups Gamer Prontos</SmallTitle>
@@ -88,6 +67,7 @@ const Footer = () => {
           <SubTitle>Ajuda</SubTitle> 
           <SmallTitle>Ajuda + icone</SmallTitle>
         </FooterContainerColunas>
+        
       </FooterContainerCentral>
       
       <FooterContainerInferior>
@@ -107,5 +87,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-

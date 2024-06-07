@@ -1,15 +1,18 @@
 import React from "react";
 import { Container, Card} from "./style";
-import CardAmbienteAdmin from "../../components/Cards/CardAmbienteAdmin";
+import CardAmbienteUsuario from "../../components/Cards/CardAmbienteUsuario";
+import { useAuth } from "../../context/autContexto1";
 
 
 function AmbienteUsuario() {
 
+    const { currentUser } = useAuth();
+
     return (
         <Container>
-            <h1>Olá, em que podemos ajudar?</h1>
+            <p>Olá, {currentUser && currentUser.role === 0 ? currentUser.email : "Usuário"} em que podemos ajudar?</p>
             <Card>
-                <CardAmbienteAdmin />
+                <CardAmbienteUsuario />
             </Card>
         </Container>
     );

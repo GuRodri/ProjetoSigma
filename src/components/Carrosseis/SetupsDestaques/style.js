@@ -6,38 +6,30 @@ export const ContainerSetupsMaisVendidos = styled.div`
     align-items: center;
     justify-content: center;
     background-color: rgba(35, 58, 74, 0.5);
-
     width: 80%;
     margin: 1em 5em;
 `;
 
 export const ContainerTitulo = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     margin: 1em;
-    background-color: transparent;
-    
+    background-color: transparente;
+
     h1 {
-        font-size: 1.5em; /* Ajuste o tamanho da fonte conforme necessário */
+        font-size: 1.5em;
         width: 100%;
-        text-align: center; /* Centralize o texto */
+        text-align: center;
     }
 `;
 
 export const ContainerSetups = styled.div`
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: row-reverse;
     align-items: center;
     width: 100%;
 `;
 
 export const StyledSliderContainer = styled.div`
-    width:100%;
-    padding: 0 5em;
-    margin: 0 auto;
+    width: 100%;
 `;
 
 export const StyledSliderSlide = styled.div`

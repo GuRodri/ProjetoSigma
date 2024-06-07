@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
 import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
-import EstiloInputData from "../../components/Inputs/EstiloInput";
-import apiCliente from "../../services/apiCliente";
+import useSignup from '../../hooks/useSignup';
+import { useNavigate } from 'react-router-dom';
 
-// Enumeração com valores numéricos
 const UserRole = {
-  COMUM: 0,
-  ADMIN: 1,
+    COMUM: 0,
+    ADMIN: 1,
 };
 
 function CadastroUsuarios() {
@@ -21,30 +20,25 @@ function CadastroUsuarios() {
     const [cpf, setCpf] = useState('');
     const [role, setRole] = useState(UserRole.COMUM);
 
+    const { signup, loading, error } = useSignup();
+
+    const navigate = useNavigate();
+
     const handleRoleChange = (e) => {
-      setRole(parseInt(e.target.value)); // Converte o valor para número inteiro
+        setRole(parseInt(e.target.value)); // Converte o valor para número inteiro
     };
 
     const handleSignup = async (event) => {
         event.preventDefault();
-        try {
-            // Envia os dados do usuário para o backend usando a instância apiCliente
-            await apiCliente.post('/api/usuario', { 
-                email,
-                nome,
-                sobrenome,
-                cpf,
-                senha: password,
-                genero,
-                dataNascimento,
-                telefone,
-                role
-            });
 
-            alert('Usuário cadastrado com sucesso!');
+        console.log({ email, nome, sobrenome, cpf, senha: password, genero, dataNascimento, telefone, role });
+
+        try {
+            await signup({ email, password, nome, sobrenome, genero, dataNascimento, telefone, cpf, role });
+            navigate('/');
+
         } catch (error) {
             console.error("Erro ao cadastrar usuário: ", error);
-            alert(error.message);
         }
     };
 
@@ -61,6 +55,10 @@ function CadastroUsuarios() {
                         <Campos>
                             <label>Email</label>
                             <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        </Campos>
+                        <Campos>
+                            <label>CPF</label>
+                            <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
                         </Campos>
                         <Campos>
                             <label>Senha</label>
@@ -83,7 +81,7 @@ function CadastroUsuarios() {
                             </CamposMenoresSubdivisao>
                             <CamposMenoresSubdivisao>
                                 <label>Data de Nasc</label>
-                                <EstiloInputData type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+                                <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
                             </CamposMenoresSubdivisao>
                         </CamposMenores>
                         <Campos>
@@ -91,11 +89,7 @@ function CadastroUsuarios() {
                             <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                         </Campos>
                         <Campos>
-                            <label>CPF</label>
-                            <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
-                        </Campos>
-                        <Campos>
-                            <label>Role</label>
+                            <label>Tipo de Usuario</label>
                             <Select1 value={role} onChange={handleRoleChange}>
                                 <option value={UserRole.COMUM}>Comum</option>
                                 <option value={UserRole.ADMIN}>Admin</option>
@@ -103,7 +97,9 @@ function CadastroUsuarios() {
                         </Campos>
                     </Colunas>
                 </ContainerColunas>
-                <BCadastrar />
+                <BCadastrar type="submit" disabled={loading} />
+                {loading && <p>Aguarde enquanto o cadastro está sendo processado...</p>}
+                {error && <p>Ocorreu um erro ao cadastrar o usuário: {error.message}</p>}
             </Form>
         </Container>
     );

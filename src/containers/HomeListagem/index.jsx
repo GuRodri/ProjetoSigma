@@ -1,22 +1,15 @@
+import React, { useContext } from 'react';
 import CardVertical from "../../components/Cards/CardVertical";
-import { ContainerHome } from "./style";
-import { ContainerListagem } from "./style";
-
+import { ContainerHome, ContainerListagem } from "./style";
+import { SearchContext } from '../../context/searchCoxtexto';
 
 function HomeListagem() {
+    const { globalSearchTerm } = useContext(SearchContext);
+
     return (
         <ContainerHome>
             <ContainerListagem>
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />
-                <CardVertical />   
+                <CardVertical searchTerm={globalSearchTerm} /> 
             </ContainerListagem>    
         </ContainerHome>
     );

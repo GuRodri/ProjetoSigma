@@ -6,7 +6,7 @@ import LoginIconImage from '../../assets/icons/logar.svg';
 import Logado from '../../assets/icons/logado.png';
 import { NavLink } from 'react-router-dom';
 import MenuHamburguer from '../MenuHamburguer';
-import { useSearch } from '../../context/searchContext';
+import { useSearch } from '../../context/searchCoxtexto';
 import { useAuth} from  '../../context/autContexto1';
 
 const Header = () => {

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ContainerCarrinho, Container } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaJogos from '../../components/Cards/CardListaJogos';
-import { useSearch } from '../../context/searchContext';
+import { useSearch } from '../../context/searchCoxtexto';
 
 const ListaJogos = () => {
   const [jogos, setJogos] = useState([]);

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ContainerCarrinho, Container } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaAnuncios from '../../components/Cards/CardListaAnuncios';
-import { useSearch } from '../../context/searchContext';
+import { useSearch } from '../../context/searchCoxtexto';
 
 const ListaAnuncios = () => {
   const [anuncios, setAnuncios] = useState([]);

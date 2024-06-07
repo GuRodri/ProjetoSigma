@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import CardVertical from "../../components/Cards/CardVertical";
 import { ContainerHome, ContainerListagem } from "./style";
-import { SearchContext } from "../../context/searchContext";
+import { SearchContext } from '../../context/searchCoxtexto';
 
 function HomeListagem() {
     const { globalSearchTerm } = useContext(SearchContext);

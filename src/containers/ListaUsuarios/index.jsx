@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CardListaUsuarios from '../../components/Cards/CardListaUsuarios';
 import { ContainerCarrinho, Container } from './style';
-import { useSearch } from '../../context/searchContext';
+import { useSearch } from '../../context/searchCoxtexto';
 
 function ListaUsuarios() {
   const { globalSearchTerm } = useSearch();

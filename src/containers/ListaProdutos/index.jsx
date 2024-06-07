@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ContainerCarrinho, Container } from './style';
 import CardListaProdutos from '../../components/Cards/CardListaProdutos';
-import { useSearch } from '../../context/searchContext';
+import { useSearch } from '../../context/searchCoxtexto';
 
 function ListaProdutos() {
   const { globalSearchTerm } = useSearch();

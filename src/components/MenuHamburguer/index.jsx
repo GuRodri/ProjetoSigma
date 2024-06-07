@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa'; // Ícone de menu hambúrguer do react-icons
 import { Container, MenuIcon, MenuOptions, UserName } from './style'; // Importe UserName do seu estilo
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../context/authContext'; // Importe o contexto de autenticação
+import { useAuth } from '../../context/autContexto1';
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);

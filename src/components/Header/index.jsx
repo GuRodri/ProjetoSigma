@@ -7,7 +7,7 @@ import Logado from '../../assets/icons/logado.png';
 import { NavLink } from 'react-router-dom';
 import MenuHamburguer from '../MenuHamburguer';
 import { useSearch } from '../../context/searchContext';
-import { useAuth } from '../../context/authContext'; // Importe o contexto de autenticação
+import { useAuth} from  '../../context/autContexto1';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -42,9 +42,9 @@ const CardListaAnuncios = ({ anuncio }) => {
         </ContainerTexto>
       </ContainerEspacamento>
       <ContainerBotao>
-        <button onClick={() => handleDisableAnuncio(anuncio.idAnuncio)}>Excluir</button> 
+        <button className='Bexcluir' onClick={() => handleDisableAnuncio(anuncio.idAnuncio)}>Excluir</button> 
         <BEditarAnuncios id={anuncio.idAnuncio} />
-        <button onClick={() => handleDetalhes(anuncio.idAnuncio)}>Detalhes</button>
+        <button className='BDetalhes' onClick={() => handleDetalhes(anuncio.idAnuncio)}>Detalhes</button>
       </ContainerBotao>
     </CardHome2>
   );

@@ -71,9 +71,9 @@ const CardListaProdutos = ({ searchTerm }) => {
             </ContainerTexto>
           </ContainerEspacamento>
           <ContainerBotao>
-            <button onClick={() => handleDisableProduto(produto.idProduto)}>Excluir</button> 
+            <button className='BExcluir' onClick={() => handleDisableProduto(produto.idProduto)}>Excluir</button> 
             <BEditarProduto id={produto.idProduto} />
-            <button onClick={() => handleDetalhes(produto.idProduto)}>Detalhes</button> 
+            <button className='BDetalhes' onClick={() => handleDetalhes(produto.idProduto)}>Detalhes</button> 
           </ContainerBotao>
         </CardHome2>
       ))}

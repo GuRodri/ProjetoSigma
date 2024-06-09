@@ -65,9 +65,9 @@ const CardListaUsuarios = ({ searchTerm }) => {
             </ContainerTexto>
           </ContainerEspacamento>
           <ContainerBotao>
-            <button onClick={() => handleDisableUser(user.idUsuario)}>Excluir</button> 
+            <button className='BExcluir' onClick={() => handleDisableUser(user.idUsuario)}>Excluir</button> 
             <BEditarUsuario id={user.idUsuario} />
-            <button onClick={() => handleDetalhes(user.idUsuario)}>Detalhes</button> 
+            <button className='BDetalhes' onClick={() => handleDetalhes(user.idUsuario)}>Detalhes</button> 
           </ContainerBotao>
         </CardHome2>
       ))}

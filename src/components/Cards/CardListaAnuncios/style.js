@@ -9,7 +9,24 @@ export const CardHome2 = styled.div`
     background-color: #101419;
     border-radius: 10px;
     padding: 0 1em;
-    font-size: 0.675em;
+    .BExcluir {
+        background-color: #FF0000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        font-size: .675em;
+    }
+    .BDetalhes {
+        background-color: #25D62C;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        font-size: .675em;
+    }
     `;
 
 export const ContainerTexto = styled.div`
@@ -29,6 +46,7 @@ flex-direction: row;
 justify-content: space-around;
 align-items: center;
 gap: 1em;
+padding-left: 1em;
 `;
 export const ContainerEspacamento = styled.div`
 display: flex;

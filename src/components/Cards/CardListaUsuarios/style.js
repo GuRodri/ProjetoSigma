@@ -9,7 +9,24 @@ export const CardHome2 = styled.div`
     background-color: #101419;
     border-radius: 10px;
     padding: 0 1em;
-    font-size: 0.675em;
+    .BExcluir {
+        background-color: #FF0000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        font-size: .675em;
+    }
+    .BDetalhes {
+        background-color: #25D62C;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        font-size: .675em;
+    }
     `;
 
 export const ContainerTexto = styled.div`
@@ -20,7 +37,6 @@ export const ContainerTexto = styled.div`
     gap:0.6em;
     border-right: 1px solid #726F6F;
     padding: 1em 1em 0em 1em;
-    
 `;
 
 export const ContainerBotao = styled.div`
@@ -29,6 +45,7 @@ flex-direction: row;
 justify-content: space-around;
 align-items: center;
 gap: 1em;
+padding-left: 1em;
 `;
 export const ContainerEspacamento = styled.div`
 display: flex;

@@ -9,7 +9,7 @@ const BEditarAnuncios = ({ id }) => {
       navigate(`/editar-anuncios/${id}`);
     };
   
-    return <Button onClick={handleEdit}>Editar Anúncios</Button>;
+    return <Button onClick={handleEdit}>Editar</Button>;
 };
   
 export default BEditarAnuncios;

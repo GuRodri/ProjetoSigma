@@ -41,7 +41,7 @@ const ListaAnuncios = () => {
       <h2>Lista de Anúncios</h2>
       <ContainerCarrinho>
         <ul>
-          <NavLink to="/cadastro-anuncios">Adicionar</NavLink>
+          <NavLink className='adicionar' to="/cadastro-anuncios">Adicionar</NavLink>
           {filteredAnuncios.map((anuncio) => (
             <CardListaAnuncios
               key={anuncio.idAnuncio}

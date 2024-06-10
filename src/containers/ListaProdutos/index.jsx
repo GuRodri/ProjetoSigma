@@ -11,7 +11,7 @@ function ListaProdutos() {
     <Container>
       <h2>Lista de Produtos</h2>
       <ContainerCarrinho>
-          <NavLink to="/cadastro-produtos">Adicionar</NavLink>
+          <NavLink className='adicionar' to="/cadastro-produtos">Adicionar</NavLink>
             <CardListaProdutos searchTerm={globalSearchTerm}
             />
       </ContainerCarrinho>

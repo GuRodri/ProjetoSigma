@@ -40,15 +40,15 @@ const ListaJogos = () => {
     <Container>
       <h2>Lista de Jogos</h2>
       <ContainerCarrinho>
-        <ul>
-          <NavLink to="/cadastro-jogos">Adicionar</NavLink>
+        <div>
+          <NavLink className='adicionar' to="/cadastro-jogos">Adicionar <span>+</span></NavLink>
           {filteredJogos.map((jogo) => (
             <CardListaJogos
               key={jogo.idJogo}
               jogo={jogo}
             />
           ))}
-        </ul>
+        </div>
       </ContainerCarrinho>
     </Container>
   );

@@ -1,15 +1,20 @@
 import styled from "styled-components"
+export const MyButton = styled.button`
+  display: flex;
+  justify-content: center;
+  color: #050505;
+  background-color: #25d62c;
+  min-width: 120px;
+  text-align: center;
+  height: 2em;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.125em;
+  align-items: center;
 
-export const MyButton = styled.button `
-    display: flex;
-    justify-content: center;
-    color:#050505;
-    background-color: #25D62C;
-    min-width: 160px;
-    text-align: center;
-    height: 2.6875;
-    border-radius: 10px;
-    border: none;
-    padding: 0.6250em 1.25em;
-    font-size: 1.125em;
-`
+  &:active {
+    transform: scale(0.95); /* Reduz o tamanho do botão quando clicado */
+  }
+
+  /* Você pode adicionar mais estilos para o estado :active conforme necessário */
+`;

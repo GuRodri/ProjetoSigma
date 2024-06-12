@@ -12,14 +12,17 @@ import {
 } from "./style";
 import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
+import { useNavigate } from "react-router-dom";
 
 function CadastroAnuncios() {
   const [idProduto, setIDProduto] = useState("");
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
-  const [referenciaImagem, setReferenciaImagem] = useState("");
+  const [referenciaImagem, setReferenciaImagem] = useState("https://www.example.com/image.jpg");
   const [ativo, setAtivo] = useState(true); // Defina o estado para ativo como true
+
+  const navigate = useNavigate();
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -48,6 +51,7 @@ function CadastroAnuncios() {
       });
 
       alert("Anúncio cadastrado com sucesso!");
+      navigate("/lista-anuncios");
     } catch (error) {
       console.error("Erro ao cadastrar anúncio: ", error);
       alert(error.message);

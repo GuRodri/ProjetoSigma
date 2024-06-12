@@ -14,17 +14,20 @@ import {
 } from "./style";
 import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
+import { useNavigate } from "react-router-dom";
 
 function CadastroProdutos() {
   const [nomeProduto, setNomeProduto] = useState("");
   const [descricaoProduto, setDescricaoProduto] = useState("");
   const [categoria, setCategoria] = useState("");
   const [marca, setMarca] = useState("");
-  const [imagemProduto, setImagemProduto] = useState("");
+  const [imagemProduto, setImagemProduto] = useState("https://www.example.com/image.jpg");
   const [fichaTecnica, setFichaTecnica] = useState("");
   const [ativo, setAtivo] = useState(true);
   const [preco, setPreco] = useState("");
   const [quantidadeEstoque, setQuantidadeEstoque] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -59,6 +62,7 @@ function CadastroProdutos() {
       });
 
       alert("Produto cadastrado com sucesso!");
+      navigate("/lista-produtos");
     } catch (error) {
       console.error("Erro ao cadastrar produto: ", error);
       alert(error.message);

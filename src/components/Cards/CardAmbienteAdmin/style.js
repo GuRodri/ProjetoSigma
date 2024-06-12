@@ -24,11 +24,13 @@ export const CardContainer = styled.div`
   width: 14%;
   text-align: center;
   border: 0.0625em solid #545454;
+  min-height: 10em;  
 `;
 
 export const Image = styled.img`
   border-radius: 0.25em;
   max-width: 100%;
+  height: auto;
 `;
 
 export const Description = styled.p`

@@ -9,7 +9,7 @@ export const Container = styled.div `
     min-height: 77.8vh;
     justify-content: center;
     color: #d9d9d9;
-
+    padding: 3em;
     p{
         margin-bottom: 1em;
     }
@@ -65,3 +65,13 @@ export const ContainerMenor = styled.div `
     margin: 1em;
     align-self:flex-end;
 `;  
+export const ContainerBotao= styled.div `
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+    align-items: center;
+    margin-top: 1em;
+    margin: 1em;
+    align-self:flex-end;
+`;

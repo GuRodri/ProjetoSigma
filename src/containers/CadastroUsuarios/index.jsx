@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
-import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
+import { Campos, Campos1, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, Colunas2 } from "./style";
 import useSignup from '../../hooks/useSignup';
 import { useNavigate } from 'react-router-dom';
 
@@ -60,10 +60,6 @@ function CadastroUsuarios() {
                             <label>CPF</label>
                             <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
                         </Campos>
-                        <Campos>
-                            <label>Senha</label>
-                            <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                        </Campos>
                     </Colunas>
                     <Colunas>
                         <Campos>
@@ -80,23 +76,29 @@ function CadastroUsuarios() {
                                 </Select1>
                             </CamposMenoresSubdivisao>
                             <CamposMenoresSubdivisao>
-                                <label>Data de Nasc</label>
-                                <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+                                <label>Nascimento</label>
+                                <Input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
                             </CamposMenoresSubdivisao>
                         </CamposMenores>
                         <Campos>
                             <label>Telefone</label>
                             <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                         </Campos>
-                        <Campos>
+                    </Colunas>
+                </ContainerColunas>
+                <Colunas2>
+                        <Campos1>
+                            <label>Senha</label>
+                            <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        </Campos1>
+                        <Campos style={{ display: role === UserRole.ADMIN ? 'block' : 'none' }}>
                             <label>Tipo de Usuario</label>
                             <Select1 value={role} onChange={handleRoleChange}>
                                 <option value={UserRole.COMUM}>Comum</option>
                                 <option value={UserRole.ADMIN}>Admin</option>
                             </Select1>
                         </Campos>
-                    </Colunas>
-                </ContainerColunas>
+                    </Colunas2>
                 <BCadastrar type="submit" disabled={loading} />
                 {loading && <p>Aguarde enquanto o cadastro está sendo processado...</p>}
                 {error && <p>Ocorreu um erro ao cadastrar o usuário: {error.message}</p>}

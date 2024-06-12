@@ -6,6 +6,7 @@ export const Container = styled.div`
   align-items: center;
   min-height: 78vh;
   color: #d9d9d9;
+  padding: 3em;
 `;
 
 export const Centralizar = styled.div`

@@ -8,6 +8,7 @@ export const Container = styled.div`
   border-radius: 8px;
   min-height: 77.8vh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 3em;
 `;
 
 export const Form = styled.form`

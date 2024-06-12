@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardHome2 } from './style';
+import { CardHome2, NomeProd } from './style';
 import Rating from '../../Rating';
 import { SmallTitle, SubTitle, Title } from '../../../containers/Home/style';
 import BDetalhes from '../../Button/Detalhes';
@@ -15,9 +15,13 @@ const CardVertical = ({ produtos = [], searchTerm }) => { // Valor padrão para 
     <>
       {filteredProdutos.map((produto) => (
         <CardHome2 key={produto.idProduto}>
-          <img src={produto.imagemProduto} alt="Imagem do Produto" width='150em'/>
+          <div className='Ajusteimagem'>
+            <img src={produto.imagemProduto} alt="Imagem do Produto" />
+          </div>
           <div>
-            <SubTitle>{produto.nomeProduto}</SubTitle>
+            <NomeProd >
+                <SubTitle >{produto.nomeProduto}</SubTitle>
+            </NomeProd>
             <Title>{produto.preco}</Title>
             <SmallTitle>12x de R$ 500,00</SmallTitle>
             {produto.classificacao}

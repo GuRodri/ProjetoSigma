@@ -12,8 +12,6 @@ const CardListaAnuncios = ({ anuncio }) => {
     try {
       await apiCliente.patch(`/api/Anuncio/${id}/disable`);
       console.log('Anúncio desabilitado com sucesso! ID:', id);
-      // Remover o anúncio da lista após desabilitá-lo
-      setFilteredAnuncios(filteredAnuncios.filter(anuncio => anuncio.idAnuncio !== id));
       alert('Anúncio desabilitado com sucesso!');
     } catch (error) {
       console.error('Erro ao desabilitar anúncio: ', error);
@@ -29,7 +27,7 @@ const CardListaAnuncios = ({ anuncio }) => {
     <CardHome2 key={anuncio.idAnuncio}>
       <ContainerEspacamento>
         <ContainerTexto>
-          <img src={anuncio.referenciaImagem} alt="Imagem do Anúncio" width='60em'/>
+          <img src={anuncio.referenciaImagem} alt="Imagem do Anúncio" width='150em'/>
         </ContainerTexto>
         <ContainerTexto>
           <p>{anuncio.idAnuncio}</p>

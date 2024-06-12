@@ -28,10 +28,10 @@ const Login = () => {
                 </Campos>
                 <Texto>
                     <NavLink to="/recuperar-senha">
-                        <p>Esqueceu a senha?</p>
+                        <span>Esqueceu a senha?</span>
                     </NavLink>
                     <NavLink to="/cadastro-usuarios">
-                        <span>Não tem conta? Cadastre-se</span>
+                        <p>Não tem conta?<span> Cadastre-se</span></p>
                     </NavLink>
                 </Texto>
                 <BContinuar type="submit" disabled={loading}>

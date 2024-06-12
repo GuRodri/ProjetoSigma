@@ -8,6 +8,7 @@ export const ContainerHome = styled.div `
     padding: 1em;
     min-height: 77.8vh;
     justify-content: center;
+    padding: 3em;
 `;
 
 export const ContainerListagem = styled.div `

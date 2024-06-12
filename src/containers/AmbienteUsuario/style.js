@@ -10,6 +10,7 @@ export const Container = styled.div`
     text-align: center;
     color: #d9d9d9;
     text-decoration: none;
+    padding: 3em;
     h1 {
         margin-top: 1.875em;
     }

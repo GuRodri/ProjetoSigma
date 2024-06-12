@@ -19,6 +19,7 @@ export const MenuOptions = styled.div`
   background-color: white;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border-radius: 0.5em;
 
   a {
     color: d9d9d9;

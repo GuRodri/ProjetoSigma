@@ -13,6 +13,7 @@ export const Container = styled.div`
     text-align: center;
     color: #d9d9d9;
     text-decoration: none;
+    padding: 3em;
     h3 {
         font-size: 3.125em;
         margin-bottom: 1.875em;
@@ -84,7 +85,12 @@ export const Colunas = styled.div`
     width: 100%;
     margin: 0.625em;
 `;
-
+export const Colunas2 = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+`;
 export const ContainerColunas = styled.div`
     display: flex;
     flex-direction: row;

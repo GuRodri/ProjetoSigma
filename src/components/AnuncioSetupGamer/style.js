@@ -5,9 +5,12 @@ export const ContainerSetup = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: gray;
+    background-color: rgba(84, 84, 84, 0.3);
     width: 80%;
     margin: 1em;
+    h1{
+        color:#d9d9d9;
+    }
     `;
 
 export const ContainerTexto = styled.div`
@@ -29,9 +32,9 @@ export const ContainerImagem = styled.div`
     align-items: center;
     margin: 1em;
     width: 100%;
-    height: 10em;
+    height: 12em;
     img{
-        width: 90%;
+        width: 100%;
         height: 100%;
         border-radius: 10px;
     }

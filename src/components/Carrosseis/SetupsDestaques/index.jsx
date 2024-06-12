@@ -48,7 +48,7 @@ function CDestaques() {
     return (
         <ContainerSetupsMaisVendidos>
             <ContainerTitulo>
-                <h1>Setups mais vendidos</h1>
+                <h1>Destaques</h1>
             </ContainerTitulo>
             <ContainerSetups>
                 <StyledSliderContainer>

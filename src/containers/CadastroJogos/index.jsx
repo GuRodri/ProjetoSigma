@@ -10,6 +10,7 @@ import {
 } from "./style";
 import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
+import { useNavigate } from "react-router-dom";
 
 function CadastroJogos() {
   const [nomeJogo, setNomeJogo] = useState("");
@@ -18,8 +19,10 @@ function CadastroJogos() {
   const [memoriaRamRequerida, setMemoriaRamRequerida] = useState("");
   const [placaVideoRequerida, setPlacaVideoRequerida] = useState("");
   const [espacoDiscoRequerido, setEspacoDiscoRequerido] = useState("");
-  const [imagemJogo, setImagemJogo] = useState("");
+  const [imagemJogo, setImagemJogo] = useState("https://www.example.com/image.jpg");
   const [ativo, setAtivo] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -52,6 +55,7 @@ function CadastroJogos() {
       });
 
       alert("Jogo cadastrado com sucesso!");
+      navigate("/lista-jogos");
     } catch (error) {
       console.error("Erro ao cadastrar jogo: ", error);
       alert(error.message);

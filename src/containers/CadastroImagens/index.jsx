@@ -192,7 +192,7 @@ const cadastrarNoFirestore = async (validUrls) => {
       if (imageInfos[0] && imageInfos[0].url) {
         const apiResponse = await apiCliente.patch(`/api/anuncio/${id}/atualizarImagem`, {
           idAnuncio: id,
-          imagemAnuncio: imageInfos[0].url
+          referenciaImagem: imageInfos[0].url
         });
         console.log(apiResponse.data.Message);
       } else {

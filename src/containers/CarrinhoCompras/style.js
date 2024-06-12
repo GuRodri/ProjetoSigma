@@ -9,7 +9,7 @@ export const ContainerHome = styled.div `
     min-height: 77.8vh;
     justify-content: center;
     color: #d9d9d9;
-
+    padding: 3em;
     p{
         margin-bottom: 1em;
     }

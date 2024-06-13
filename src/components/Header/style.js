@@ -6,6 +6,7 @@ export const SearchBarContainer = styled.div`
   justify-content: space-between;
   background-color: #101419;
   padding: 0 3em;
+  border-bottom: .25px solid rgba(255, 255, 255, 0.05);
 
   @media (max-width: 375px) {
     flex-direction: column;
@@ -86,12 +87,13 @@ export const LoggedInMenu = styled.div`
   background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
+  padding-top: .5em;
 `;
 
 export const MenuOption = styled.div`
-  padding: 12px 16px;
+  margin: .5em;
   cursor: pointer;
   color: #101419;
   text-align: center;

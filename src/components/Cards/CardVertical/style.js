@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const CardHome2 = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   color: #d9d9d9;
   background-color: #252c37;
   max-width: 12.5em;
   max-height: 32.5em;
   text-align: center;
   border-radius: 10px;
-  padding: 0.625em 1.25em;
+  padding: 0.625em .675em;
   margin:1em;
+  border: 1px solid #726F6F;
 
   p {
     font-size: 1em; /* Tamanho de fonte relativo */
@@ -18,10 +20,14 @@ export const CardHome2 = styled.div`
     margin: 1em 0;
   }
   img {
-    max-width: 100%; /* Imagem responsiva */
-    height: auto;
+    width: 8em;
+    height: 8em;
     border-radius: 5px;
     margin: 1em 0;
+  }
+  .Ajusteimagem{
+    display: flex;
+    justify-content: center;
   }
 
   .button {
@@ -38,4 +44,14 @@ export const CardHome2 = styled.div`
   @media (max-width: 768px) {
     max-width: 100%; /* Tornando o card 100% responsivo */
   }
+`;
+
+export const NomeProd = styled.span`
+    font-size: 16px; /* tamanho da fonte */
+    font-weight: bold; /* negrito */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* limite de 2 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 40px; /* altura do contêiner do título */
 `;

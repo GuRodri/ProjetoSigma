@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CardListaUsuarios from '../../components/Cards/CardListaUsuarios';
-import { ContainerCarrinho, Container } from './style';
+import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import { useSearch } from '../../context/searchCoxtexto';
 
 function ListaUsuarios() {
@@ -11,7 +11,9 @@ function ListaUsuarios() {
     <Container>
       <h2>Lista de Usuarios</h2>
       <ContainerCarrinho>
-        <NavLink to="/cadastro-usuarios">Adicionar</NavLink>
+        <ContainerBotao>
+          <NavLink className='adicionar' to="/cadastro-usuarios">Adicionar</NavLink>
+        </ContainerBotao>
         <CardListaUsuarios searchTerm={globalSearchTerm} />
       </ContainerCarrinho>
     </Container>

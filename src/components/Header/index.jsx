@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, LoginIcon, Container, UserName, LoggedInMenu, MenuOption } from './style';
 import PesquisarIcon from '../../assets/icons/search-normal.svg';
 import LogoImage from '../../assets/icons/logo.svg';
@@ -7,13 +7,14 @@ import Logado from '../../assets/icons/logado.png';
 import { NavLink } from 'react-router-dom';
 import MenuHamburguer from '../MenuHamburguer';
 import { useSearch } from '../../context/searchCoxtexto';
-import { useAuth} from  '../../context/autContexto1';
+import { useAuth } from  '../../context/autContexto1';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar a visibilidade do menu
   const { setGlobalSearchTerm } = useSearch();
   const { currentUser, logout } = useAuth(); // Obtenha o usuário atual e a função de logout do contexto de autenticação
+  const menuRef = useRef(null); // Ref para o menu
 
   const handleInputChange = event => {
     setSearchTerm(event.target.value);
@@ -38,6 +39,12 @@ const Header = () => {
     setMenuOpen(false);
   };
 
+  const handleMouseLeave = (e) => {
+    if (!menuRef.current.contains(e.relatedTarget)) {
+      setMenuOpen(false);
+    }
+  };
+
   return (
     <SearchBarContainer>
       <NavLink to="/">
@@ -55,22 +62,22 @@ const Header = () => {
           <SearchIcon src={PesquisarIcon} alt="Pesquisar" />
         </NavLink>
       </SearchInputContainer>
-      <Container>
-        {currentUser ? ( // Verifica se há um usuário logado
-    <>
-        <LoginIcon src={Logado} alt="Logado" onClick={toggleMenu} />
-        {menuOpen && (
-            <LoggedInMenu>
+      <Container ref={menuRef} onMouseLeave={handleMouseLeave}>
+        {currentUser ? (
+          <>
+            <LoginIcon src={Logado} alt="Logado" onClick={toggleMenu} />
+            {menuOpen && (
+              <LoggedInMenu>
                 {currentUser.role === 0 ? (
-                    <NavLink to='/ambiente-usuario'><UserName>{currentUser.email}</UserName></NavLink>
+                  <NavLink to='/ambiente-usuario'><UserName>{currentUser.email}</UserName></NavLink>
                 ) : (
-                    <NavLink to='/ambiente-administrador'><UserName>{currentUser.email}</UserName></NavLink>
+                  <NavLink to='/ambiente-administrador'><UserName>{currentUser.email}</UserName></NavLink>
                 )}
                 <MenuOption onClick={handleLogout}>Logout</MenuOption>
-            </LoggedInMenu>
-        )}
-    </>
-) : (
+              </LoggedInMenu>
+            )}
+          </>
+        ) : (
           <NavLink to="/login">
             <LoginIcon src={LoginIconImage} alt="Logar" />
           </NavLink>

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { storage, db } from '../../firebase/firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import apiCliente from '../../services/apiCliente';
 
 import {
   Container,
@@ -32,6 +33,14 @@ const Cadastro = () => {
 
   const fileInputRefs = useRef([React.createRef(), React.createRef(), React.createRef()]);
 
+  const resetForm = () => {
+    setId('');
+    setImages([null, null, null]);
+    setImagePreviews(['', '', '']);
+    setFileNames(['', '', '']);
+    setProgresses([0, 0, 0]);
+  };
+
   const handleChange = (index, e) => {
     const newImages = [...images];
     const newPreviews = [...imagePreviews];
@@ -57,9 +66,8 @@ const Cadastro = () => {
     setImagePreviews(newPreviews);
     setFileNames(newFileNames);
 
-    if (fileInputRefs.current[index].current) {
-      fileInputRefs.current[index].current.value = '';
-    }
+    fileInputRefs.current[index].current.value = '';
+
   };
 
   const handleTipoChange = (e) => {
@@ -70,117 +78,151 @@ const Cadastro = () => {
     setId(e.target.value);
   };
 
-  const handleUpload = async () => {
-    // Verifica se o ID já existe
-    const docRef = collection(db, tipo === 'produto' ? "Produto" : tipo === 'anuncio' ? "Anuncio" : "Jogo");
-    const q = query(docRef, where("idProduto", "==", id));
-    const querySnapshot = await getDocs(q);
-    
-    if (!querySnapshot.empty) {
-      alert("ID já cadastrado!");
+  // Função handleUpload
+const handleUpload = async () => {
+  
+  // Verifica se o ID e as imagens são válidas
+  if (id && images.some(img => img !== null)) {
+    const uploadPromises = images.map((image, index) => {
+      if (image) {
+        return new Promise((resolve, reject) => {
+          const storageRef = ref(storage, `images/${fileNames[index]}`);
+          const uploadTask = uploadBytesResumable(storageRef, image);
+
+          uploadTask.on(
+            "state_changed",
+            snapshot => {
+              const progress = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+              );
+              setProgresses(prevProgresses => {
+                const newProgresses = [...prevProgresses];
+                newProgresses[index] = progress;
+                return newProgresses;
+              });
+            },
+            error => {
+              console.error("Error uploading file:", error);
+              reject(error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref)
+                .then(downloadURL => {
+                  if (downloadURL !== '') { // Verificar se a URL não está vazia
+                    const newUrls = [...urls];
+                    newUrls[index] = downloadURL;
+                    console.log(`URL da imagem ${index}:`, downloadURL);
+                    setUrls(newUrls);
+                  }
+                  resolve(downloadURL);
+                })
+                .catch(reject);
+            }
+          );
+        });
+      } else {
+        return Promise.resolve(null);
+      }
+    });
+
+    // Aguarda o término de todas as operações de upload
+    await Promise.all(uploadPromises)
+      .then((downloadUrls) => {
+        // Remove URLs inválidas (null)
+        const validUrls = downloadUrls.filter(url => url !== null);
+
+        // Envia apenas URLs válidas para cadastrar no Firestore
+        cadastrarNoFirestore(validUrls)
+          .then(() => {
+            setSuccess(true);
+            alert('Cadastro realizado com sucesso!');
+            resetForm();
+          })
+          .catch(error => {
+            console.error("Erro ao cadastrar no Firestore:", error);
+            alert('Erro ao cadastrar no Firestore');
+          });
+      })
+      .catch(error => {
+        console.error("Error uploading files:", error);
+        alert('Erro ao enviar arquivos');
+      });
+  } else {
+    console.error("Nenhum ID ou imagem válida para cadastrar.");
+    alert('Nenhum ID ou imagem válida para cadastrar');
+  }
+};
+
+// Função cadastrarNoFirestore
+const cadastrarNoFirestore = async (validUrls) => {
+  try {
+    console.log("URLs válidos:", validUrls);
+    console.log("Tamanho de validUrls:", validUrls.length);
+    const imageInfos = validUrls.map(url => ({ url }));
+
+    // Verifica se há pelo menos uma imagem a ser cadastrada
+    if (imageInfos.length === 0) {
+      console.error("Nenhuma imagem válida para cadastrar.");
       return;
     }
-    
-    // Se não existir, continua com o upload
-    if (id && images.some(img => img !== null)) {
-      const uploadPromises = images.map((image, index) => {
-        if (image) {
-          return new Promise((resolve, reject) => {
-            const storageRef = ref(storage, `images/${fileNames[index]}`);
-            const uploadTask = uploadBytesResumable(storageRef, image);
-  
-            uploadTask.on(
-              "state_changed",
-              snapshot => {
-                const progress = Math.round(
-                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-                setProgresses(prevProgresses => {
-                  const newProgresses = [...prevProgresses];
-                  newProgresses[index] = progress;
-                  return newProgresses;
-                });
-              },
-              error => {
-                console.error("Error uploading file:", error);
-                reject(error);
-              },
-              () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                  .then(downloadURL => {
-                    if (downloadURL !== '') { // Verificar se a URL não está vazia
-                      const newUrls = [...urls];
-                      newUrls[index] = downloadURL;
-                      console.log(`URL da imagem ${index}:`, downloadURL);
-                      setUrls(newUrls);
-                    }
-                    resolve();
-                  })
-                  .catch(reject);
-              }
-            );
-          });
-        } else {
-          return Promise.resolve();
-        }
+
+    if (tipo === 'produto') {
+      await addDoc(collection(db, "Produto"), {
+        idProduto: id,
+        imagensProduto: imageInfos
       });
-  
-      Promise.all(uploadPromises)
-      .then(() => {
-        console.log("URLs das imagens:", urls); // Log das URLs das imagens após o upload
-        setSuccess(true);
-        cadastrarNoFirestore();
-        alert('Cadastro realizado com sucesso!');
-        resetForm();
-      })
-        .catch(error => {
-          console.error("Error uploading files:", error);
-          alert('Erro ao enviar arquivos');
-        });
-    } else {
-      alert("Por favor, escolha pelo menos um arquivo e insira um ID!");
-    }
-  };
-  
-  const resetForm = () => {
-    setImages([null, null, null]);
-    setImagePreviews(['', '', '']);
-    setProgresses([0, 0, 0]);
-    setFileNames(['', '', '']);
-    setId('');
-    setTipo('produto');
-    fileInputRefs.current.forEach(ref => {
-      if (ref.current) ref.current.value = '';
-    });
-  };
 
-  const cadastrarNoFirestore = async () => {
-    try {
-      const validUrls = urls.filter(url => url !== '');
-      const imageInfos = validUrls.map(url => ({ url }));
-      console.log("Objetos de imagem:", imageInfos); // Log dos objetos de imagem antes do cadastro no Firestore
-      if (tipo === 'produto') {
-        await addDoc(collection(db, "Produto"), {
+      // Atualizar a tabela Produto no SQL via API usando sua instância apiCliente
+      if (imageInfos[0] && imageInfos[0].url) {
+        const apiResponse = await apiCliente.patch(`/api/produto/${id}/atualizarImagem`, {
           idProduto: id,
-          imagensProduto: imageInfos
+          imagemProduto: imageInfos[0].url
         });
-      } else if (tipo === 'anuncio') {
-        await addDoc(collection(db, "Anuncio"), {
-          idAnuncio: id,
-          referenciasImagem: imageInfos
-        });
-      } else if (tipo === 'jogo') {
-        await addDoc(collection(db, "Jogo"), {
-          idJogo: id,
-          referenciasImagemJogo: imageInfos
-        });
+        console.log(apiResponse.data.Message);
+      } else {
+        console.error("URL da imagem indisponível para atualização na tabela Produto do SQL.");
       }
-    } catch (error) {
-      console.error("Erro ao cadastrar no Firestore: ", error);
-      alert('Erro ao cadastrar no Firestore');
-    }
-  };
+    } else if (tipo === 'anuncio') {
+      await addDoc(collection(db, "Anuncio"), {
+        idAnuncio: id,
+        referenciasImagem: imageInfos
+      });
 
+      // Atualizar a tabela Anuncio no SQL via API usando sua instância apiCliente
+      if (imageInfos[0] && imageInfos[0].url) {
+        const apiResponse = await apiCliente.patch(`/api/anuncio/${id}/atualizarImagem`, {
+          idAnuncio: id,
+          referenciaImagem: imageInfos[0].url
+        });
+        console.log(apiResponse.data.Message);
+      } else {
+        console.error("URL da imagem indisponível para atualização na tabela Anuncio do SQL.");
+      }
+    } else if (tipo === 'jogo') {
+      await addDoc(collection(db, "Jogo"), {
+        idJogo: id,
+        referenciasImagemJogo: imageInfos
+      });
+
+      // Atualizar a tabela Jogo no SQL via API usando sua instância apiCliente
+      if (imageInfos[0] && imageInfos[0].url) {
+        const apiResponse = await apiCliente.patch(`/api/jogo/${id}/atualizarImagem`, {
+          idJogo: id,
+          referenciaImagemJogo: imageInfos[0].url
+        });
+        console.log(apiResponse.data.Message);
+      } else {
+        console.error("URL da imagem indisponível para atualização na tabela Jogo do SQL.");
+      }
+    }
+
+    // Após o cadastro no Firestore, limpa a variável de URLs
+    setUrls(['', '', '']);
+  } catch (error) {
+    console.error("Erro ao cadastrar no Firestore:", error);
+    throw error;
+  }
+};
   return (
     <Container>
       <Centralizar>

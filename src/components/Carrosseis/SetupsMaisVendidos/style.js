@@ -21,6 +21,7 @@ export const ContainerTitulo = styled.div`
         font-size: 1.5em;
         width: 100%;
         text-align: center;
+        color:#d9d9d9;
     }
 `;
 

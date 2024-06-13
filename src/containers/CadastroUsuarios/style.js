@@ -8,11 +8,12 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 77.8vh;
+    min-height: 78.8vh;
     background-color: transparent;
     text-align: center;
     color: #d9d9d9;
     text-decoration: none;
+    padding: 3em;
     h3 {
         font-size: 3.125em;
         margin-bottom: 1.875em;
@@ -36,7 +37,7 @@ export const Input = styled.input`
     border: 0.0625em solid #ccc;
     border-radius: 1.25em;
     width: 100%;
-    height: 3em;
+    height: 2.5em;
     text-align: left;
     padding: 0 0.9375em;
 `;
@@ -46,7 +47,7 @@ export const InputMenor = styled.input`
     border: 0.0625em solid #ccc;
     border-radius: 1.25em;
     width:100%;
-    height: 3em;
+    height: 2.5em;
     text-align: left;
 `;
 
@@ -54,8 +55,17 @@ export const Campos = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 0.625em;
-    margin-bottom: 0.625em;
+    margin-top: 0.5em;
+    text-align: left;
+    font-size: 1em;
+`;
+
+export const Campos1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0.5em;
+    margin-left: 0.625em;
     text-align: left;
     font-size: 1em;
 `;
@@ -65,7 +75,7 @@ export const CamposMenores = styled.div`
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 0.625em;
+    margin-top: 0.5em;
     text-align: left;
     font-size: 1em;
 `;
@@ -84,7 +94,12 @@ export const Colunas = styled.div`
     width: 100%;
     margin: 0.625em;
 `;
-
+export const Colunas2 = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+`;
 export const ContainerColunas = styled.div`
     display: flex;
     flex-direction: row;
@@ -97,7 +112,7 @@ export const Select1 = styled.select`
     margin: 0.3125em 0 1.875em 0;
     border: 0.0625em solid #ccc;
     border-radius: 1.25em;
-    height: 3em;
+    height: 2.5em;
     width: 100%;
     text-align: left;
 `;

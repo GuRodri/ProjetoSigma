@@ -86,6 +86,16 @@ function EditarAnuncio() {
             required
           />
         </Campos>
+        <Campos>
+          <Label>Id Produto</Label>
+          <Input
+            type="text"
+            name="Identificador do produto"
+            value={anuncio.idProduto}
+            onChange={handleChange}
+            required
+          />
+        </Campos>
         <CamposMenores>
           <CamposMenoresSubdivisao2>
             <Label>Preço</Label>

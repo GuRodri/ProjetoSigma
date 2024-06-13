@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { StyledSliderContainer, StyledSliderImage, StyledSliderSlide } from './style';
-import ImagemAnuncio from '../../../assets/Img/anuncios/ImagemAnuncio.png';
+import apiCliente from '../../../services/apiCliente';
+
 function CAnuncio() {
+  const [anuncios, setAnuncios] = useState([]);
   const settings = {
     dots: true,
     infinite: true,
@@ -16,22 +18,30 @@ function CAnuncio() {
     pauseOnHover: true // Pausa quando o mouse estiver sobre o carrossel
   };
 
+  useEffect(() => {
+    const fetchAnuncios = async () => {
+      try {
+        const response = await apiCliente.get('/api/anuncio');
+        setAnuncios(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar anúncios:', error);
+      }
+    };
+
+    fetchAnuncios();
+  }, []);
+
   return (
     <StyledSliderContainer>
       <Slider {...settings}>
-        <StyledSliderSlide>
-          <StyledSliderImage src={ImagemAnuncio} alt="Imagem 3" />
-        </StyledSliderSlide>
-        <StyledSliderSlide>
-          <StyledSliderImage src={ImagemAnuncio} alt="Imagem 3" />  
-        </StyledSliderSlide>
-        <StyledSliderSlide>
-          <StyledSliderImage src={ImagemAnuncio} alt="Imagem 3" />
-        </StyledSliderSlide>
+        {anuncios.map((anuncio) => (
+          <StyledSliderSlide key={anuncio.id}>
+            <StyledSliderImage src={anuncio.referenciaImagem} alt={anuncio.titulo} />
+          </StyledSliderSlide>
+        ))}
       </Slider>
     </StyledSliderContainer>
   );
 }
 
 export default CAnuncio;
-

@@ -36,7 +36,6 @@ export const ContainerTexto = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-self:center;
     width: 100%;
     gap:0.6em;
     border-right: 1px solid #726F6F;
@@ -50,6 +49,8 @@ flex-direction: row;
 justify-content: space-around;
 align-items: center;
 gap: 1em;
+padding-left: 1em;
+
 `;
 export const ContainerEspacamento = styled.div`
 display: flex;

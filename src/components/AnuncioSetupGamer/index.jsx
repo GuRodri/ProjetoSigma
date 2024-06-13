@@ -1,7 +1,7 @@
 import React from "react";
 import { ContainerSetup, ContainerTexto, ContainerButton, ContainerImagem, ContainerSuperior  } from "./style";
 import BCliqueAqui from "../Button/CliqueAqui";
-import ImagemSetupGamer from "../../assets/ImagemSetupGamer.png";
+import ImagemSetupGamer2 from "../../assets/imagemSetupGamer2.svg";
 
 function AnuncioSetupGamer() {
     return (
@@ -15,7 +15,7 @@ function AnuncioSetupGamer() {
                 </ContainerButton>  
             </ContainerSuperior>
             <ContainerImagem>
-                <img src={ImagemSetupGamer} alt="Imagem do setup gamer" />
+                <img src={ImagemSetupGamer2} alt="Imagem do setup gamer" />
             </ContainerImagem>
             
         </ContainerSetup>

@@ -121,12 +121,11 @@ function CadastroUsuariosAdmin() {
 
 export default CadastroUsuariosAdmin;*/
 
-//Código para cadastro de usuários no Firebase, mas que envia uma cópia dos dados para o backend((em desenvolvimento))
 import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
-import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro } from "./style";
+import { Campos, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, Colunas2 } from "./style";
 import useSignup from '../../hooks/useSignup';
-import { auth, db, analytics, googleProvider } from '../../firebase/firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 const UserRole = {
     COMUM: 0,
@@ -146,6 +145,8 @@ function CadastroUsuariosAdmin() {
 
     const { signup, loading, error } = useSignup();
 
+    const navigate = useNavigate();
+
     const handleRoleChange = (e) => {
         setRole(parseInt(e.target.value)); // Converte o valor para número inteiro
     };
@@ -157,10 +158,10 @@ function CadastroUsuariosAdmin() {
 
         try {
             await signup({ email, password, nome, sobrenome, genero, dataNascimento, telefone, cpf, role });
-            // Redirecionar ou exibir mensagem de sucesso após o cadastro
+            navigate('/');
+
         } catch (error) {
             console.error("Erro ao cadastrar usuário: ", error);
-            // Exibir mensagem de erro ao usuário, se necessário
         }
     };
 
@@ -182,10 +183,6 @@ function CadastroUsuariosAdmin() {
                             <label>CPF</label>
                             <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
                         </Campos>
-                        <Campos>
-                            <label>Senha</label>
-                            <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                        </Campos>
                     </Colunas>
                     <Colunas>
                         <Campos>
@@ -202,13 +199,20 @@ function CadastroUsuariosAdmin() {
                                 </Select1>
                             </CamposMenoresSubdivisao>
                             <CamposMenoresSubdivisao>
-                                <label>Data de Nasc</label>
-                                <input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+                                <label>Nascimento</label>
+                                <Input type="date" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
                             </CamposMenoresSubdivisao>
                         </CamposMenores>
                         <Campos>
                             <label>Telefone</label>
                             <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+                        </Campos>
+                    </Colunas>
+                </ContainerColunas>
+                <Colunas2>
+                        <Campos>
+                            <label>Senha</label>
+                            <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </Campos>
                         <Campos>
                             <label>Tipo de Usuario</label>
@@ -217,8 +221,7 @@ function CadastroUsuariosAdmin() {
                                 <option value={UserRole.ADMIN}>Admin</option>
                             </Select1>
                         </Campos>
-                    </Colunas>
-                </ContainerColunas>
+                    </Colunas2>
                 <BCadastrar type="submit" disabled={loading} />
                 {loading && <p>Aguarde enquanto o cadastro está sendo processado...</p>}
                 {error && <p>Ocorreu um erro ao cadastrar o usuário: {error.message}</p>}
@@ -228,6 +231,7 @@ function CadastroUsuariosAdmin() {
 }
 
 export default CadastroUsuariosAdmin;
+
 
 
 

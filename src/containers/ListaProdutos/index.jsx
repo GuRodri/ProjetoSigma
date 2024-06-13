@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ContainerCarrinho, Container } from './style';
+import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import CardListaProdutos from '../../components/Cards/CardListaProdutos';
 import { useSearch } from '../../context/searchCoxtexto';
 
@@ -11,7 +11,9 @@ function ListaProdutos() {
     <Container>
       <h2>Lista de Produtos</h2>
       <ContainerCarrinho>
-          <NavLink to="/cadastro-produtos">Adicionar</NavLink>
+        <ContainerBotao>
+        <NavLink className='adicionar' to="/cadastro-produtos">Adicionar</NavLink>
+        </ContainerBotao>
             <CardListaProdutos searchTerm={globalSearchTerm}
             />
       </ContainerCarrinho>

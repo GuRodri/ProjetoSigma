@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ContainerCarrinho, Container } from './style';
+import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaJogos from '../../components/Cards/CardListaJogos';
 import { useSearch } from '../../context/searchCoxtexto';
@@ -40,15 +40,17 @@ const ListaJogos = () => {
     <Container>
       <h2>Lista de Jogos</h2>
       <ContainerCarrinho>
-        <ul>
-          <NavLink to="/cadastro-jogos">Adicionar</NavLink>
+        <div>
+          <ContainerBotao>
+            <NavLink className='adicionar' to="/cadastro-jogos">Adicionar</NavLink>
+          </ContainerBotao>
           {filteredJogos.map((jogo) => (
             <CardListaJogos
               key={jogo.idJogo}
               jogo={jogo}
             />
           ))}
-        </ul>
+        </div>
       </ContainerCarrinho>
     </Container>
   );

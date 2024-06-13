@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledSliderContainer = styled.div`
   width: 80%;
-  margin: 1em auto;
+  background-color: rgba(84, 84, 84, 0.3);
+  padding-top:.25em;
 `;
 
 export const StyledSliderSlide = styled.div`

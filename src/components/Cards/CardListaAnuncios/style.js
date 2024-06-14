@@ -9,6 +9,8 @@ export const CardHome2 = styled.div`
     background-color: #101419;
     border-radius: 10px;
     padding: 0 1em;
+    margin-bottom: 1em;
+    
     .BExcluir {
         background-color: #FF0000;
         color: white;
@@ -17,6 +19,14 @@ export const CardHome2 = styled.div`
         padding: 0.5em 1em;
         cursor: pointer;
         font-size: .675em;
+
+        &:hover {
+            background-color: #8b0000;
+        }
+
+        &:active {
+            transform: scale(1.1);
+  }
     }
     .BDetalhes {
         background-color: #25D62C;
@@ -26,6 +36,14 @@ export const CardHome2 = styled.div`
         padding: 0.5em 1em;
         cursor: pointer;
         font-size: .675em;
+
+        &:hover {
+            background-color: #556B2F;
+        }
+
+        &:active {
+            transform: scale(1.1);
+        }
     }
     `;
 

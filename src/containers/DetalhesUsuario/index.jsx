@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar } from './style';
+import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar, ContainerEspacamento, Campos1, CampoMenor } from './style';
 import apiCliente from '../../services/apiCliente';
 
 function DetalhesUsuario() {
@@ -37,30 +37,54 @@ function DetalhesUsuario() {
 
   return (
     <Container>
+      <ContainerEspacamento>
       <Form>
-        <Campos>
+        <Campos1>
           <TituloCadastro>Detalhes do Usuário</TituloCadastro>
-          <Label>Email</Label>
-          <p>{usuario.email}</p>
-          <Label>Nome</Label>
-          <p>{usuario.nome}</p>
-          <Label>Sobrenome</Label>
-          <p>{usuario.sobrenome}</p>
-          <Label>Senha</Label>
-          <p>{usuario.senha}</p>
-          <Label>Gênero</Label>
-          <p>{usuario.genero}</p>
-          <Label>Data de Nascimento</Label>
-          <p>{usuario.dataNascimento}</p>
-          <Label>Telefone</Label>
-          <p>{usuario.telefone}</p>
-          <Label>CPF</Label>
-          <p>{usuario.cpf}</p>
-        </Campos>
+          <Campos>
+            <CampoMenor>
+              <Label>Nome</Label>
+              <p>{usuario.nome}</p>
+            </CampoMenor>
+            <CampoMenor>
+              <Label>Sobrenome</Label>
+              <p>{usuario.sobrenome}</p>
+            </CampoMenor>
+            <CampoMenor>
+              <Label>Email</Label>
+              <p>{usuario.email}</p>
+            </CampoMenor>
+          </Campos>
+          <Campos>
+            <CampoMenor>
+              <Label>Senha</Label>
+              <p>{usuario.senha}</p>
+            </CampoMenor>
+            <CampoMenor>
+            <Label>Gênero</Label>
+            <p>{usuario.genero}</p>
+            </CampoMenor>
+            <CampoMenor>
+              <Label>Data de Nascimento</Label>
+              <p>{usuario.dataNascimento}</p>
+            </CampoMenor> 
+          </Campos>
+          <Campos>
+            <CampoMenor>
+              <Label>Telefone</Label>
+              <p>{usuario.telefone}</p>
+            </CampoMenor>
+            <CampoMenor>
+              <Label>CPF</Label>
+              <p>{usuario.cpf}</p>
+            </CampoMenor>           
+          </Campos>  
+        </Campos1>
       </Form>
       <BCentralizar>
         <Button type="button" onClick={handleVoltar}>Voltar</Button>
       </BCentralizar>
+      </ContainerEspacamento>
     </Container>
   );
 }

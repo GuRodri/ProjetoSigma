@@ -7,7 +7,6 @@ export const Container = styled.div `
     align-items: center;
     padding: 1em;
     min-height: 77.8vh;
-    justify-content: center;
     color: #d9d9d9;
     padding: 3em;
     p{
@@ -21,7 +20,6 @@ export const ContainerCarrinho = styled.div `
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 80%;
     margin-bottom: 2em;
     gap: 1em;
     align-items:end;
@@ -50,7 +48,7 @@ export const ContainerCarrinho2 = styled.div `
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 80%;
+    width: 100%;
     border: 1px solid #726F6F;
     background-color: #252c37;
     border-radius: 10px;
@@ -72,6 +70,5 @@ export const ContainerBotao= styled.div `
     width: 100%;
     align-items: center;
     margin-top: 1em;
-    margin: 1em;
     align-self:flex-end;
 `;

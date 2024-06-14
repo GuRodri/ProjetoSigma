@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import CardListaProdutos from '../../components/Cards/CardListaProdutos';
 import { useSearch } from '../../context/searchCoxtexto';
+import CardCabecalhoProduto from '../../components/Cards/CardCabecalhoProduto';
 
 function ListaProdutos() {
   const { globalSearchTerm } = useSearch();
@@ -14,6 +15,7 @@ function ListaProdutos() {
         <ContainerBotao>
         <NavLink className='adicionar' to="/cadastro-produtos">Adicionar</NavLink>
         </ContainerBotao>
+        <CardCabecalhoProduto />
             <CardListaProdutos searchTerm={globalSearchTerm}
             />
       </ContainerCarrinho>

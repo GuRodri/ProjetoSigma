@@ -6,6 +6,7 @@ export const CardHome2 = styled.div`
   border-bottom: 1px solid #545454;
   border-radius: 2px;
   margin: 1em 0;
+  width: 100%;
   //background-color: #101419;
 `;
 
@@ -51,7 +52,7 @@ export const ContainerBotao = styled.div`
 
 export const P1 = styled.p`
   font-weight: bold;
-  width: 14.5em;
+  width: 13.5em;
 `;
 
 export const P5 = styled.p`

@@ -14,7 +14,7 @@ function CAnuncio() {
     slidesToShow: 1, // Altere conforme necessário
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000, // Tempo de exibição de cada anúncio (5 segundos)
+    autoplaySpeed: 10000, // Tempo de exibição de cada anúncio (5 segundos)
     pauseOnHover: true // Pausa quando o mouse estiver sobre o carrossel
   };
 

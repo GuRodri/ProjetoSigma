@@ -4,6 +4,7 @@ import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaJogos from '../../components/Cards/CardListaJogos';
 import { useSearch } from '../../context/searchCoxtexto';
+import CardCabecalhoJogo from '../../components/Cards/CardCabecalhoJogo';
 
 const ListaJogos = () => {
   const [jogos, setJogos] = useState([]);
@@ -44,6 +45,7 @@ const ListaJogos = () => {
           <ContainerBotao>
             <NavLink className='adicionar' to="/cadastro-jogos">Adicionar</NavLink>
           </ContainerBotao>
+          <CardCabecalhoJogo />
           {filteredJogos.map((jogo) => (
             <CardListaJogos
               key={jogo.idJogo}

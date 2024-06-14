@@ -1,29 +1,36 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;  
+  flex-direction: column;
   align-items: center;
-  min-height: 77.8vh;
+  justify-content: center;
+   `;
+
+export const ContainerEspacamento = styled.div`
+  background-color: rgba(16, 20, 25, 0.5);
+  border: 1px solid #545454;
   padding: 3em;
+  width: 50%;
+  height: 40em;
+  margin: 4em 0;
+  color: #d9d9d9;
+  font-size: 13px;
+  border-radius: 10px;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
+  gap: 3em;
 `;
 
 export const TituloCadastro = styled.h1`
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
   text-align: center;
+  padding-bottom: 2em;
 `;
 
 export const Campos = styled.div`
@@ -35,28 +42,26 @@ export const Campos = styled.div`
 export const Label = styled.label`
   margin-bottom: 5px;
   font-weight: bold;
-  color: #555;
 `;
 
 export const Button = styled.button`
   padding: 10px 15px;
   font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
+  background-color: #F7FC04;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   align-self: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #bfb800;
   }
 `;
 
 export const BCentralizar = styled.div`
 display: flex;
 justify-content: center;
-padding-top: 3em;
+padding-bottom: 0;
+padding-top: 1em;
 `;
-

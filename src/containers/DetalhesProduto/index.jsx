@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar } from './style';
+import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar, ContainerEspacamento } from './style';
 import apiCliente from '../../services/apiCliente';
 
 function DetalhesProduto() {
@@ -38,11 +38,12 @@ function DetalhesProduto() {
 
   return (
     <Container>
+      <ContainerEspacamento>
+      <TituloCadastro>Detalhes do Produto</TituloCadastro>
       <Form>
-        <Campos>
-          <TituloCadastro>Detalhes do Produto</TituloCadastro>
+        <Campos> 
           <Label>Nome do Produto</Label>
-          <p>{produto.nomeProduto}</p>
+          <p>{produto.nomeProduto}</p>  
           <Label>Descrição do Produto</Label>
           <p>{produto.descricaoProduto}</p>
           <Label>Preço</Label>
@@ -63,6 +64,7 @@ function DetalhesProduto() {
       <BCentralizar>
         <Button type="button" onClick={handleVoltar}>Voltar</Button>
       </BCentralizar>
+      </ContainerEspacamento>
     </Container>
   );
 }

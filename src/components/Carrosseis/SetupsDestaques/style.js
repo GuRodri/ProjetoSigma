@@ -7,8 +7,7 @@ export const ContainerSetupsMaisVendidos = styled.div`
     justify-content: center;
     background-color: rgba(35, 58, 74, 0.5);
     width: 80%;
-    margin: 0 5em;
-    margin-bottom: 5em;
+    margin: 1em 5em 0 5em;
 `;
 
 export const ContainerTitulo = styled.div`

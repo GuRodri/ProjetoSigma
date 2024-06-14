@@ -10,6 +10,8 @@ import {
   CamposMenores,
   CamposMenoresSubdivisao2,
   Button,
+  BCentralizar,
+  ContainerEspacamento
 } from './style';
 import BEditar from '../../components/Button/EditarAnuncio';
 import apiCliente from '../../services/apiCliente';
@@ -64,76 +66,79 @@ function EditarAnuncio() {
 
   return (
     <Container>
-      <Form onSubmit={handleUpdate}>
-        <TituloCadastro>Editar Anúncio</TituloCadastro>
-        <Campos>
-          <Label>Título</Label>
-          <Input
-            type="text"
-            name="titulo"
-            value={anuncio.titulo}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Descrição</Label>
-          <Input
-            type="text"
-            name="descricao"
-            value={anuncio.descricao}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Id Produto</Label>
-          <Input
-            type="text"
-            name="Identificador do produto"
-            value={anuncio.idProduto}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <CamposMenores>
-          <CamposMenoresSubdivisao2>
-            <Label>Preço</Label>
+      <ContainerEspacamento>
+        <Form onSubmit={handleUpdate}>
+          <TituloCadastro>Editar Anúncio</TituloCadastro>
+          <Campos>
+            <Label>Título</Label>
             <Input
-              type="number"
-              name="preco"
-              step="0.01"
-              min="0.01"
-              value={anuncio.preco}
+              type="text"
+              name="titulo"
+              value={anuncio.titulo}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-          <CamposMenoresSubdivisao2>
-            <Label>Data de Criação</Label>
+          </Campos>
+          <Campos>
+            <Label>Descrição</Label>
             <Input
-              type="date"
-              name="data"
-              value={anuncio.data}
+              type="text"
+              name="descricao"
+              value={anuncio.descricao}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-        </CamposMenores>
-        <Campos>
-          <Label>Imagem do Anúncio</Label>
-          <Input
-            type="url"
-            name="referenciaImagem"
-            value={anuncio.referenciaImagem}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Button type="submit">Atualizar</Button>
-        
-<Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </Form>
+          </Campos>
+          <Campos>
+            <Label>Id Produto</Label>
+            <Input
+              type="text"
+              name="Identificador do produto"
+              value={anuncio.idProduto}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <CamposMenores>
+            <CamposMenoresSubdivisao2>
+              <Label>Preço</Label>
+              <Input
+                type="number"
+                name="preco"
+                step="0.01"
+                min="0.01"
+                value={anuncio.preco}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+            <CamposMenoresSubdivisao2>
+              <Label>Data de Criação</Label>
+              <Input
+                type="date"
+                name="data"
+                value={anuncio.data}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+          </CamposMenores>
+          <Campos>
+            <Label>Imagem do Anúncio</Label>
+            <Input
+              type="url"
+              name="referenciaImagem"
+              value={anuncio.referenciaImagem}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <BCentralizar>
+            <Button type="submit">Atualizar</Button>    
+            <Button type="button" onClick={handleVoltar}>Voltar</Button>
+          </BCentralizar>
+        </Form>
+      </ContainerEspacamento>
     </Container>
   );
 }

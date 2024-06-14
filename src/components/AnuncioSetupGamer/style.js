@@ -7,7 +7,7 @@ export const ContainerSetup = styled.div`
     justify-content: center;
     background-color: rgba(84, 84, 84, 0.3);
     width: 80%;
-    margin: 1em;
+    margin: 1em 5em 0 5em;
     h1{
         color:#d9d9d9;
     }

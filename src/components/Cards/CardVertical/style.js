@@ -15,19 +15,22 @@ export const CardHome2 = styled.div`
   border: 1px solid #726F6F;
 
   p {
-    font-size: 1em; /* Tamanho de fonte relativo */
+    font-size: 1em;
     color: #d9d9d9;
     margin: 1em 0;
   }
   img {
-    width: 8em;
-    height: 8em;
+    width:8em;
+    height:8em;
     border-radius: 5px;
     margin: 1em 0;
   }
   .Ajusteimagem{
     display: flex;
     justify-content: center;
+    background: white;
+    margin-bottom: .8em;
+    border-radius: 10px;
   }
 
   .button {
@@ -54,4 +57,12 @@ export const NomeProd = styled.span`
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 40px; /* altura do contêiner do título */
+
+    h2{
+      color: #d9d9d9;
+      font-size: .875em;
+      margin: 0;
+      padding: 0;
+      width: 176px;
+    }
 `;

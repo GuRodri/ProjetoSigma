@@ -20,7 +20,7 @@ const CardVertical = ({ produtos = [], searchTerm }) => { // Valor padrão para 
           </div>
           <div>
             <NomeProd >
-                <SubTitle >{produto.nomeProduto}</SubTitle>
+                <h2 >{produto.nomeProduto}</h2>
             </NomeProd>
             <Title>{produto.preco}</Title>
             <SmallTitle>12x de R$ 500,00</SmallTitle>

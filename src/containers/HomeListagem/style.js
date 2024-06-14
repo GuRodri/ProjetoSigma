@@ -16,5 +16,9 @@ export const ContainerListagem = styled.div `
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #141414;
+    border: 1px solid #726F6F;
+    padding: 2em;
 `;

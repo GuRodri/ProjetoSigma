@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar } from './style';
+import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar, ContainerEspacamento } from './style';
 import apiCliente from '../../services/apiCliente';
 
 function DetalhesJogo() {
@@ -36,9 +36,11 @@ function DetalhesJogo() {
 
   return (
     <Container>
+      <ContainerEspacamento>
+      <TituloCadastro>Detalhes do Jogo</TituloCadastro>
       <Form>
+          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='250em'/>
         <Campos>
-          <TituloCadastro>Detalhes do Jogo</TituloCadastro>
           <Label>Nome do Jogo</Label>
           <p>{jogo.nomeJogo}</p>
           <Label>Categoria do Jogo</Label>
@@ -51,8 +53,6 @@ function DetalhesJogo() {
           <p>{jogo.placaVideoRequerida}</p>
           <Label>Espaço em Disco Requerido</Label>
           <p>{jogo.espacoDiscoRequerido}</p>
-          <Label>Referência da Imagem do Jogo</Label>
-          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='300em'/>
           <Label>Data de Criação</Label>
           <p>{jogo.data}</p>
         </Campos>
@@ -60,6 +60,7 @@ function DetalhesJogo() {
       <BCentralizar>
         <Button type="button" onClick={handleVoltar}>Voltar</Button>
       </BCentralizar>
+      </ContainerEspacamento> 
     </Container>
   );
 }

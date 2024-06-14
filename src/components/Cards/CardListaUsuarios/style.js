@@ -17,6 +17,14 @@ export const CardHome2 = styled.div`
         padding: 0.5em 1em;
         cursor: pointer;
         font-size: .675em;
+
+        &:hover {
+            background-color: #8b0000;
+        }
+
+        &:active {
+            transform: scale(1.1);
+  }
     }
     .BDetalhes {
         background-color: #25D62C;
@@ -26,6 +34,14 @@ export const CardHome2 = styled.div`
         padding: 0.5em 1em;
         cursor: pointer;
         font-size: .675em;
+
+        &:hover {
+            background-color: #556B2F;
+        }
+
+        &:active {
+            transform: scale(1.1);
+        }
     }
     `;
 

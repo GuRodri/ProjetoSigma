@@ -51,7 +51,7 @@ export const ContainerBotao = styled.div`
 
 export const P1 = styled.p`
   font-weight: bold;
-  width: 14.5em;
+  width: 11em;
 `;
 
 export const P5 = styled.p`

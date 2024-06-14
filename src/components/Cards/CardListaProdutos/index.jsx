@@ -55,7 +55,7 @@ const CardListaProdutos = ({ searchTerm }) => {
         <CardHome2 key={produto.idProduto}>
           <ContainerEspacamento>
             <ContainerTexto>
-              <img src={produto.imagemProduto} alt="Imagem do Produto" width='60em' />
+              <img src={produto.imagemProduto} alt="Imagem do Produto" />
             </ContainerTexto>
             <ContainerTexto>
               <p>{produto.idProduto}</p>

@@ -7,7 +7,6 @@ export const Container = styled.div `
     align-items: center;
     padding: 1em;
     min-height: 77.8vh;
-    justify-content: center;
     color: #d9d9d9;
     padding: 3em;
     p{
@@ -71,6 +70,5 @@ export const ContainerBotao= styled.div `
     width: 100%;
     align-items: center;
     margin-top: 1em;
-    margin: 1em;
     align-self:flex-end;
 `;

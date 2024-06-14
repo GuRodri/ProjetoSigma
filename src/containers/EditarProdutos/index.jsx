@@ -10,6 +10,8 @@ import {
   CamposMenores,
   CamposMenoresSubdivisao2,
   Button,
+  ContainerEspacamento,
+  BCentralizar
 } from './style';
 import apiCliente from '../../services/apiCliente';
 import { useNavigate } from 'react-router-dom';
@@ -66,106 +68,110 @@ function EditarProduto() {
   
   return (
     <Container>
-      <Form onSubmit={handleUpdate}>
-        <TituloCadastro>Editar Produto</TituloCadastro>
-        <Campos>
-          <Label>Nome do Produto</Label>
-          <Input
-            type="text"
-            name="nomeProduto"
-            value={produto.nomeProduto}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Descrição do Produto</Label>
-          <Input
-            type="text"
-            name="descricaoProduto"
-            value={produto.descricaoProduto}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <CamposMenores>
-          <CamposMenoresSubdivisao2>
-            <Label>Preço</Label>
+      <ContainerEspacamento>
+        <Form onSubmit={handleUpdate}>
+          <TituloCadastro>Editar Produto</TituloCadastro>
+          <Campos>
+            <Label>Nome do Produto</Label>
             <Input
-              type="number"
-              name="preco"
-              step="0.01"
-              min="0.01"
-              value={produto.preco}
+              type="text"
+              name="nomeProduto"
+              value={produto.nomeProduto}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-          <CamposMenoresSubdivisao2>
-            <Label>Quantidade em Estoque</Label>
+          </Campos>
+          <Campos>
+            <Label>Descrição do Produto</Label>
             <Input
-              type="number"
-              name="quantidadeEstoque"
-              min="0"
-              value={produto.quantidadeEstoque}
+              type="text"
+              name="descricaoProduto"
+              value={produto.descricaoProduto}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-        </CamposMenores>
-        <Campos>
-          <Label>Categoria</Label>
-          <Input
-            type="text"
-            name="categoria"
-            value={produto.categoria}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Marca</Label>
-          <Input
-            type="text"
-            name="marca"
-            value={produto.marca}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Imagem do Produto</Label>
-          <Input
-            type="url"
-            name="imagemProduto"
-            value={produto.imagemProduto}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Ficha Técnica</Label>
-          <Input
-            type="text"
-            name="fichaTecnica"
-            value={produto.fichaTecnica}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Data de Criação</Label>
-          <Input
-            type="date"
-            name="data"
-            value={produto.data}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Button type="submit">Atualizar</Button>
-        <Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </Form>
+          </Campos>
+          <CamposMenores>
+            <CamposMenoresSubdivisao2>
+              <Label>Preço</Label>
+              <Input
+                type="number"
+                name="preco"
+                step="0.01"
+                min="0.01"
+                value={produto.preco}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+            <CamposMenoresSubdivisao2>
+              <Label>Quantidade em Estoque</Label>
+              <Input
+                type="number"
+                name="quantidadeEstoque"
+                min="0"
+                value={produto.quantidadeEstoque}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+          </CamposMenores>
+          <Campos>
+            <Label>Categoria</Label>
+            <Input
+              type="text"
+              name="categoria"
+              value={produto.categoria}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Marca</Label>
+            <Input
+              type="text"
+              name="marca"
+              value={produto.marca}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Imagem do Produto</Label>
+            <Input
+              type="url"
+              name="imagemProduto"
+              value={produto.imagemProduto}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Ficha Técnica</Label>
+            <Input
+              type="text"
+              name="fichaTecnica"
+              value={produto.fichaTecnica}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Data de Criação</Label>
+            <Input
+              type="date"
+              name="data"
+              value={produto.data}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <BCentralizar>
+            <Button type="submit">Atualizar</Button>
+            <Button type="button" onClick={handleVoltar}>Voltar</Button>
+          </BCentralizar>
+        </Form>
+      </ContainerEspacamento>
     </Container>
   );
 }

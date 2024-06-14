@@ -10,6 +10,8 @@ import {
   CamposMenores,
   CamposMenoresSubdivisao2,
   Button,
+  BCentralizar,
+  ContainerEspacamento
 } from './style';
 import apiCliente from '../../services/apiCliente';
 import { useNavigate } from 'react-router-dom';
@@ -65,85 +67,89 @@ function EditarJogo() {
   
   return (
     <Container>
-      <Form onSubmit={handleUpdate}>
-        <TituloCadastro>Editar Jogo</TituloCadastro>
-        <Campos>
-          <Label>Nome do Jogo</Label>
-          <Input
-            type="text"
-            name="nomeJogo"
-            value={jogo.nomeJogo}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Categoria do Jogo</Label>
-          <Input
-            type="text"
-            name="categoriaJogo"
-            value={jogo.categoriaJogo}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <CamposMenores>
-          <CamposMenoresSubdivisao2>
-            <Label>Processador Requerido</Label>
+      <ContainerEspacamento>
+        <Form onSubmit={handleUpdate}>
+          <TituloCadastro>Editar Jogo</TituloCadastro>
+          <Campos>
+            <Label>Nome do Jogo</Label>
             <Input
               type="text"
-              name="processadorRequerido"
-              value={jogo.processadorRequerido}
+              name="nomeJogo"
+              value={jogo.nomeJogo}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-          <CamposMenoresSubdivisao2>
-            <Label>Memória RAM Requerida</Label>
+          </Campos>
+          <Campos>
+            <Label>Categoria do Jogo</Label>
             <Input
               type="text"
-              name="memoriaRAMRequerida"
-              value={jogo.memoriaRAMRequerida}
+              name="categoriaJogo"
+              value={jogo.categoriaJogo}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-        </CamposMenores>
-        <CamposMenores>
-          <CamposMenoresSubdivisao2>
-            <Label>Placa de Vídeo Requerida</Label>
+          </Campos>
+          <CamposMenores>
+            <CamposMenoresSubdivisao2>
+              <Label>Processador Requerido</Label>
+              <Input
+                type="text"
+                name="processadorRequerido"
+                value={jogo.processadorRequerido}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+            <CamposMenoresSubdivisao2>
+              <Label>Memória RAM Requerida</Label>
+              <Input
+                type="text"
+                name="memoriaRAMRequerida"
+                value={jogo.memoriaRAMRequerida}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+          </CamposMenores>
+          <CamposMenores>
+            <CamposMenoresSubdivisao2>
+              <Label>Placa de Vídeo Requerida</Label>
+              <Input
+                type="text"
+                name="placaVideoRequerida"
+                value={jogo.placaVideoRequerida}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+            <CamposMenoresSubdivisao2>
+              <Label>Espaço em Disco Requerido</Label>
+              <Input
+                type="text"
+                name="espacoDiscoRequerido"
+                value={jogo.espacoDiscoRequerido}
+                onChange={handleChange}
+                required
+              />
+            </CamposMenoresSubdivisao2>
+          </CamposMenores>
+          <Campos>
+            <Label>Referência da Imagem do Jogo</Label>
             <Input
-              type="text"
-              name="placaVideoRequerida"
-              value={jogo.placaVideoRequerida}
+              type="url"
+              name="referenciaImagemJogo"
+              value={jogo.referenciaImagemJogo}
               onChange={handleChange}
               required
             />
-          </CamposMenoresSubdivisao2>
-          <CamposMenoresSubdivisao2>
-            <Label>Espaço em Disco Requerido</Label>
-            <Input
-              type="text"
-              name="espacoDiscoRequerido"
-              value={jogo.espacoDiscoRequerido}
-              onChange={handleChange}
-              required
-            />
-          </CamposMenoresSubdivisao2>
-        </CamposMenores>
-        <Campos>
-          <Label>Referência da Imagem do Jogo</Label>
-          <Input
-            type="url"
-            name="referenciaImagemJogo"
-            value={jogo.referenciaImagemJogo}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Button type="submit">Atualizar</Button>
-        <Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </Form>
+          </Campos>
+          <BCentralizar>
+            <Button type="submit">Atualizar</Button>
+            <Button type="button" onClick={handleVoltar}>Voltar</Button>
+          </BCentralizar>
+        </Form>
+      </ContainerEspacamento>
     </Container>
   );
 }

@@ -6,6 +6,7 @@ export const CardHome2 = styled.div`
   border-bottom: 1px solid #545454;
   border-radius: 2px;
   margin: 1em 0;
+  width: 100%;
   //background-color: #101419;
 `;
 
@@ -13,7 +14,6 @@ export const ContainerEspacamento = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: .4em;
 `;
 
 export const ContainerTexto = styled.div`
@@ -49,12 +49,19 @@ export const ContainerBotao = styled.div`
   }
 `;
 
-export const P1 = styled.p`
+export const ContainerTexto1 = styled.div`
+  flex: 1;
+  text-align: left;
   font-weight: bold;
-  width: 14.5em;
+  min-width: 13.5em;
+  margin-top: 1em;
 `;
 
-export const P5 = styled.p`
+export const ContainerTexto5 = styled.div`
+  flex: 1;
+  text-align: left;
   font-weight: bold;
-  width: 16.5em;
+  min-width: 14.5em;
+  margin-top: 1em;
+  
 `

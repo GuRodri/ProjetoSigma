@@ -9,6 +9,8 @@ import {
   Input,
   CamposMenores,
   CamposMenoresSubdivisao2,
+  BCentralizar,
+  ContainerEspacamento,
   Button,
 } from './style';
 import apiCliente from '../../services/apiCliente';
@@ -67,91 +69,95 @@ function EditarUsuario() {
 
   return (
     <Container>
-      <Form onSubmit={handleUpdate}>
-        <TituloCadastro>Editar Usuário</TituloCadastro>
-        <Campos>
-          <Label>Email</Label>
-          <Input
-            type="email"
-            name="email"
-            value={usuario.email}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Nome</Label>
-          <Input
-            type="text"
-            name="nome"
-            value={usuario.nome}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Sobrenome</Label>
-          <Input
-            type="text"
-            name="sobrenome"
-            value={usuario.sobrenome}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Senha</Label>
-          <Input
-            type="password"
-            name="senha"
-            value={usuario.senha}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Gênero</Label>
-          <Input
-            type="text"
-            name="genero"
-            value={usuario.genero}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Data de Nascimento</Label>
-          <Input
-            type="date"
-            name="dataNascimento"
-            value={usuario.dataNascimento}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>Telefone</Label>
-          <Input
-            type="tel"
-            name="telefone"
-            value={usuario.telefone}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Campos>
-          <Label>CPF</Label>
-          <Input
-            type="text"
-            name="cpf"
-            value={usuario.cpf}
-            onChange={handleChange}
-            required
-          />
-        </Campos>
-        <Button type="submit">Atualizar</Button>
-        <Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </Form>
+      <ContainerEspacamento>
+        <Form onSubmit={handleUpdate}>
+          <TituloCadastro>Editar Usuário</TituloCadastro>
+          <Campos>
+            <Label>Email</Label>
+            <Input
+              type="email"
+              name="email"
+              value={usuario.email}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Nome</Label>
+            <Input
+              type="text"
+              name="nome"
+              value={usuario.nome}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Sobrenome</Label>
+            <Input
+              type="text"
+              name="sobrenome"
+              value={usuario.sobrenome}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Senha</Label>
+            <Input
+              type="password"
+              name="senha"
+              value={usuario.senha}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Gênero</Label>
+            <Input
+              type="text"
+              name="genero"
+              value={usuario.genero}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Data de Nascimento</Label>
+            <Input
+              type="date"
+              name="dataNascimento"
+              value={usuario.dataNascimento}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>Telefone</Label>
+            <Input
+              type="tel"
+              name="telefone"
+              value={usuario.telefone}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <Campos>
+            <Label>CPF</Label>
+            <Input
+              type="text"
+              name="cpf"
+              value={usuario.cpf}
+              onChange={handleChange}
+              required
+            />
+          </Campos>
+          <BCentralizar>
+            <Button type="submit">Atualizar</Button>
+            <Button type="button" onClick={handleVoltar}>Voltar</Button>
+          </BCentralizar> 
+        </Form>
+      </ContainerEspacamento>
     </Container>
   );
 }

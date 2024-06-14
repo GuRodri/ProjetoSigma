@@ -55,13 +55,16 @@ const CardListaUsuarios = ({ searchTerm }) => {
         <CardHome2 key={user.idUsuario}>
           <ContainerEspacamento>
             <ContainerTexto>
-              <p>{user.idUsuario}</p>
+              <p style={{ width: '1em' }}>{user.idUsuario}</p>
             </ContainerTexto>
             <ContainerTexto>
               <p>{`${user.nome} ${user.sobrenome}`}</p>
             </ContainerTexto>
             <ContainerTexto>
               <p>{user.email}</p>
+            </ContainerTexto>
+            <ContainerTexto>
+              <p>{user.genero}</p>
             </ContainerTexto>
           </ContainerEspacamento>
           <ContainerBotao>

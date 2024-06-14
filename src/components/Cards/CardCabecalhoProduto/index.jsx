@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardHome2, ContainerEspacamento, ContainerTexto,P1,P5 } from './style';
 
-const CardCabecalhoAnuncios = () => {
+const CardCabecalhoProduto = () => {
   return (
     <CardHome2>
       <ContainerEspacamento>
@@ -12,10 +12,13 @@ const CardCabecalhoAnuncios = () => {
           <p>ID:</p>
         </ContainerTexto>
         <ContainerTexto>
-          <p>Título:</p>
+          <p>Nome:</p>
         </ContainerTexto>
         <ContainerTexto>
           <p>Preço:</p>
+        </ContainerTexto>
+        <ContainerTexto>
+          <p>Quantidade:</p>
         </ContainerTexto>
         <ContainerTexto>
           <P5>Ações:</P5>
@@ -25,4 +28,4 @@ const CardCabecalhoAnuncios = () => {
   );
 };
 
-export default CardCabecalhoAnuncios;
+export default CardCabecalhoProduto;

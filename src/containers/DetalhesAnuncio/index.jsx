@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar } from './style';
+import { Container, Form, TituloCadastro, Campos, Label, Button, BCentralizar, ContainerEspacamento } from './style';
 import apiCliente from '../../services/apiCliente';
 
 function DetalhesAnuncio() {
@@ -34,9 +34,10 @@ function DetalhesAnuncio() {
 
   return (
     <Container>
+      <ContainerEspacamento>
+      <TituloCadastro>Detalhes do Anúncio</TituloCadastro>
       <Form>
         <Campos>
-          <TituloCadastro>Detalhes do Anúncio</TituloCadastro>
           <Label>Título</Label>
           <p>{anuncio.titulo}</p>
           <Label>Descrição</Label>
@@ -46,13 +47,14 @@ function DetalhesAnuncio() {
           <Label>Data de Criação</Label>
           <p>{anuncio.data}</p>
         </Campos>
-          <img src={anuncio.referenciaImagem} alt="Imagem do Anúncio" width='300em'/>
+          <img src={anuncio.referenciaImagem} alt="Imagem do Anúncio" width='500em'/>
         <Campos>
         </Campos>
       </Form>
         <BCentralizar>
           <Button type="button" onClick={handleVoltar}>Voltar</Button>
         </BCentralizar>
+      </ContainerEspacamento>
     </Container>
   );
 }

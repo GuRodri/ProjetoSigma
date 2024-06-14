@@ -10,6 +10,10 @@ export const Button = styled.button`
   font-size: .675em;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #bfb800;
+  }
+
+  &:active {
+    transform: scale(1.1);
   }
 `;

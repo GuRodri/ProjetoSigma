@@ -4,6 +4,7 @@ import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaAnuncios from '../../components/Cards/CardListaAnuncios';
 import { useSearch } from '../../context/searchCoxtexto';
+import CardCabeçalhoAnuncios from '../../components/Cards/CardCabecalhoAnuncio';
 
 const ListaAnuncios = () => {
   const [anuncios, setAnuncios] = useState([]);
@@ -44,6 +45,7 @@ const ListaAnuncios = () => {
           <ContainerBotao>
             <NavLink className='adicionar' to="/cadastro-anuncios">Adicionar</NavLink>
           </ContainerBotao>
+          <CardCabeçalhoAnuncios />
           {filteredAnuncios.map((anuncio) => (
             <CardListaAnuncios
               key={anuncio.idAnuncio}

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import BCadastrar from "../../components/Button/Cadastrar";
-import { Campos, Campos1, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, Colunas2 } from "./style";
+import { Campos, Campos1, CamposMenores, CamposMenoresSubdivisao, Linhas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, Linhas2, P1 } from "./style";
 import useSignup from '../../hooks/useSignup';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+import PoliticaPrivacidade from '../../components/PoliticaPrivacidade';
 
 const UserRole = {
     COMUM: 0,
@@ -42,16 +44,32 @@ function CadastroUsuarios() {
         }
     };
 
+            const [modalIsOpen, setModalIsOpen] = useState(false);
+
+        const handleOpenModal = () => {
+        setModalIsOpen(true);
+        };
+
+        const handleCloseModal = () => {
+        setModalIsOpen(false);
+        };
+
     return (
         <Container>
             <Form onSubmit={handleSignup}>
                 <TituloCadastro>Cadastro Usuários</TituloCadastro>
                 <ContainerColunas>
-                    <Colunas>
+                    <Linhas>
                         <Campos>
                             <label>Nome</label>
                             <Input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
                         </Campos>
+                        <Campos>
+                            <label>Sobrenome</label>
+                            <Input type="text" placeholder="Sobrenome" value={sobrenome} onChange={(e) => setSobrenome(e.target.value)} required />
+                        </Campos>
+                    </Linhas>
+                    <Linhas>
                         <Campos>
                             <label>Email</label>
                             <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -60,12 +78,8 @@ function CadastroUsuarios() {
                             <label>CPF</label>
                             <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
                         </Campos>
-                    </Colunas>
-                    <Colunas>
-                        <Campos>
-                            <label>Sobrenome</label>
-                            <Input type="text" placeholder="Sobrenome" value={sobrenome} onChange={(e) => setSobrenome(e.target.value)} required />
-                        </Campos>
+                    </Linhas>
+                    <Linhas>
                         <CamposMenores>
                             <CamposMenoresSubdivisao>
                                 <label>Gênero</label>
@@ -82,15 +96,14 @@ function CadastroUsuarios() {
                         </CamposMenores>
                         <Campos>
                             <label>Telefone</label>
-                            <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+                            <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />    
                         </Campos>
-                    </Colunas>
-                </ContainerColunas>
-                <Colunas2>
-                        <Campos1>
+                    </Linhas>
+                    <Linhas>
+                        <Campos style={{ width: role === UserRole.ADMIN ? '100%' : '49%'}}>
                             <label>Senha</label>
-                            <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                        </Campos1>
+                            <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />  
+                        </Campos>
                         <Campos style={{ display: role === UserRole.ADMIN ? 'block' : 'none' }}>
                             <label>Tipo de Usuario</label>
                             <Select1 value={role} onChange={handleRoleChange}>
@@ -98,7 +111,19 @@ function CadastroUsuarios() {
                                 <option value={UserRole.ADMIN}>Admin</option>
                             </Select1>
                         </Campos>
-                    </Colunas2>
+                    </Linhas>
+                </ContainerColunas>
+                    <div>
+                        <P1>Ao clicar em "Cadastrar", aceito os Termos e condições e autorizo o uso dos meus dados de acordo com a Declaração de <a href="#" onClick={handleOpenModal}>Política de Privacidade</a>.</P1>
+
+                        <Modal
+                            isOpen={modalIsOpen}
+                            onRequestClose={handleCloseModal}
+                            contentLabel="Política de Privacidade"
+                        >
+                            <PoliticaPrivacidade />
+                        </Modal>
+                    </div>
                 <BCadastrar type="submit" disabled={loading} />
                 {loading && <p>Aguarde enquanto o cadastro está sendo processado...</p>}
                 {error && <p>Ocorreu um erro ao cadastrar o usuário: {error.message}</p>}

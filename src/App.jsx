@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Modal from 'react-modal';
 import Home from './containers/Home';
 import AmbienteAdministrador from './containers/AmbienteAdministrador';
 import AmbienteUsuario from './containers/AmbienteUsuario';
@@ -35,6 +36,10 @@ import EditarJogos from './containers/EditarJogos';
 import DetalhesJogo from './containers/DetalheJogo';
 import CadastroImagens from './containers/CadastroImagens';
 import ListaImagens from './containers/ListaImagens';
+import RecuperarSenha from './containers/RecuperarSenha';
+
+// Configuração do elemento da aplicação para o Modal
+Modal.setAppElement('#root');
 
 const App = () => {
   return (
@@ -49,6 +54,7 @@ const App = () => {
                 <Route path='/ambiente-usuario' element={<AmbienteUsuario />} />
                 <Route path='/cadastro-usuarios' element={<CadastroUsuarios />} />
                 <Route path='/home-listagem' element={<HomeListagem />} />
+                <Route path='/recuperar-senha' element={<RecuperarSenha />} />
                 <Route path='/carrinho-compras' element={<ProtectedRoute element={<CarrinhoCompras />} requiredRole={0} />} />
                 <Route path='/favoritos' element={<ProtectedRoute element={<Favoritos />} requiredRole={0} />} />
                 <Route path='/login' element={<Login />} />

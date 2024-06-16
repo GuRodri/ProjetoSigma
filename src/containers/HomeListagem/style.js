@@ -22,3 +22,8 @@ export const ContainerListagem = styled.div `
     border: 1px solid #726F6F;
     padding: 2em;
 `;
+
+export const MensagemNenhumProduto= styled.h1 `
+    color: white;
+    font-size: 1.5em;
+`;

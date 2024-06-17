@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container } from './style';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Algo deu errado.</h1>;
+      return <Container><h1>Algo deu errado.</h1></Container>
+
     }
 
     return this.props.children; 

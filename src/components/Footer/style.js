@@ -98,6 +98,7 @@ export const FooterContainerColunas = styled.div`
   text-align: center;
   text-decoration: none;
   align-self: first baseline;
+  width: 80%;
   margin-top: 1.25em;
   font-size: 0.75em;
 `;
@@ -125,4 +126,14 @@ export const FooterContainerEndereço = styled.div`
   margin-top: 1.25em;
   padding: 0 3em;
 `;
+
+export const SmallTitle1 = styled.p`
+    color: #d9d9d9;
+    font-size: .75em;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+    align-items: center;
+  `;
 

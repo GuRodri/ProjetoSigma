@@ -4,12 +4,12 @@ import { ContainerCarrinho, Container, ContainerBotao } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaAnuncios from '../../components/Cards/CardListaAnuncios';
 import { useSearch } from '../../context/searchCoxtexto';
-import CardCabeçalhoAnuncios from '../../components/Cards/CardCabecalhoAnuncio';
+import CardCabecalhoAnuncios from '../../components/Cards/CardCabecalhoAnuncio';
 
 const ListaAnuncios = () => {
   const [anuncios, setAnuncios] = useState([]);
   const [filteredAnuncios, setFilteredAnuncios] = useState([]);
-  const { globalSearchTerm } = useSearch(); // Obtendo o termo de pesquisa global do contexto
+  const { globalSearchTerm, setGlobalSearchTerm } = useSearch(); // Obtendo o termo de pesquisa global do contexto
 
   useEffect(() => {
     const fetchAnuncios = async () => {
@@ -37,6 +37,11 @@ const ListaAnuncios = () => {
     setFilteredAnuncios(filtered);
   }, [globalSearchTerm, anuncios]);
 
+  useEffect(() => {
+    // Limpa o termo de busca global ao montar a página ListaAnuncios
+    setGlobalSearchTerm('');
+  }, [setGlobalSearchTerm]);
+
   return (
     <Container>
       <h2>Lista de Anúncios</h2>
@@ -45,7 +50,7 @@ const ListaAnuncios = () => {
           <ContainerBotao>
             <NavLink className='adicionar' to="/cadastro-anuncios">Adicionar</NavLink>
           </ContainerBotao>
-          <CardCabeçalhoAnuncios />
+          <CardCabecalhoAnuncios />
           {filteredAnuncios.map((anuncio) => (
             <CardListaAnuncios
               key={anuncio.idAnuncio}

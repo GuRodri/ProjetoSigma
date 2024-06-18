@@ -1,8 +1,4 @@
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
-const baseFontSize = 16;
 
 export const Container = styled.div`
     display: flex;
@@ -14,10 +10,6 @@ export const Container = styled.div`
     color: #d9d9d9;
     text-decoration: none;
     padding: 3em;
-    h3 {
-        font-size: 3.125em;
-        margin-bottom: 1.875em;
-    }
 `;
 
 export const Form = styled.form`
@@ -29,6 +21,7 @@ export const Form = styled.form`
     border-radius: 1.25em;
     border: 0.0625em solid #726F6F;
     padding: 3.125em;
+    font-size: 12px;
 `;
 
 export const Input = styled.input`
@@ -57,17 +50,16 @@ export const Campos = styled.div`
     justify-content: space-between;
     margin-top: 0.5em;
     text-align: left;
-    font-size: 1em;
+    width: 100%;
 `;
 
 export const Campos1 = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 0.5em;
-    margin-left: 0.625em;
+    margin-top: 0.5em;
     text-align: left;
-    font-size: 1em;
+    width: 100%;
 `;
 
 export const CamposMenores = styled.div`
@@ -77,24 +69,23 @@ export const CamposMenores = styled.div`
     justify-content: space-between;
     margin-top: 0.5em;
     text-align: left;
-    font-size: 1em;
 `;
 
 export const CamposMenoresSubdivisao = styled.div`
     display: flex;
     flex-direction: column;
     width: 45%;
-    font-size: 1em;
 `;
 
-export const Colunas = styled.div`
+export const Linhas = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
     margin: 0.625em;
+    gap:1em;
 `;
-export const Colunas2 = styled.div`
+export const Linhas2 = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -102,7 +93,7 @@ export const Colunas2 = styled.div`
 `;
 export const ContainerColunas = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 0.625em;
@@ -115,9 +106,10 @@ export const Select1 = styled.select`
     height: 2.5em;
     width: 100%;
     text-align: left;
+    padding: 0 0.9375em;
 `;
 
-export const StyledDatePicker = styled(DatePicker)`
+/*export const StyledDatePicker = styled(DatePicker)`
     width: 100%;
     height: 2.5em;
     padding: 0.625em;
@@ -127,9 +119,15 @@ export const StyledDatePicker = styled(DatePicker)`
     background-color: #fff;
     outline: none;
     cursor: pointer;
-`;
+`;*/
 
 export const TituloCadastro = styled.h1`
     font-size: 1.56em;
     margin-bottom: 0.625em;
+`;
+
+export const P1 = styled.p`
+    font-size: 12px;
+    margin-bottom: 2em;
+    width: 40em;
 `;

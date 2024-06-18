@@ -3,12 +3,15 @@ import { auth, db } from '../firebase/firebaseConfig';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
-const AuthContext = createContext();
+// Criando o contexto de autenticação
+export const AuthContext = createContext();
 
+// Hook personalizado para consumir o contexto
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
+// Provedor de contexto de autenticação
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);

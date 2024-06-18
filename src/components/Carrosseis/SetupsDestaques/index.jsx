@@ -18,6 +18,7 @@ function CDestaques() {
     const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
+        
         const fetchProdutos = async () => {
             try {
                 const response = await apiCliente.get('/api/Produto');

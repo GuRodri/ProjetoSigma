@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, LoginIcon, Container, UserName, LoggedInMenu, MenuOption } from './style';
 import PesquisarIcon from '../../assets/icons/search-normal.svg';
 import LogoImage from '../../assets/icons/logo.svg';
 import LoginIconImage from '../../assets/icons/logar.svg';
 import Logado from '../../assets/icons/logado.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import MenuHamburguer from '../MenuHamburguer';
 import { useSearch } from '../../context/searchCoxtexto';
-import { useAuth } from  '../../context/autContexto1';
+import { useAuth } from '../../context/autContexto1';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,18 +15,34 @@ const Header = () => {
   const { setGlobalSearchTerm } = useSearch();
   const { currentUser, logout } = useAuth(); // Obtenha o usuário atual e a função de logout do contexto de autenticação
   const menuRef = useRef(null); // Ref para o menu
+  const navigate = useNavigate();
+
+  // Limpa o termo de pesquisa ao mudar de página
+  useEffect(() => {
+    setSearchTerm('');
+  }, [navigate]); // Monitora mudanças na navegação para limpar o termo de pesquisa
 
   const handleInputChange = event => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSearch = () => {
+  const performSearch = () => {
     setGlobalSearchTerm(searchTerm);
+    if (window.location.pathname === '/') {
+      navigate('/home-listagem'); // Redireciona para a página de listagem após a busca se estiver na página inicial
+    } else {
+      // Implemente redirecionamento para outras páginas de listagem aqui
+      console.log('Implemente redirecionamento para outras páginas de listagem aqui');
+    }
+  };
+
+  const handleSearch = () => {
+    performSearch();
   };
 
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
-      handleSearch();
+      performSearch();
     }
   };
 
@@ -58,9 +74,9 @@ const Header = () => {
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
         />
-        <NavLink to={`/search?query=${encodeURIComponent(searchTerm)}`} onClick={handleSearch}>
+        <a onClick={handleSearch}>
           <SearchIcon src={PesquisarIcon} alt="Pesquisar" />
-        </NavLink>
+        </a>
       </SearchInputContainer>
       <Container ref={menuRef} onMouseLeave={handleMouseLeave}>
         {currentUser ? (

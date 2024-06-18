@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/autContexto1'; // Importe o contexto de autenticação
 import BCadastrar from "../../components/Button/Cadastrar";
-import { Campos, Campos1, CamposMenores, CamposMenoresSubdivisao, Colunas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, Colunas2 } from "./style";
+import { Campos, CamposMenores, CamposMenoresSubdivisao, Linhas, Container, ContainerColunas, Form, Input, Select1, TituloCadastro, P1 } from "./style";
 import useSignup from '../../hooks/useSignup';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+import PoliticaPrivacidade from '../../components/PoliticaPrivacidade';
+import TermosDeUso from '../../components/TermosUso';
+import InputMask from 'react-input-mask';
 
 const UserRole = {
     COMUM: 0,
@@ -10,6 +15,8 @@ const UserRole = {
 };
 
 function CadastroUsuarios() {
+    const { currentUser } = useContext(AuthContext); // Consuma o contexto para obter o currentUser
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nome, setNome] = useState('');
@@ -19,9 +26,10 @@ function CadastroUsuarios() {
     const [telefone, setTelefone] = useState('');
     const [cpf, setCpf] = useState('');
     const [role, setRole] = useState(UserRole.COMUM);
+    const [modalPoliticaPrivacidadeIsOpen, setModalPoliticaPrivacidadeIsOpen] = useState(false);
+    const [modalTermosDeUsoIsOpen, setModalTermosDeUsoIsOpen] = useState(false);
 
     const { signup, loading, error } = useSignup();
-
     const navigate = useNavigate();
 
     const handleRoleChange = (e) => {
@@ -30,8 +38,6 @@ function CadastroUsuarios() {
 
     const handleSignup = async (event) => {
         event.preventDefault();
-
-        console.log({ email, nome, sobrenome, cpf, senha: password, genero, dataNascimento, telefone, role });
 
         try {
             await signup({ email, password, nome, sobrenome, genero, dataNascimento, telefone, cpf, role });
@@ -42,30 +48,55 @@ function CadastroUsuarios() {
         }
     };
 
+    const handleOpenPoliticaPrivacidadeModal = () => {
+        setModalPoliticaPrivacidadeIsOpen(true);
+    };
+
+    const handleClosePoliticaPrivacidadeModal = () => {
+        setModalPoliticaPrivacidadeIsOpen(false);
+    };
+
+    const handleOpenTermosDeUsoModal = () => {
+        setModalTermosDeUsoIsOpen(true);
+    };
+
+    const handleCloseTermosDeUsoModal = () => {
+        setModalTermosDeUsoIsOpen(false);
+    };
+
     return (
         <Container>
             <Form onSubmit={handleSignup}>
                 <TituloCadastro>Cadastro Usuários</TituloCadastro>
                 <ContainerColunas>
-                    <Colunas>
+                    <Linhas>
                         <Campos>
                             <label>Nome</label>
                             <Input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
                         </Campos>
+                        <Campos>
+                            <label>Sobrenome</label>
+                            <Input type="text" placeholder="Sobrenome" value={sobrenome} onChange={(e) => setSobrenome(e.target.value)} required />
+                        </Campos>
+                    </Linhas>
+                    <Linhas>
                         <Campos>
                             <label>Email</label>
                             <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                         </Campos>
                         <Campos>
                             <label>CPF</label>
-                            <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+                            <InputMask 
+                                mask="999.999.999-99" 
+                                value={cpf} 
+                                onChange={(e) => setCpf(e.target.value)} 
+                                placeholder="CPF"
+                            >
+                                {(inputProps) => <Input {...inputProps} type="text" required />}
+                            </InputMask>
                         </Campos>
-                    </Colunas>
-                    <Colunas>
-                        <Campos>
-                            <label>Sobrenome</label>
-                            <Input type="text" placeholder="Sobrenome" value={sobrenome} onChange={(e) => setSobrenome(e.target.value)} required />
-                        </Campos>
+                    </Linhas>
+                    <Linhas>
                         <CamposMenores>
                             <CamposMenoresSubdivisao>
                                 <label>Gênero</label>
@@ -82,23 +113,71 @@ function CadastroUsuarios() {
                         </CamposMenores>
                         <Campos>
                             <label>Telefone</label>
-                            <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+                            <InputMask 
+                                mask="(99) 99999-9999" 
+                                value={telefone} 
+                                onChange={(e) => setTelefone(e.target.value)} 
+                                placeholder="Telefone"
+                            >
+                                {(inputProps) => <Input {...inputProps} type="tel" required />}
+                            </InputMask>
                         </Campos>
-                    </Colunas>
-                </ContainerColunas>
-                <Colunas2>
-                        <Campos1>
+                    </Linhas>
+                    <Linhas>
+                        <Campos style={{ width: '100%' }}>
                             <label>Senha</label>
                             <Input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                        </Campos1>
-                        <Campos style={{ display: role === UserRole.ADMIN ? 'block' : 'none' }}>
-                            <label>Tipo de Usuario</label>
-                            <Select1 value={role} onChange={handleRoleChange}>
-                                <option value={UserRole.COMUM}>Comum</option>
-                                <option value={UserRole.ADMIN}>Admin</option>
-                            </Select1>
                         </Campos>
-                    </Colunas2>
+                        {currentUser && currentUser.role === UserRole.ADMIN && (
+                            <Campos>
+                                <label>Tipo de Usuário</label>
+                                <Select1 value={role} onChange={handleRoleChange}>
+                                    <option value={UserRole.COMUM}>Comum</option>
+                                    <option value={UserRole.ADMIN}>Admin</option>
+                                </Select1>
+                            </Campos>
+                        )}
+                    </Linhas>
+                </ContainerColunas>
+                <div>
+                    <P1>
+                        Ao clicar em "Cadastrar", aceito os{' '}
+                        <a href="#" onClick={handleOpenTermosDeUsoModal}>
+                            Termos e condições
+                        </a> e autorizo o uso dos meus dados de acordo com a Declaração de{' '}
+                        <a href="#" onClick={handleOpenPoliticaPrivacidadeModal}>
+                            Política de Privacidade
+                        </a>
+                        .
+                    </P1>
+
+                    <Modal
+                        isOpen={modalTermosDeUsoIsOpen}
+                        onRequestClose={handleCloseTermosDeUsoModal}
+                        contentLabel="Termos de Uso"
+                    >
+                        <TermosDeUso />
+                        <button 
+                            onClick={handleCloseTermosDeUsoModal} 
+                            style={{ width: '8em', backgroundColor:'red', color:'#d9d9d9', borderRadius:'6px', padding: '.25em', border:'none'}}
+                        >
+                            Fechar
+                        </button>
+                    </Modal>
+                    <Modal
+                        isOpen={modalPoliticaPrivacidadeIsOpen}
+                        onRequestClose={handleClosePoliticaPrivacidadeModal}
+                        contentLabel="Política de Privacidade"
+                    >
+                        <PoliticaPrivacidade />
+                        <button 
+                            onClick={handleClosePoliticaPrivacidadeModal} 
+                            style={{ width: '8em', backgroundColor:'red', color:'#d9d9d9', borderRadius:'6px', padding: '.25em', border:'none'}}
+                        >
+                            Fechar
+                        </button>
+                    </Modal>
+                </div>
                 <BCadastrar type="submit" disabled={loading} />
                 {loading && <p>Aguarde enquanto o cadastro está sendo processado...</p>}
                 {error && <p>Ocorreu um erro ao cadastrar o usuário: {error.message}</p>}

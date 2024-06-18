@@ -9,7 +9,7 @@ import CardCabecalhoJogo from '../../components/Cards/CardCabecalhoJogo';
 const ListaJogos = () => {
   const [jogos, setJogos] = useState([]);
   const [filteredJogos, setFilteredJogos] = useState([]);
-  const { globalSearchTerm } = useSearch(); // Obtendo o termo de pesquisa global do contexto
+  const { globalSearchTerm, setGlobalSearchTerm } = useSearch(); // Obtendo o termo de pesquisa global do contexto
 
   useEffect(() => {
     const fetchJogos = async () => {
@@ -36,6 +36,11 @@ const ListaJogos = () => {
     );
     setFilteredJogos(filtered);
   }, [globalSearchTerm, jogos]);
+
+  useEffect(() => {
+    // Limpa o termo de busca global ao montar a página ListaJogos
+    setGlobalSearchTerm('');
+  }, [setGlobalSearchTerm]);
 
   return (
     <Container>

@@ -33,12 +33,6 @@ export const CardHome2 = styled.div`
     border-radius: 10px;
   }
 
-  .button {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-  }
-
   span{
     color: #F8B84E;
   }
@@ -64,5 +58,29 @@ export const NomeProd = styled.span`
       margin: 0;
       padding: 0;
       width: 176px;
+    }
+`;
+
+export const Button = styled.button`
+display: flex;
+    justify-content: center;
+    color:#050505;
+    background-color: #25D62C;
+    width: 100%;
+    text-align: center;
+    height: 2.6875;
+    border-radius: 10px;
+    border: none;
+    padding: 0.6250em 1.25em;
+    cursor: pointer;
+    font-size: .875em;
+    font-weight: bold;
+    margin-top: .8em;
+    margin-bottom: .8em;
+    &:hover {
+        background-color: #556B2F;
+    }
+    &:active {
+        transform: scale(1.1);
     }
 `;

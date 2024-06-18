@@ -11,4 +11,5 @@ export const MyButton = styled.button `
     border-radius: 10px;
     border: none;
     padding: 0.6250em 1.25em;
+    font-size: 12px;
 `

@@ -9,7 +9,7 @@ import {
   Form,
   Input,
   TituloCadastro,
-  Select1,
+  Textarea,
   InputMenor,
 } from "./style";
 import BCadastrar from "../../components/Button/Cadastrar";
@@ -131,8 +131,7 @@ function CadastroProdutos() {
             </Campos>
             <Campos>
               <label>Ficha Técnica</label>
-              <Input
-                type="text"
+              <Textarea
                 placeholder="Ficha Técnica"
                 value={fichaTecnica}
                 onChange={(e) => setFichaTecnica(e.target.value)}

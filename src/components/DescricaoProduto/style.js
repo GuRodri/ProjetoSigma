@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const ProductDescriptionContainer = styled.div`
   margin-top: 20px;
   padding: 20px;
-  height: 77.8vh;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  min-height: 77.8vh;
   border-radius: 5px;
+  color: #d9d9d9;
   width: 100%;
 `;
 

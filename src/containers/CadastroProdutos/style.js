@@ -138,3 +138,14 @@ export const TituloCadastro = styled.h1`
     font-size: 1.56em;
     margin-bottom: 0.625em;
 `;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  height: 5em;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: vertical;
+`;

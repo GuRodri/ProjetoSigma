@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { StyledSliderContainer, StyledSliderImage, StyledSliderSlide } from './style';
 import apiCliente from '../../../services/apiCliente';
+import { Link } from 'react-router-dom';
 
 function CAnuncio() {
   const [anuncios, setAnuncios] = useState([]);
@@ -11,11 +12,11 @@ function CAnuncio() {
     dots: true,
     infinite: true,
     speed: 5000,
-    slidesToShow: 1, // Altere conforme necessário
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 10000, // Tempo de exibição de cada anúncio (5 segundos)
-    pauseOnHover: true // Pausa quando o mouse estiver sobre o carrossel
+    autoplaySpeed: 10000,
+    pauseOnHover: true
   };
 
   useEffect(() => {
@@ -35,9 +36,11 @@ function CAnuncio() {
     <StyledSliderContainer>
       <Slider {...settings}>
         {anuncios.map((anuncio) => (
-          <StyledSliderSlide key={anuncio.id}>
-            <StyledSliderImage src={anuncio.referenciaImagem} alt={anuncio.titulo} />
-          </StyledSliderSlide>
+          <Link key={anuncio.idAnuncio} to={`/produto/${anuncio.idProduto}`} target="_blank" rel="noopener noreferrer">
+            <StyledSliderSlide>
+              <StyledSliderImage src={anuncio.referenciaImagem} alt={anuncio.titulo} />
+            </StyledSliderSlide>
+          </Link>
         ))}
       </Slider>
     </StyledSliderContainer>

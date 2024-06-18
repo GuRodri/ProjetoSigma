@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ContainerHome, ContainerListagem } from "./style";
+import { ContainerHome, ContainerListagem, ContainerOrdenacao, Select, ContainerTexto, ContainerTexto1, ContainerEspacamento } from "./style";
 import { SearchContext } from '../../context/searchCoxtexto';
 import CardVertical from "../../components/Cards/CardVertical";
 import apiCliente from '../../services/apiCliente';
@@ -8,16 +8,17 @@ const HomeListagem = () => {
   const [produtos, setProdutos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [sortOrder, setSortOrder] = useState('asc'); // Ordem de classificação padrão
   const { globalSearchTerm } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
         const response = await apiCliente.get('/api/Produto');
-        console.log('API Response:', response); // Log da resposta da API
+        console.log('Resposta da API:', response);
         const produtosAtivos = response.data.filter(produto => produto.ativo);
         setProdutos(produtosAtivos);
-        console.log('Produtos Ativos:', produtosAtivos); // Log dos produtos ativos
+        console.log('Produtos Ativos:', produtosAtivos);
       } catch (error) {
         console.error('Erro ao buscar produtos:', error);
         setHasError(true);
@@ -28,6 +29,20 @@ const HomeListagem = () => {
 
     fetchProdutos();
   }, []);
+
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
+  const sortProdutos = (produtos) => {
+    return produtos.sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.preco - b.preco;
+      } else {
+        return b.preco - a.preco;
+      }
+    });
+  };
 
   if (isLoading) {
     return <div>Carregando...</div>;
@@ -43,8 +58,23 @@ const HomeListagem = () => {
 
   return (
     <ContainerHome>
+      <ContainerOrdenacao>
+        <ContainerEspacamento>
+          <ContainerTexto>
+            <p>Resultado da pesquisa por: </p>
+            <strong>{globalSearchTerm}</strong>
+          </ContainerTexto>
+          <ContainerTexto1>
+            <label htmlFor="sortOrder">Ordenar por preço: </label>
+            <Select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+              <option value="asc">Menor Preço</option>
+              <option value="desc">Maior Preço</option>
+            </Select>
+          </ContainerTexto1>
+        </ContainerEspacamento>
+      </ContainerOrdenacao>
       <ContainerListagem>
-        <CardVertical produtos={produtos} searchTerm={globalSearchTerm} />
+        <CardVertical produtos={sortProdutos(produtos)} searchTerm={globalSearchTerm} />
       </ContainerListagem>
     </ContainerHome>
   );

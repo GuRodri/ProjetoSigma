@@ -39,13 +39,13 @@ import ListaImagens from './containers/ListaImagens';
 import RecuperarSenha from './containers/RecuperarSenha';
 import Produto from './containers/Produto';
 import SobreNos from './containers/SobreNos';
-import AvaliacaoProduto from './components/AvaliacaoProduto';
 import SetupGamerPage1 from './containers/SetupGamer/Page1';
 import SetupGamerPage2 from './containers/SetupGamer/Page2';
 import SetupGamerPage3 from './containers/SetupGamer/Page3';
 import SetupGamerPage4 from './containers/SetupGamer/Page4';
 import SetupGamerPage5 from './containers/SetupGamer/Page5';
 import SetupGamerPage6 from './containers/SetupGamer/Page6';
+import CadastroAvaliacao from './containers/CadastrarAvaliacao';
 
 // Configuração do elemento da aplicação para o Modal
 Modal.setAppElement('#root');
@@ -64,7 +64,6 @@ const App = () => {
                 <Route path='/cadastro-usuarios' element={<CadastroUsuarios />} />
                 <Route path='/home-listagem' element={<HomeListagem />} />
                 <Route path="/produto/:id" element={<Produto />} />
-                <Route path='/produto/:id/avaliacao' element={<AvaliacaoProduto />} />
                 <Route path='/produto' element={<Produto />} />
                 <Route path='/recuperar-senha' element={<RecuperarSenha />} />
                 <Route path='/sobre-nos' element={<SobreNos />} />
@@ -74,6 +73,7 @@ const App = () => {
                 <Route path='/setupGamer-page4' element={<SetupGamerPage4 />} />
                 <Route path='/setupGamer-page5' element={<SetupGamerPage5 />} />
                 <Route path='/setupGamer-page6' element={<SetupGamerPage6 />} />
+                <Route path='/cadastro-avaliacao' element={<CadastroAvaliacao />} />
                 <Route path='/carrinho-compras' element={<ProtectedRoute element={<CarrinhoCompras />} requiredRole={0} />} />
                 <Route path='/favoritos' element={<ProtectedRoute element={<Favoritos />} requiredRole={0} />} />
                 <Route path='/login' element={<Login />} />

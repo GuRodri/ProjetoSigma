@@ -1,21 +1,17 @@
-import React from 'react';
-import {
-  ProductInfoContainer,
-  ProductName,
-  ProductDescription,
-  ProductPrice,
-  ProductButtonsContainer
-} from './style'; // Verifique o caminho do arquivo de estilos
+import React, { useState, useEffect } from 'react';
+import StarRating from '../Rating';
+import { ProductInfoContainer, ProductDescription, ProductPrice, ProductButtonsContainer } from './style'; // Verifique o caminho do arquivo de estilos
 import BComprar from '../../components/Button/Comprar';
 import BAdicionarCarrinho from '../../components/Button/AdicionarAoCarrinho';
 
-const InformacaoProduto = ({ nomeProduto, descricaoProduto, preco, quantidadeEstoque }) => {
+const InformacaoProduto = ({ nomeProduto, descricaoProduto, preco, quantidadeEstoque, mediaAvaliacao }) => {
   return (
     <ProductInfoContainer>
-      <ProductName>{nomeProduto}</ProductName>
+      <h2>{nomeProduto}</h2>
       <ProductDescription>{descricaoProduto}</ProductDescription>
       <ProductPrice><strong>Preço:</strong> R$ {preco.toFixed(2)}</ProductPrice>
-      <p><strong>Quantidade em Estoque:</strong> {quantidadeEstoque}</p>
+      <StarRating rating={mediaAvaliacao} />
+      <p><strong>Estoque:</strong> {quantidadeEstoque}</p>
       <ProductButtonsContainer>
         <BComprar />
         <BAdicionarCarrinho />

@@ -6,11 +6,10 @@ const DescricaoProduto = ({ fichaTecnica }) => {
     <ProductDescriptionContainer>
       <ContainerEspacamento>
         <ProductDescriptionTitle>Ficha Técnica</ProductDescriptionTitle>
-        <ProductDescriptionText>{fichaTecnica}</ProductDescriptionText>
+        <ProductDescriptionText dangerouslySetInnerHTML={{ __html: fichaTecnica }}></ProductDescriptionText>
       </ContainerEspacamento>
     </ProductDescriptionContainer>
   );
 };
 
 export default DescricaoProduto;
-

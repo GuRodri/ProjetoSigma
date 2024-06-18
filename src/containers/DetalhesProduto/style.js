@@ -5,10 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #252C37;
    `;
 
 export const ContainerEspacamento = styled.div`
-  background-color: rgba(16, 20, 25, 0.5);
+  background-color: rgba(16, 20, 25, 0.1);
   border: 1px solid #545454;
   padding: 3em;
   width: 50%;

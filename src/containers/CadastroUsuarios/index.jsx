@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import PoliticaPrivacidade from '../../components/PoliticaPrivacidade';
 import TermosDeUso from '../../components/TermosUso';
+import InputMask from 'react-input-mask';
 
 const UserRole = {
     COMUM: 0,
@@ -85,7 +86,14 @@ function CadastroUsuarios() {
                         </Campos>
                         <Campos>
                             <label>CPF</label>
-                            <Input type="text" placeholder="CPF" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+                            <InputMask 
+                                mask="999.999.999-99" 
+                                value={cpf} 
+                                onChange={(e) => setCpf(e.target.value)} 
+                                placeholder="CPF"
+                            >
+                                {(inputProps) => <Input {...inputProps} type="text" required />}
+                            </InputMask>
                         </Campos>
                     </Linhas>
                     <Linhas>
@@ -105,7 +113,14 @@ function CadastroUsuarios() {
                         </CamposMenores>
                         <Campos>
                             <label>Telefone</label>
-                            <Input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+                            <InputMask 
+                                mask="(99) 99999-9999" 
+                                value={telefone} 
+                                onChange={(e) => setTelefone(e.target.value)} 
+                                placeholder="Telefone"
+                            >
+                                {(inputProps) => <Input {...inputProps} type="tel" required />}
+                            </InputMask>
                         </Campos>
                     </Linhas>
                     <Linhas>

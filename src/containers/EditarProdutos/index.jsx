@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Container,
   Form,
@@ -11,10 +11,10 @@ import {
   CamposMenoresSubdivisao2,
   Button,
   ContainerEspacamento,
-  BCentralizar
+  BCentralizar,
+  Textarea,
 } from './style';
 import apiCliente from '../../services/apiCliente';
-import { useNavigate } from 'react-router-dom';
 
 function EditarProduto() {
   const navigate = useNavigate();
@@ -51,6 +51,7 @@ function EditarProduto() {
       // Faz a requisição para atualizar os dados do produto com base no ID
       await apiCliente.put(`/api/produto/${id}`, produto);
       alert('Produto atualizado com sucesso!');
+      navigate(`/produto/${id}`); // Navega para a página de detalhes do produto
     } catch (error) {
       console.error('Erro ao atualizar produto: ', error);
       alert(error.message);
@@ -148,8 +149,7 @@ function EditarProduto() {
           </Campos>
           <Campos>
             <Label>Ficha Técnica</Label>
-            <Input
-              type="text"
+            <Textarea
               name="fichaTecnica"
               value={produto.fichaTecnica}
               onChange={handleChange}

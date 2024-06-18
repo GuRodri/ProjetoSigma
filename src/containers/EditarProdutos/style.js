@@ -15,7 +15,7 @@ export const ContainerEspacamento = styled.div`
   border: 1px solid #545454;
   padding: 3em;
   width: 60%;
-  height: 60em;
+  height: 70em;
   margin: 4em 0;
   color: #d9d9d9;
   font-size: 13px;
@@ -98,4 +98,13 @@ justify-content: center;
 gap: 2em;
 padding-top: 1.5em;
 padding-bottom: 0;
+`;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  height: 10em;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 `;

@@ -18,7 +18,7 @@ import apiCliente from '../../services/apiCliente';
 
 function EditarProduto() {
   const navigate = useNavigate();
-  const { id } = useParams(); // Obtém o ID da rota
+  const { id } = useParams();
   const [produto, setProduto] = useState({
     nomeProduto: '',
     descricaoProduto: '',
@@ -34,7 +34,6 @@ function EditarProduto() {
   useEffect(() => {
     const fetchProduto = async () => {
       try {
-        // Faz a requisição para obter os dados do produto com base no ID
         const response = await apiCliente.get(`/api/produto/${id}`);
         setProduto(response.data);
       } catch (error) {
@@ -48,10 +47,9 @@ function EditarProduto() {
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
-      // Faz a requisição para atualizar os dados do produto com base no ID
       await apiCliente.put(`/api/produto/${id}`, produto);
       alert('Produto atualizado com sucesso!');
-      navigate(`/produto/${id}`); // Navega para a página de detalhes do produto
+      navigate(`/produto/${id}`);
     } catch (error) {
       console.error('Erro ao atualizar produto: ', error);
       alert(error.message);
@@ -64,7 +62,7 @@ function EditarProduto() {
   };
 
   const handleVoltar = () => {
-    navigate(-1); // Volta para a página anterior
+    navigate(-1);
   };
   
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Container,
   Form,
@@ -7,18 +7,14 @@ import {
   Campos,
   Label,
   Input,
-  CamposMenores,
-  CamposMenoresSubdivisao2,
   BCentralizar,
   ContainerEspacamento,
   Button,
 } from './style';
 import apiCliente from '../../services/apiCliente';
-import { useNavigate } from 'react-router-dom';
 
 function EditarUsuario() {
   const navigate = useNavigate();
-
   const { id } = useParams(); // Obtém o ID da rota
   const [usuario, setUsuario] = useState({
     email: '',

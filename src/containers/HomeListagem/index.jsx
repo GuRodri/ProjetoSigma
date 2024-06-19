@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ContainerHome, ContainerListagem, ContainerOrdenacao, Select, ContainerTexto, ContainerTexto1, ContainerEspacamento } from "./style";
+import { ContainerHome, ContainerListagem, ContainerOrdenacao, Select, ContainerTexto, ContainerTexto1, ContainerEspacamento } from './style';
 import { SearchContext } from '../../context/searchCoxtexto';
-import CardVertical from "../../components/Cards/CardVertical";
+import CardVertical from '../../components/Cards/CardVertical';
 import apiCliente from '../../services/apiCliente';
 
 const HomeListagem = () => {
@@ -15,10 +15,8 @@ const HomeListagem = () => {
     const fetchProdutos = async () => {
       try {
         const response = await apiCliente.get('/api/Produto');
-        console.log('Resposta da API:', response);
         const produtosAtivos = response.data.filter(produto => produto.ativo);
         setProdutos(produtosAtivos);
-        console.log('Produtos Ativos:', produtosAtivos);
       } catch (error) {
         console.error('Erro ao buscar produtos:', error);
         setHasError(true);

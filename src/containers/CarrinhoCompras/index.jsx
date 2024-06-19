@@ -1,10 +1,7 @@
 import BVerMaisProdutos from "../../components/Button/VerMaisProdutos";
 import CardCarrinho from "../../components/Cards/CardCarrinho";
 import BProsseguirComACompra from "../../components/Button/ProsseguirComACompra";
-
 import { ContainerCarrinho, ContainerCarrinho2, ContainerHome, ContainerMenor } from "./style";
-
-
 
 function CarrinhoCompras() {
     return (

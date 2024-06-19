@@ -4,7 +4,6 @@ function BVoltarAPaginaInicial(){
     return (  
           <MyButton>Voltar a pagina inicial</MyButton>    
     )
-
 }
 
 export default BVoltarAPaginaInicial;

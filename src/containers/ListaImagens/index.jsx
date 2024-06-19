@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { storage, db } from '../../firebase/firebaseConfig'; 
+import { storage, db } from '../../firebase/firebaseConfig';
 import { ref, getDownloadURL } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
 import {
@@ -9,7 +9,7 @@ import {
   ListItem,
   Image,
   Description
-} from './style'; 
+} from './style';
 
 const ListaImagens = () => {
   const [imagens, setImagens] = useState([]);

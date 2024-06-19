@@ -4,7 +4,6 @@ function BNovo(){
     return (  
           <MyButton>Novo</MyButton>    
     )
-
 }
 
 export default BNovo;

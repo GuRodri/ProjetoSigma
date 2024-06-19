@@ -35,22 +35,20 @@ function DetalhesAnuncio() {
   return (
     <Container>
       <ContainerEspacamento>
-      <TituloCadastro>Detalhes do Anúncio</TituloCadastro>
-      <Form>
-        <Campos>
-          <Label>Título</Label>
-          <p>{anuncio.titulo}</p>
-          <Label>Descrição</Label>
-          <p>{anuncio.descricao}</p>
-          <Label>Preço</Label>
-          <p>{anuncio.preco}</p>
-          <Label>Data de Criação</Label>
-          <p>{anuncio.data}</p>
-        </Campos>
+        <TituloCadastro>Detalhes do Anúncio</TituloCadastro>
+        <Form>
+          <Campos>
+            <Label>Título</Label>
+            <p>{anuncio.titulo}</p>
+            <Label>Descrição</Label>
+            <p>{anuncio.descricao}</p>
+            <Label>Preço</Label>
+            <p>{anuncio.preco}</p>
+            <Label>Data de Criação</Label>
+            <p>{anuncio.data}</p>
+          </Campos>
           <img src={anuncio.referenciaImagem} alt="Imagem do Anúncio" width='500em'/>
-        <Campos>
-        </Campos>
-      </Form>
+        </Form>
         <BCentralizar>
           <Button type="button" onClick={handleVoltar}>Voltar</Button>
         </BCentralizar>

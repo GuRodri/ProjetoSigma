@@ -4,7 +4,6 @@ function BProsseguir(){
     return (  
           <MyButton>Prosseguir</MyButton>    
     )
-
 }
 
 export default BProsseguir;

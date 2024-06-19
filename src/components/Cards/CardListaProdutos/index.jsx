@@ -23,7 +23,6 @@ const CardListaProdutos = ({ searchTerm }) => {
   }, []);
 
   const handleDisableProduto = async (id) => {
-    console.log('Clicou no botão de exclusão');
     try {
       await apiCliente.patch(`/api/produto/${id}/disable`);
       const updatedProdutos = produtos.map(produto => {
@@ -71,9 +70,9 @@ const CardListaProdutos = ({ searchTerm }) => {
             </ContainerTexto>
           </ContainerEspacamento>
           <ContainerBotao>
-            <button className='BExcluir' onClick={() => handleDisableProduto(produto.idProduto)}>Excluir</button> 
+            <button className='BExcluir' onClick={() => handleDisableProduto(produto.idProduto)}>Excluir</button>
             <BEditarProduto id={produto.idProduto} />
-            <button className='BDetalhes' onClick={() => handleDetalhes(produto.idProduto)}>Detalhes</button> 
+            <button className='BDetalhes' onClick={() => handleDetalhes(produto.idProduto)}>Detalhes</button>
           </ContainerBotao>
         </CardHome2>
       ))}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Container,
   Form,
@@ -15,11 +15,10 @@ import {
 } from './style';
 import BEditar from '../../components/Button/EditarAnuncio';
 import apiCliente from '../../services/apiCliente';
-import { useNavigate } from 'react-router-dom';
 
 function EditarAnuncio() {
   const navigate = useNavigate();
-  const { id } = useParams(); // Obtém o ID da rota
+  const { id } = useParams();
   const [anuncio, setAnuncio] = useState({
     idProduto: '',
     titulo: '',
@@ -32,7 +31,6 @@ function EditarAnuncio() {
   useEffect(() => {
     const fetchAnuncio = async () => {
       try {
-        // Faz a requisição para obter os dados do anúncio com base no ID
         const response = await apiCliente.get(`/api/Anuncio/${id}`);
         setAnuncio(response.data);
       } catch (error) {
@@ -46,7 +44,6 @@ function EditarAnuncio() {
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
-      // Faz a requisição para atualizar os dados do anúncio com base no ID
       await apiCliente.put(`/api/Anuncio/${id}`, anuncio);
       alert('Anúncio atualizado com sucesso!');
     } catch (error) {
@@ -61,7 +58,7 @@ function EditarAnuncio() {
   };
 
   const handleVoltar = () => {
-    navigate(-1); // Volta para a página anterior
+    navigate(-1);
   };
 
   return (
@@ -93,7 +90,7 @@ function EditarAnuncio() {
             <Label>Id Produto</Label>
             <Input
               type="text"
-              name="Identificador do produto"
+              name="idProduto"
               value={anuncio.idProduto}
               onChange={handleChange}
               required
@@ -134,7 +131,7 @@ function EditarAnuncio() {
             />
           </Campos>
           <BCentralizar>
-            <Button type="submit">Atualizar</Button>    
+            <Button type="submit">Atualizar</Button>
             <Button type="button" onClick={handleVoltar}>Voltar</Button>
           </BCentralizar>
         </Form>

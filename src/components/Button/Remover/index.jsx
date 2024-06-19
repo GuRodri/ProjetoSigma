@@ -4,7 +4,6 @@ function BRemover(){
     return (  
           <MyButton>Remover</MyButton>    
     )
-
 }
 
 export default BRemover;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ContainerCarrinho, Container, ListagemJogos, ContainerTitulo, ContainerEspacamento3} from './style';
+import { ContainerCarrinho, Container, ListagemJogos, ContainerTitulo, ContainerEspacamento3 } from './style';
 import apiCliente from '../../../services/apiCliente';
 import CardSelecaoJogo from '../../../components/Cards/CardSelecaoJogo';
 import { useSearch } from '../../../context/searchCoxtexto';
@@ -17,7 +17,6 @@ const SetupGamerPage3 = () => {
     const fetchJogos = async () => {
       try {
         const response = await apiCliente.get('/api/Jogo');
-        console.log('Dados recebidos do backend:', response.data);
         const jogosAtivos = response.data.filter(jogo => jogo.ativo);
         setJogos(jogosAtivos);
         setFilteredJogos(jogosAtivos);
@@ -54,7 +53,7 @@ const SetupGamerPage3 = () => {
 
   return (
     <Container>
-       <ContainerEspacamento3>
+      <ContainerEspacamento3>
         <ContainerCarrinho>
           <ContainerTitulo>
             <h2>Selecione o seu jogo</h2>
@@ -71,7 +70,7 @@ const SetupGamerPage3 = () => {
               />
             ))}
           </ListagemJogos>
-          <a>Não tem meu jogo</a>
+          <a href="#">Não tem meu jogo</a>
         </ContainerCarrinho>
         <ContainerCarrinho>
           <ContainerTitulo>
@@ -91,8 +90,8 @@ const SetupGamerPage3 = () => {
         </ContainerCarrinho>
         <NavLink to={'/setupGamer-page4'}>
           <BContinuar />
-        </NavLink> 
-       </ContainerEspacamento3>
+        </NavLink>
+      </ContainerEspacamento3>
     </Container>
   );
 };

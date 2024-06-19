@@ -6,15 +6,12 @@ import BEditarAnuncios from '../../Button/EditarAnuncio';
 
 const CardListaAnuncios = ({ anuncio }) => {
   const navigate = useNavigate();
-  
+
   const handleDisableAnuncio = async (id) => {
-    console.log('Clicou no botão de exclusão');
     try {
       await apiCliente.patch(`/api/Anuncio/${id}/disable`);
-      console.log('Anúncio desabilitado com sucesso! ID:', id);
       alert('Anúncio desabilitado com sucesso!');
     } catch (error) {
-      console.error('Erro ao desabilitar anúncio: ', error);
       alert('Erro ao desabilitar anúncio. Verifique o console para mais detalhes.');
     }
   };
@@ -40,7 +37,7 @@ const CardListaAnuncios = ({ anuncio }) => {
         </ContainerTexto>
       </ContainerEspacamento>
       <ContainerBotao>
-        <button className='BExcluir' onClick={() => handleDisableAnuncio(anuncio.idAnuncio)}>Excluir</button> 
+        <button className='BExcluir' onClick={() => handleDisableAnuncio(anuncio.idAnuncio)}>Excluir</button>
         <BEditarAnuncios id={anuncio.idAnuncio} />
         <button className='BDetalhes' onClick={() => handleDetalhes(anuncio.idAnuncio)}>Detalhes</button>
       </ContainerBotao>

@@ -37,29 +37,29 @@ function DetalhesJogo() {
   return (
     <Container>
       <ContainerEspacamento>
-      <TituloCadastro>Detalhes do Jogo</TituloCadastro>
-      <Form>
+        <TituloCadastro>Detalhes do Jogo</TituloCadastro>
+        <Form>
           <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='250em'/>
-        <Campos>
-          <Label>Nome do Jogo</Label>
-          <p>{jogo.nomeJogo}</p>
-          <Label>Categoria do Jogo</Label>
-          <p>{jogo.categoriaJogo}</p>
-          <Label>Processador Requerido</Label>
-          <p>{jogo.processadorRequerido}</p>
-          <Label>Memória RAM Requerida</Label>
-          <p>{jogo.memoriaRAMRequerida}</p>
-          <Label>Placa de Vídeo Requerida</Label>
-          <p>{jogo.placaVideoRequerida}</p>
-          <Label>Espaço em Disco Requerido</Label>
-          <p>{jogo.espacoDiscoRequerido}</p>
-          <Label>Data de Criação</Label>
-          <p>{jogo.data}</p>
-        </Campos>
-      </Form>
-      <BCentralizar>
-        <Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </BCentralizar>
+          <Campos>
+            <Label>Nome do Jogo</Label>
+            <p>{jogo.nomeJogo}</p>
+            <Label>Categoria do Jogo</Label>
+            <p>{jogo.categoriaJogo}</p>
+            <Label>Processador Requerido</Label>
+            <p>{jogo.processadorRequerido}</p>
+            <Label>Memória RAM Requerida</Label>
+            <p>{jogo.memoriaRAMRequerida}</p>
+            <Label>Placa de Vídeo Requerida</Label>
+            <p>{jogo.placaVideoRequerida}</p>
+            <Label>Espaço em Disco Requerido</Label>
+            <p>{jogo.espacoDiscoRequerido}</p>
+            <Label>Data de Criação</Label>
+            <p>{jogo.data}</p>
+          </Campos>
+        </Form>
+        <BCentralizar>
+          <Button type="button" onClick={handleVoltar}>Voltar</Button>
+        </BCentralizar>
       </ContainerEspacamento> 
     </Container>
   );

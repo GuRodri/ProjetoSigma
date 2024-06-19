@@ -1,4 +1,3 @@
-// src/components/Unauthorized.jsx
 import React from 'react';
 
 const Unauthorized = () => {

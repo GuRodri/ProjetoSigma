@@ -26,14 +26,14 @@ export const AuthProvider = ({ children }) => {
 
           if (userData && userData.role !== undefined) {
             const userRole = userData.role;
-            console.log('User logged in:', user.email, 'Role:', userRole);
+            console.log('Usuário logado:', user.email, 'Função:', userRole);
             setCurrentUser({ ...user, role: userRole });
           } else {
-            console.error('Role is not defined for user:', user.uid);
+            console.error('Função não definida para o usuário:', user.uid);
             setCurrentUser({ ...user, role: null });
           }
         } catch (err) {
-          console.error('Error fetching user data:', err);
+          console.error('Erro ao buscar dados do usuário:', err);
           setError('Erro ao buscar dados do usuário.');
         }
       } else {
@@ -49,9 +49,9 @@ export const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setCurrentUser(null);
-      alert("Usuario deslogado com sucesso");
+      alert("Usuário deslogado com sucesso");
     } catch (err) {
-      console.error('Error logging out:', err);
+      console.error('Erro ao fazer logout:', err);
       setError('Erro ao fazer logout.');
     }
   };

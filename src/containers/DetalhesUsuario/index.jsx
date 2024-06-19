@@ -38,52 +38,52 @@ function DetalhesUsuario() {
   return (
     <Container>
       <ContainerEspacamento>
-      <Form>
-        <Campos1>
-          <TituloCadastro>Detalhes do Usuário</TituloCadastro>
-          <Campos>
-            <CampoMenor>
-              <Label>Nome</Label>
-              <p>{usuario.nome}</p>
-            </CampoMenor>
-            <CampoMenor>
-              <Label>Sobrenome</Label>
-              <p>{usuario.sobrenome}</p>
-            </CampoMenor>
-            <CampoMenor>
-              <Label>Email</Label>
-              <p>{usuario.email}</p>
-            </CampoMenor>
-          </Campos>
-          <Campos>
-            <CampoMenor>
-              <Label>Senha</Label>
-              <p>{usuario.senha}</p>
-            </CampoMenor>
-            <CampoMenor>
-            <Label>Gênero</Label>
-            <p>{usuario.genero}</p>
-            </CampoMenor>
-            <CampoMenor>
-              <Label>Data de Nascimento</Label>
-              <p>{usuario.dataNascimento}</p>
-            </CampoMenor> 
-          </Campos>
-          <Campos>
-            <CampoMenor>
-              <Label>Telefone</Label>
-              <p>{usuario.telefone}</p>
-            </CampoMenor>
-            <CampoMenor>
-              <Label>CPF</Label>
-              <p>{usuario.cpf}</p>
-            </CampoMenor>           
-          </Campos>  
-        </Campos1>
-      </Form>
-      <BCentralizar>
-        <Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </BCentralizar>
+        <Form>
+          <Campos1>
+            <TituloCadastro>Detalhes do Usuário</TituloCadastro>
+            <Campos>
+              <CampoMenor>
+                <Label>Nome</Label>
+                <p>{usuario.nome}</p>
+              </CampoMenor>
+              <CampoMenor>
+                <Label>Sobrenome</Label>
+                <p>{usuario.sobrenome}</p>
+              </CampoMenor>
+              <CampoMenor>
+                <Label>Email</Label>
+                <p>{usuario.email}</p>
+              </CampoMenor>
+            </Campos>
+            <Campos>
+              <CampoMenor>
+                <Label>Senha</Label>
+                <p>{usuario.senha}</p>
+              </CampoMenor>
+              <CampoMenor>
+                <Label>Gênero</Label>
+                <p>{usuario.genero}</p>
+              </CampoMenor>
+              <CampoMenor>
+                <Label>Data de Nascimento</Label>
+                <p>{usuario.dataNascimento}</p>
+              </CampoMenor>
+            </Campos>
+            <Campos>
+              <CampoMenor>
+                <Label>Telefone</Label>
+                <p>{usuario.telefone}</p>
+              </CampoMenor>
+              <CampoMenor>
+                <Label>CPF</Label>
+                <p>{usuario.cpf}</p>
+              </CampoMenor>
+            </Campos>
+          </Campos1>
+        </Form>
+        <BCentralizar>
+          <Button type="button" onClick={handleVoltar}>Voltar</Button>
+        </BCentralizar>
       </ContainerEspacamento>
     </Container>
   );

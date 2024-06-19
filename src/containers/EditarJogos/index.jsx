@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Container,
   Form,
@@ -14,11 +14,10 @@ import {
   ContainerEspacamento
 } from './style';
 import apiCliente from '../../services/apiCliente';
-import { useNavigate } from 'react-router-dom';
 
 function EditarJogo() {
   const navigate = useNavigate();
-  const { id } = useParams(); // Obtém o ID da rota
+  const { id } = useParams();
   const [jogo, setJogo] = useState({
     nomeJogo: '',
     categoriaJogo: '',
@@ -33,7 +32,6 @@ function EditarJogo() {
   useEffect(() => {
     const fetchJogo = async () => {
       try {
-        // Faz a requisição para obter os dados do jogo com base no ID
         const response = await apiCliente.get(`/api/Jogo/${id}`);
         setJogo(response.data);
       } catch (error) {
@@ -47,7 +45,6 @@ function EditarJogo() {
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
-      // Faz a requisição para atualizar os dados do jogo com base no ID
       await apiCliente.put(`/api/Jogo/${id}`, jogo);
       alert('Jogo atualizado com sucesso!');
     } catch (error) {
@@ -62,9 +59,9 @@ function EditarJogo() {
   };
 
   const handleVoltar = () => {
-    navigate(-1); // Volta para a página anterior
+    navigate(-1);
   };
-  
+
   return (
     <Container>
       <ContainerEspacamento>

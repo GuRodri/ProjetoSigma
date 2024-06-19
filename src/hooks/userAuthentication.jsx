@@ -1,6 +1,6 @@
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useAuthentication = () => {
     const [error, setError] = useState(null);
@@ -8,7 +8,6 @@ const useAuthentication = () => {
     const [cancelled, setCancelled] = useState(false);
 
     const auth = getAuth();
-
     const navigate = useNavigate();
 
     function checkIfIsCancelled() {
@@ -24,32 +23,33 @@ const useAuthentication = () => {
         setError(null);
 
         try {
-            console.log("Attempting login...");
+            console.log("Tentando fazer login...");
             await signInWithEmailAndPassword(auth, data.email, data.password);
             alert("Login efetuado com sucesso");
             setLoading(false);
             navigate("/");
         } catch (error) {
-            alert("Falha no Login, verifique suas credenciais e tente novamente.")
+            alert("Falha no login. Verifique suas credenciais e tente novamente.");
 
             let systemErrorMessage;
-            if (error.message.includes("user-not-found")) {
-                systemErrorMessage = "Este usuário não está cadastrado";
-            } else if (error.message.includes("wrong-password")) {
-                systemErrorMessage = "Há erro com suas credenciais.";
+            if (error.code === "auth/user-not-found") {
+                systemErrorMessage = "Este usuário não está cadastrado.";
+            } else if (error.code === "auth/wrong-password") {
+                systemErrorMessage = "Credenciais incorretas.";
             } else {
-                systemErrorMessage = "Ocorreu um erro, tente novamente mais tarde";
+                systemErrorMessage = "Ocorreu um erro. Tente novamente mais tarde.";
             }
 
-            console.error("Login failed:", systemErrorMessage);
+            console.error("Falha no login:", systemErrorMessage);
             setLoading(false);
             setError(systemErrorMessage);
         }
     };
 
-    const logout = () => {
+    const logout = async () => {
         checkIfIsCancelled();
-        signOut(auth);
+        await signOut(auth);
+        alert("Usuário deslogado com sucesso.");
     };
 
     useEffect(() => {

@@ -6,7 +6,7 @@ import BEditarUsuario from '../../Button/EditarUsuario';
 
 const CardListaUsuarios = ({ searchTerm }) => {
   const [users, setUsers] = useState([]);
-  const navigate = useNavigate(); // Use the useNavigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -23,7 +23,6 @@ const CardListaUsuarios = ({ searchTerm }) => {
   }, []);
 
   const handleDisableUser = async (id) => {
-    console.log('Clicou no botão de exclusão');
     try {
       await apiCliente.patch(`/api/usuario/${id}/disable`);
       const updatedUsers = users.map(user => {
@@ -68,9 +67,9 @@ const CardListaUsuarios = ({ searchTerm }) => {
             </ContainerTexto>
           </ContainerEspacamento>
           <ContainerBotao>
-            <button className='BExcluir' onClick={() => handleDisableUser(user.idUsuario)}>Excluir</button> 
+            <button className='BExcluir' onClick={() => handleDisableUser(user.idUsuario)}>Excluir</button>
             <BEditarUsuario id={user.idUsuario} />
-            <button className='BDetalhes' onClick={() => handleDetalhes(user.idUsuario)}>Detalhes</button> 
+            <button className='BDetalhes' onClick={() => handleDetalhes(user.idUsuario)}>Detalhes</button>
           </ContainerBotao>
         </CardHome2>
       ))}

@@ -4,7 +4,6 @@ function BDetalhes(){
     return (  
           <MyButton>Detalhes</MyButton>    
     )
-
 }
 
 export default BDetalhes;

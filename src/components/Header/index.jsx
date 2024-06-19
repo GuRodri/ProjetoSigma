@@ -11,16 +11,15 @@ import { useAuth } from '../../context/autContexto1';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar a visibilidade do menu
+  const [menuOpen, setMenuOpen] = useState(false);
   const { setGlobalSearchTerm } = useSearch();
-  const { currentUser, logout } = useAuth(); // Obtenha o usuário atual e a função de logout do contexto de autenticação
-  const menuRef = useRef(null); // Ref para o menu
+  const { currentUser, logout } = useAuth();
+  const menuRef = useRef(null);
   const navigate = useNavigate();
 
-  // Limpa o termo de pesquisa ao mudar de página
   useEffect(() => {
     setSearchTerm('');
-  }, [navigate]); // Monitora mudanças na navegação para limpar o termo de pesquisa
+  }, [navigate]);
 
   const handleInputChange = event => {
     setSearchTerm(event.target.value);
@@ -29,9 +28,8 @@ const Header = () => {
   const performSearch = () => {
     setGlobalSearchTerm(searchTerm);
     if (window.location.pathname === '/') {
-      navigate('/home-listagem'); // Redireciona para a página de listagem após a busca se estiver na página inicial
+      navigate('/home-listagem');
     } else {
-      // Implemente redirecionamento para outras páginas de listagem aqui
       console.log('Implemente redirecionamento para outras páginas de listagem aqui');
     }
   };

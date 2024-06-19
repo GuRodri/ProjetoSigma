@@ -5,7 +5,6 @@ function BAdicionarAoCarrinho(){
     return (  
           <MyButton>Adicionar ao Carrinho</MyButton>    
     )
-
 }
 
 export default BAdicionarAoCarrinho;

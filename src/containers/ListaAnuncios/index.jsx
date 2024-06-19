@@ -15,7 +15,6 @@ const ListaAnuncios = () => {
     const fetchAnuncios = async () => {
       try {
         const response = await apiCliente.get('/api/Anuncio');
-        console.log('Dados recebidos do backend:', response.data);
         const anunciosAtivos = response.data.filter(anuncio => anuncio.ativo);
         setAnuncios(anunciosAtivos);
         setFilteredAnuncios(anunciosAtivos);

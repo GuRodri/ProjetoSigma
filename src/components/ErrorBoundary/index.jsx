@@ -17,11 +17,10 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <Container><h1>Algo deu errado.</h1></Container>
-
+      return <Container><h1>Algo deu errado.</h1></Container>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 

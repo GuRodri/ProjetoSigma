@@ -4,7 +4,6 @@ function BAtualizarCadastro(){
     return (  
           <MyButton>Atualizar Cadastro</MyButton>    
     )
-
 }
 
 export default BAtualizarCadastro;

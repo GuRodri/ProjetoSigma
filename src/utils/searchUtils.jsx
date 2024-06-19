@@ -1,7 +1,5 @@
-// searchUtils.js
 
-// Função para realizar a pesquisa
-const performSearch = async (searchTerm) => {
+/*const performSearch = async (searchTerm) => {
     try {
       // Aqui você pode implementar a lógica para realizar a pesquisa, como fazer uma chamada à API ou consultar o banco de dados
       // Por enquanto, vamos apenas retornar um array vazio como exemplo
@@ -12,5 +10,5 @@ const performSearch = async (searchTerm) => {
     }
   };
   
-  export default performSearch;
+  export default performSearch;*/
   

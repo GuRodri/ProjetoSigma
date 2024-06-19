@@ -4,7 +4,6 @@ function BAdicionar(){
     return (  
           <MyButton>Adicionar</MyButton>    
     )
-
 }
 
 export default BAdicionar;

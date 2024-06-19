@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import StarRating from '../Rating';
-import { ProductInfoContainer, ProductDescription, ProductPrice, ProductButtonsContainer } from './style'; // Verifique o caminho do arquivo de estilos
+import { ProductInfoContainer, ProductDescription, ProductPrice, ProductButtonsContainer } from './style';
 import BComprar from '../../components/Button/Comprar';
 import BAdicionarCarrinho from '../../components/Button/AdicionarAoCarrinho';
 

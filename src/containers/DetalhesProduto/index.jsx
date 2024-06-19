@@ -39,31 +39,31 @@ function DetalhesProduto() {
   return (
     <Container>
       <ContainerEspacamento>
-      <TituloCadastro>Detalhes do Produto</TituloCadastro>
-      <Form>
-        <Campos> 
-          <Label>Nome do Produto</Label>
-          <p>{produto.nomeProduto}</p>  
-          <Label>Descrição do Produto</Label>
-          <p>{produto.descricaoProduto}</p>
-          <Label>Preço</Label>
-          <p>{produto.preco}</p>
-          <Label>Quantidade em Estoque</Label>
-          <p>{produto.quantidadeEstoque}</p>
-          <Label>Categoria</Label>
-          <p>{produto.categoria}</p>
-          <Label>Marca</Label>
-          <p>{produto.marca}</p>
-          <Label>Ficha Técnica</Label>
-          <p>{produto.fichaTecnica}</p>
-          <Label>Data de Criação</Label>
-          <p>{produto.data}</p>
-        </Campos>
-        <img src={produto.imagemProduto} alt="Imagem do Produto" width='300em' />
-      </Form>
-      <BCentralizar>
-        <Button type="button" onClick={handleVoltar}>Voltar</Button>
-      </BCentralizar>
+        <TituloCadastro>Detalhes do Produto</TituloCadastro>
+        <Form>
+          <Campos> 
+            <Label>Nome do Produto</Label>
+            <p>{produto.nomeProduto}</p>  
+            <Label>Descrição do Produto</Label>
+            <p>{produto.descricaoProduto}</p>
+            <Label>Preço</Label>
+            <p>{produto.preco}</p>
+            <Label>Quantidade em Estoque</Label>
+            <p>{produto.quantidadeEstoque}</p>
+            <Label>Categoria</Label>
+            <p>{produto.categoria}</p>
+            <Label>Marca</Label>
+            <p>{produto.marca}</p>
+            <Label>Ficha Técnica</Label>
+            <p>{produto.fichaTecnica}</p>
+            <Label>Data de Criação</Label>
+            <p>{produto.data}</p>
+          </Campos>
+          <img src={produto.imagemProduto} alt="Imagem do Produto" width='300em' />
+        </Form>
+        <BCentralizar>
+          <Button type="button" onClick={handleVoltar}>Voltar</Button>
+        </BCentralizar>
       </ContainerEspacamento>
     </Container>
   );

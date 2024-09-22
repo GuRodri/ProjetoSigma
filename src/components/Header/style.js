@@ -136,21 +136,23 @@ export const MenuOption = styled.div`
 `;
 
 export const UserCircle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: green;
-  color: black;
-  width: 1.2em;
-  height: 1.2em;
-  border-radius: 50%;
-  font-size: 1.5em;
-  cursor: pointer;
-  margin: .2em 1em .5em 1em;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dadedf;
+    color: black;
+    width: .6em;
+    height: .6em;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin: .2em 1em .5em 1em;
+    padding: .7em;
+    border: 5px solid #454a99;
 
   @media (max-width: 768px) {
-    width: 3em;
-    height: 3em;
+    width: .4em;
+    height: .4em;
     font-size: 1.2em;
   }
 

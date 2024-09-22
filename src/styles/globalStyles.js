@@ -21,8 +21,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('src/assets/img/fundo/fundo6.svg');
-    opacity: 0.5;
+    background-image: url('src/assets/img/fundo/fundo1.svg');
     z-index: -1;
 }
 

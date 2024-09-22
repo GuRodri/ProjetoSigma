@@ -38,11 +38,34 @@ function CSetupsMaisVendidos() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 4, // Mostrar 4 slides por vez em telas grandes
     slidesToScroll: 4,
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024, // Para telas menores que 1024px (tablets)
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768, // Para telas menores que 768px (celulares)
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480, // Para telas menores que 480px (celulares pequenos)
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (

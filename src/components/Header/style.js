@@ -8,18 +8,30 @@ export const SearchBarContainer = styled.div`
   padding: 0 3em;
   border-bottom: .25px solid rgba(255, 255, 255, 0.05);
 
-  @media (max-width: 375px) {
-    flex-direction: column;
+  @media (max-width: 768px) { /* Tablet */
+    flex-direction: row;
+    padding: 0 1.5em;
+    gap: 1em;
+
+  @media (max-width: 375px) { /* Mobile */
+    align-items: center;
+    padding: 0 .8em;
   }
 `;
 
 export const Logo = styled.img`
   width: 3.5em;
   margin: 0;
+  padding-top: .5em;
+
+    @media (max-width: 768px) {
+    width: 2.5em; /* Reduzir tamanho do ícone em telas menores */
+    padding-top: .3em
+  }
 
   @media (max-width: 375px) {
     margin-right: 0;
-    margin-bottom: 1rem;
+    width: 1.8em;
   }
 `;
 
@@ -28,17 +40,9 @@ export const SearchInputContainer = styled.div`
   flex-grow: 0.40;
   display: flex;
   justify-content: center;
-`;
 
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #101419;
-  position: relative; /* Para posicionar o menu de logout relativo ao ícone */
-
-  @media (max-width: 375px) {
-    flex-direction: column;
+  @media (max-width: 768px) {
+    width: 100%; /* Para ocupar a largura total em telas menores */
   }
 `;
 
@@ -47,8 +51,11 @@ export const SearchInput = styled.input`
   padding: 0.5rem;
   border-radius: 1em;
   border: 1px solid #ccc;
-  margin: auto;
   background-color: #d9d9d9;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem; /* Aumentar o padding em telas menores */
+  }
 `;
 
 export const SearchIcon = styled.img`
@@ -68,16 +75,36 @@ export const LoginIcon = styled.img`
   width: 4.2em;
   cursor: pointer; /* Adiciona um cursor de pointer para indicar que é clicável */
 
+  @media (max-width: 768px) {
+    width: 3.9em; /* Reduzir tamanho do ícone em telas menores */
+  }
   @media (max-width: 375px) {
-    margin-left: 0;
+    padding-top: .5em;
+    width: 3.2em;
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #101419;
+  position: relative;
+  padding-top: .5em;
+
+  @media (max-width: 768px) {
+    
+  }
+
+  @media (max-width: 375px) {
+    flex-direction: row;
+    padding-top: 0;
   }
 `;
 
 export const UserName = styled.span`
   color: black;
-  font-size:0.875em;
+  font-size: 0.875em;
   padding: 0.5em;
-
 `;
 
 export const LoggedInMenu = styled.div`
@@ -90,6 +117,11 @@ export const LoggedInMenu = styled.div`
   border-radius: 5px;
   overflow: hidden;
   padding-top: .5em;
+
+  @media (max-width: 375px) {
+    width: 100%; /* Para ocupar a largura total no mobile */
+    right: auto; /* Remove a posição direita */
+  }
 `;
 
 export const MenuOption = styled.div`
@@ -100,5 +132,31 @@ export const MenuOption = styled.div`
 
   &:hover {
     background-color: #f1f1f1;
+  }
+`;
+
+export const UserCircle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  color: black;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  font-size: 1.5em;
+  cursor: pointer;
+  margin: .2em 1em .5em 1em;
+
+  @media (max-width: 768px) {
+    width: 3em;
+    height: 3em;
+    font-size: 1.2em;
+  }
+
+  @media (max-width: 375px) {
+    width: 2.5em;
+    height: 2.5em;
+    font-size: 1em;
   }
 `;

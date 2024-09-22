@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, LoginIcon, Container, UserName, LoggedInMenu, MenuOption } from './style';
+import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, Container, UserName, LoggedInMenu, MenuOption, UserCircle } from './style';
 import PesquisarIcon from '../../assets/icons/search-normal.svg';
 import LogoImage from '../../assets/icons/logo.svg';
-import LoginIconImage from '../../assets/icons/logar.svg';
-import Logado from '../../assets/icons/logado.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import MenuHamburguer from '../MenuHamburguer';
 import { useSearch } from '../../context/searchCoxtexto';
 import { useAuth } from '../../context/autContexto1';
+import { FaUser } from 'react-icons/fa'; // Ícone de login
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +20,7 @@ const Header = () => {
     setSearchTerm('');
   }, [navigate]);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
@@ -38,7 +37,7 @@ const Header = () => {
     performSearch();
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       performSearch();
     }
@@ -79,21 +78,21 @@ const Header = () => {
       <Container ref={menuRef} onMouseLeave={handleMouseLeave}>
         {currentUser ? (
           <>
-            <LoginIcon src={Logado} alt="Logado" onClick={toggleMenu} />
+            <UserCircle onClick={toggleMenu}>
+              {currentUser.email.charAt(0).toUpperCase()}
+            </UserCircle>
             {menuOpen && (
               <LoggedInMenu>
-                {currentUser.role === 0 ? (
-                  <NavLink to='/ambiente-usuario'><UserName>{currentUser.email}</UserName></NavLink>
-                ) : (
-                  <NavLink to='/ambiente-administrador'><UserName>{currentUser.email}</UserName></NavLink>
-                )}
+                <NavLink to={currentUser.role === 0 ? '/ambiente-usuario' : '/ambiente-administrador'}>
+                  <UserName>{currentUser.email}</UserName>
+                </NavLink>
                 <MenuOption onClick={handleLogout}>Logout</MenuOption>
               </LoggedInMenu>
             )}
           </>
         ) : (
           <NavLink to="/login">
-            <LoginIcon src={LoginIconImage} alt="Logar" />
+            <FaUser style={{ width: '1.5em', height: '1.5em', cursor: 'pointer', color: '#d9d9d9', margin: '.2em 1em .5em 1em' }} /> {/* Ícone de login */}
           </NavLink>
         )}
         <MenuHamburguer />

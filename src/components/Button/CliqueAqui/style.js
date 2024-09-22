@@ -7,8 +7,16 @@ export const MyButton = styled.button `
     background-color: #25D62C;
     width: 100%;
     text-align: center;
-    height: 2.6875;
+    height: 2.6875em;
     border-radius: 10px;
     border: none;
     padding: 0.6250em 1.25em;
+
+     @media (max-width: 768px) {
+     height: 2.6875em;
+     font-size: 10px;
+     
+    }
+     
+    }
 `

@@ -10,10 +10,19 @@ export const Container = styled.div`
   background-color: transparent;
   text-align: center;
   color: #d9d9d9;
-  width:70%;
+  width: 70%;
   margin-top: 1.875em;
-  .h1 {
-    margin-top: 1.875em;
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -24,7 +33,22 @@ export const CardContainer = styled.div`
   width: 14%;
   text-align: center;
   border: 0.0625em solid #545454;
-  min-height: 10em;  
+  min-height: 10em;
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    width: 20%;
+    margin: 1em 1em;
+  }
+
+  @media (max-width: 768px) {
+    width: 45%;
+    margin-bottom: 1.5em;
+  }
+
+  @media (max-width: 480px) {
+    width: 60%;
+  }
 `;
 
 export const Image = styled.img`
@@ -38,4 +62,13 @@ export const Description = styled.p`
   text-align: center;
   min-height: 2.5em;
   font-size: 70%;
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    font-size: 80%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 90%;
+  }
 `;

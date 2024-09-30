@@ -63,6 +63,13 @@ export const FooterContainerEndereço = styled.div`
   font-family: 'Roboto', sans-serif;
   margin-top: 1.25em;
   padding: 0 3em;
+
+    @media (max-width: 768px) {
+   p{
+    text-align: center;
+    font-size: 6px;
+   }
+  }
 `;
 
 export const SmallTitle1 = styled.p`

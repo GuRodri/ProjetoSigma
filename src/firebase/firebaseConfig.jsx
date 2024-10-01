@@ -7,13 +7,13 @@ import { getStorage } from "firebase/storage"; // Importe a função getStorage
 
 // Sua configuração do Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyB12legd6-aXS2xFtHHqRAY3aqdoFOy2IQ",
-  authDomain: "projeto-frontsigma.firebaseapp.com",
-  projectId: "projeto-frontsigma",
-  storageBucket: "projeto-frontsigma.appspot.com",
-  messagingSenderId: "870701498948",
-  appId: "1:870701498948:web:545ebcaa9ce6e75a997211",
-  measurementId: "G-JJWHJZ87NC"
+  apiKey: "AIzaSyCCcNPDe7ooa0V_6KbYS1qIXnDtSH8LHDU",
+  authDomain: "projeto-frontsigma2024.firebaseapp.com",
+  projectId: "projeto-frontsigma2024",
+  storageBucket: "projeto-frontsigma2024.appspot.com",
+  messagingSenderId: "478126317979",
+  appId: "1:478126317979:web:a1658f50cb78b61418813e",
+  measurementId: "G-R6LL9WBGMR"
 };
 
 const app = initializeApp(firebaseConfig);

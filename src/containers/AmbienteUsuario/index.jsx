@@ -13,6 +13,7 @@ function AmbienteUsuario() {
             <p>Olá, {currentUser && currentUser.role === 0 ? currentUser.email : "Usuário"} em que podemos ajudar?</p>
             <Card>
                 <CardAmbienteUsuario />
+                
             </Card>
         </Container>
     );

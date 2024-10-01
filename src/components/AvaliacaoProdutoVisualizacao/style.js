@@ -12,6 +12,8 @@ export const Container = styled.div`
 export const Ul = styled.ul`
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    max-heigth: 400px;
     justify-content: center;
     list-style: none;
     padding: 0;
@@ -19,7 +21,7 @@ export const Ul = styled.ul`
     `;
 export const Li= styled.li`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     padding: 1em;
     background-color: #252C37;

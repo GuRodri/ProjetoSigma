@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import apiCliente from '../../services/apiCliente';
 import StarRating from '../Rating';
 import { Container, Ul, Li, Centralizar } from './style';
+import BMostrarMais from '../../components/Button/MostarMais/index'
 
 const AvaliacaoProdutoVisualizacao = ({ idProduto }) => {
   const [avaliacoes, setAvaliacoes] = useState([]);
@@ -62,6 +63,9 @@ const AvaliacaoProdutoVisualizacao = ({ idProduto }) => {
               <StarRating value={avaliacao.classificacao} readOnly />
             </Li>
           ))}
+              <Li>
+                  <BMostrarMais />
+              </Li>
         </Ul>
       )}
     </Container>

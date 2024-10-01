@@ -21,8 +21,7 @@ const Footer = () => {
         <FooterContainerColunas className="footer-coluna">
           <SubTitle>Institucional</SubTitle>
           <SmallTitle1>
-            Sigma Hardware
-            <img src={Logo} style={{ width: "2em" }} alt="Icone de Logo sigma hardware" />
+            <img src={Logo} style={{ width: "2em" }} alt="Icone de Logo sigma hardware" /> Sigma Hardware
           </SmallTitle1>
           <SmallTitle>Nos conheça melhor</SmallTitle>
         </FooterContainerColunas>

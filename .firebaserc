@@ -1,7 +1,8 @@
 {
   "projects": {
-    "default": "projeto-frontsigma",
-    "frontsigma2024": "projeto-frontsigma2024"
+    "default": "projeto-frontsigma2024",
+    "frontsigma2024": "projeto-frontsigma2024",
+    "projeto-frontsigma": "projeto-frontsigma"
   },
   "targets": {},
   "etags": {}

@@ -1,24 +1,31 @@
 import React from 'react';
 import StarRating from '../Rating';
-import { ProductInfoContainer, ProductDescription, ProductPrice, ProductButtonsContainer, ProductContainer, ProductTitle } from './style';
+import { 
+  ProductInfoContainer, 
+  ProductDescription, 
+  ProductPrice, 
+  ProductButtonsContainer, 
+  ProductTitle, 
+  StockInfo 
+} from './style';
 import BComprar from '../../components/Button/Comprar';
 import BAdicionarCarrinho from '../../components/Button/AdicionarAoCarrinho';
 
 const InformacaoProduto = ({ nomeProduto, descricaoProduto, preco, quantidadeEstoque, mediaAvaliacao }) => {
   return (
-    <ProductContainer>
+    
       <ProductInfoContainer>
         <ProductTitle>{nomeProduto}</ProductTitle>
         <ProductDescription>{descricaoProduto}</ProductDescription>
-        <ProductPrice><strong>Preço:</strong> R$ {preco.toFixed(2)}</ProductPrice>
+        <ProductPrice>Preço: <strong>R$ {preco.toFixed(2)}</strong></ProductPrice>
         <StarRating rating={mediaAvaliacao} />
-        <p><strong>Estoque:</strong> {quantidadeEstoque}</p>
+        <StockInfo>Estoque: <strong>{quantidadeEstoque > 0 ? `${quantidadeEstoque} unidades` : 'Indisponível'}</strong></StockInfo>
         <ProductButtonsContainer>
           <BComprar />
           <BAdicionarCarrinho />
         </ProductButtonsContainer>
       </ProductInfoContainer>
-    </ProductContainer>
+   
   );
 };
 

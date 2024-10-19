@@ -1,28 +1,37 @@
 import styled from 'styled-components';
 
-export const Container= styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding:2em;
-    `;
+export const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2em;
+  gap: 1em; /* Adicionado para espaçamento entre linhas */
+  
+  @media (max-width: 768px) {
+    padding: 1.5em;
+  }
 
-export const Coluna = styled.div`
-    width: 48%;
-    height:25.5em;
-    `;
+  @media (max-width: 480px) {
+    padding: 1em;
+  }
+`;
+
 export const ContainerEspacamento = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 80%;
-    gap: 1em;
-    `;
-export const Coluna1 = styled.div`
-    width: 78%;
-    padding: 10px;
-    background-color: #252C37;
-    margin-bottom: 1em;
-    border-radius: 10px;
-    border: 1px solid #726F6F;
-    `;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  gap: 2em;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Empilhar colunas em telas menores */
+    align-items: center; /* Centraliza os itens */
+    width: 90%; /* Ajusta a largura */
+    gap: 1.5em;
+  }
+
+  @media (max-width: 480px) {
+    width: 95%; /* Ocupa toda a largura da tela */
+    gap: 1em; /* Reduz o espaçamento */
+  }
+`;

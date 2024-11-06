@@ -8,11 +8,6 @@ function CarrinhoCompras() {
         <ContainerHome>
             <ContainerCarrinho>
                 <CardCarrinho />
-                <CardCarrinho />
-                <CardCarrinho />
-                <CardCarrinho />
-                <CardCarrinho />
-                <CardCarrinho />
             </ContainerCarrinho> 
            <ContainerCarrinho2>
                 <ContainerMenor>

@@ -14,6 +14,11 @@ import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
 import { useNavigate } from "react-router-dom";
 
+// Função de sanitização para remover caracteres perigosos
+const sanitizeInput = (input) => {
+  return input.replace(/[<>"'&;]/g, ""); // Remove <, >, ", ', &, ;
+};
+
 function CadastroAnuncios() {
   const [idProduto, setIDProduto] = useState("");
   const [titulo, setTitulo] = useState("");
@@ -38,6 +43,7 @@ function CadastroAnuncios() {
       data: currentDate,
       referenciaImagem,
     });
+
     try {
       // Envia os dados do anúncio para o backend usando a instância apiCliente
       await apiCliente.post("/api/anuncio", {
@@ -58,6 +64,12 @@ function CadastroAnuncios() {
     }
   };
 
+  // Função handleChange que sanitiza as entradas
+  const handleInputChange = (setState) => (e) => {
+    const sanitizedValue = sanitizeInput(e.target.value);
+    setState(sanitizedValue);
+  };
+
   return (
     <Container>
       <Form onSubmit={handleSignup}>
@@ -70,7 +82,7 @@ function CadastroAnuncios() {
                 type="text"
                 placeholder="Título do Anúncio"
                 value={titulo}
-                onChange={(e) => setTitulo(e.target.value)}
+                onChange={handleInputChange(setTitulo)}
                 required
               />
             </Campos>
@@ -80,7 +92,7 @@ function CadastroAnuncios() {
                 type="text"
                 placeholder="Descrição do anúncio"
                 value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
+                onChange={handleInputChange(setDescricao)}
                 required
               />
             </Campos>
@@ -93,7 +105,7 @@ function CadastroAnuncios() {
                   step="0.01"
                   min="0.01"
                   value={preco}
-                  onChange={(e) => setPreco(e.target.value)}
+                  onChange={handleInputChange(setPreco)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -103,7 +115,7 @@ function CadastroAnuncios() {
                   type="number"
                   placeholder="Digite o Id do Produto"
                   value={idProduto}
-                  onChange={(e) => setIDProduto(e.target.value)}
+                  onChange={handleInputChange(setIDProduto)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -114,7 +126,7 @@ function CadastroAnuncios() {
                 type="url"
                 placeholder="URL da imagem"
                 value={referenciaImagem}
-                onChange={(e) => setReferenciaImagem(e.target.value)}
+                onChange={handleInputChange(setReferenciaImagem)}
                 required
               />
             </Campos>

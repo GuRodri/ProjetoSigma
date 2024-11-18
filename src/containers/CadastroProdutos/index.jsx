@@ -16,6 +16,11 @@ import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
 import { useNavigate } from "react-router-dom";
 
+// Função de sanitização para limpar entradas de texto
+const sanitizeInput = (input) => {
+  return input.replace(/[<>"'&;]/g, ""); // Remove <, >, ", ', &, ;
+};
+
 function CadastroProdutos() {
   const [nomeProduto, setNomeProduto] = useState("");
   const [descricaoProduto, setDescricaoProduto] = useState("");
@@ -34,30 +39,41 @@ function CadastroProdutos() {
 
     const currentDate = new Date().toISOString();
 
+    // Sanitizando todas as entradas antes de enviar para o backend
+    const sanitizedNomeProduto = sanitizeInput(nomeProduto);
+    const sanitizedDescricaoProduto = sanitizeInput(descricaoProduto);
+    const sanitizedCategoria = sanitizeInput(categoria);
+    const sanitizedMarca = sanitizeInput(marca);
+    const sanitizedImagemProduto = sanitizeInput(imagemProduto);
+    const sanitizedFichaTecnica = sanitizeInput(fichaTecnica);
+    const sanitizedPreco = sanitizeInput(preco);
+    const sanitizedQuantidadeEstoque = sanitizeInput(quantidadeEstoque);
+
     console.log({
-      nomeProduto,
-      descricaoProduto,
-      categoria,
-      marca,
-      imagemProduto,
-      fichaTecnica,
+      nomeProduto: sanitizedNomeProduto,
+      descricaoProduto: sanitizedDescricaoProduto,
+      categoria: sanitizedCategoria,
+      marca: sanitizedMarca,
+      imagemProduto: sanitizedImagemProduto,
+      fichaTecnica: sanitizedFichaTecnica,
       ativo,
-      preco,
-      quantidadeEstoque,
+      preco: sanitizedPreco,
+      quantidadeEstoque: sanitizedQuantidadeEstoque,
       data: currentDate,
     });
+
     try {
       // Envia os dados do produto para o backend usando a instância apiCliente
       await apiCliente.post("/api/produto", {
-        nomeProduto,
-        descricaoProduto,
-        categoria,
-        marca,
-        imagemProduto,
-        fichaTecnica,
+        nomeProduto: sanitizedNomeProduto,
+        descricaoProduto: sanitizedDescricaoProduto,
+        categoria: sanitizedCategoria,
+        marca: sanitizedMarca,
+        imagemProduto: sanitizedImagemProduto,
+        fichaTecnica: sanitizedFichaTecnica,
         ativo,
-        preco,
-        quantidadeEstoque,
+        preco: sanitizedPreco,
+        quantidadeEstoque: sanitizedQuantidadeEstoque,
         data: currentDate,
       });
 

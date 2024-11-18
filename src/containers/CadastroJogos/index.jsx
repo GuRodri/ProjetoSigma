@@ -12,6 +12,11 @@ import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
 import { useNavigate } from "react-router-dom";
 
+// Função de sanitização para limpar entradas de texto
+const sanitizeInput = (input) => {
+  return input.replace(/[<>"'&;]/g, ""); // Remove <, >, ", ', &, ;
+};
+
 function CadastroJogos() {
   const [nomeJogo, setNomeJogo] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -29,29 +34,39 @@ function CadastroJogos() {
 
     const currentDate = new Date().toISOString();
 
+    // Sanitizando todas as entradas antes de enviar para o backend
+    const sanitizedNomeJogo = sanitizeInput(nomeJogo);
+    const sanitizedCategoria = sanitizeInput(categoria);
+    const sanitizedProcessadorRequerido = sanitizeInput(processadorRequerido);
+    const sanitizedMemoriaRamRequerida = sanitizeInput(memoriaRamRequerida);
+    const sanitizedPlacaVideoRequerida = sanitizeInput(placaVideoRequerida);
+    const sanitizedEspacoDiscoRequerido = sanitizeInput(espacoDiscoRequerido);
+    const sanitizedImagemJogo = sanitizeInput(imagemJogo);
+
     console.log({
-      nomeJogo,
-      categoria,
-      processadorRequerido,
-      memoriaRamRequerida,
-      placaVideoRequerida,
-      espacoDiscoRequerido,
+      nomeJogo: sanitizedNomeJogo,
+      categoria: sanitizedCategoria,
+      processadorRequerido: sanitizedProcessadorRequerido,
+      memoriaRamRequerida: sanitizedMemoriaRamRequerida,
+      placaVideoRequerida: sanitizedPlacaVideoRequerida,
+      espacoDiscoRequerido: sanitizedEspacoDiscoRequerido,
       ativo,
       data: currentDate,
-      imagemJogo,
+      imagemJogo: sanitizedImagemJogo,
     });
+
     try {
       // Envia os dados do jogo para o backend usando a instância apiCliente
       await apiCliente.post("/api/jogo", {
-        nomeJogo,
-        categoria,
-        processadorRequerido,
-        memoriaRamRequerida,
-        placaVideoRequerida,
-        espacoDiscoRequerido,
+        nomeJogo: sanitizedNomeJogo,
+        categoria: sanitizedCategoria,
+        processadorRequerido: sanitizedProcessadorRequerido,
+        memoriaRamRequerida: sanitizedMemoriaRamRequerida,
+        placaVideoRequerida: sanitizedPlacaVideoRequerida,
+        espacoDiscoRequerido: sanitizedEspacoDiscoRequerido,
         ativo,
         data: currentDate,
-        imagemJogo,
+        imagemJogo: sanitizedImagemJogo,
       });
 
       alert("Jogo cadastrado com sucesso!");

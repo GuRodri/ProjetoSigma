@@ -16,7 +16,6 @@ export const Container = styled.div`
         margin-bottom: 15px;
     }
 
-    /* Responsividade para telas menores */
     @media (max-width: 768px) {
         padding: 1.5em;
         h3 {
@@ -48,7 +47,6 @@ export const Form = styled.form`
         padding-left: 2px;
     }
 
-    /* Responsividade para telas menores */
     @media (max-width: 768px) {
         padding: 30px;
     }
@@ -58,38 +56,56 @@ export const Form = styled.form`
     }
 `;
 
+export const InputContainer = styled.div`
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 30px;
+`;
+
 export const Input = styled.input`
-    margin-bottom: 8px;
-    margin: 5px 0 30px 0;
+    width: 100%;
+    padding: 0 45px 0 15px; /* Adicione espaço para o ícone */
+    height: 35px;
     border: 1px solid #ccc;
     border-radius: 1.25em;
-    width: 350px;
-    height: 35px;
-    text-align: left;
-    padding: 0 15px;
+    box-sizing: border-box;
 
-    /* Responsividade para telas menores */
     @media (max-width: 768px) {
-        width: 300px;
         height: 30px;
     }
 
     @media (max-width: 480px) {
-        width: 250px;
         height: 28px;
+    }
+`;
+
+export const EyeIconButton = styled.span`
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        color: #555;
     }
 `;
 
 export const Campos = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: left;
     font-size: 16px;
 
-    /* Responsividade para telas menores */
     @media (max-width: 480px) {
         font-size: 14px;
     }
@@ -99,7 +115,6 @@ export const Texto = styled.div`
     text-align: left;
     width: 100%;
     padding-bottom: 40px;
-    text-decoration: none;
 
     p {
         font-size: 12px;
@@ -112,7 +127,6 @@ export const Texto = styled.div`
         color: #3BA4D1;
     }
 
-    /* Responsividade para telas menores */
     @media (max-width: 768px) {
         p, span {
             font-size: 11px;

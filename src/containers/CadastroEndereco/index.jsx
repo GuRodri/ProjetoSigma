@@ -13,6 +13,11 @@ import {
 import BCadastrar from "../../components/Button/Cadastrar";
 import apiCliente from "../../services/apiCliente";
 
+// Função de sanitização para remover caracteres perigosos
+const sanitizeInput = (input) => {
+  return input.replace(/[<>"'&;]/g, ""); // Remove <, >, ", ', &, ;
+};
+
 function CadastroEndereco() {
   const [cep, setCep] = useState("");
   const [rua, setRua] = useState("");
@@ -36,6 +41,7 @@ function CadastroEndereco() {
       pais,
       ativo,
     });
+
     try {
       // Envia os dados do endereço para o backend usando a instância apiCliente
       await apiCliente.post("/api/endereco", {
@@ -56,6 +62,12 @@ function CadastroEndereco() {
     }
   };
 
+  // Função handleChange que sanitiza as entradas
+  const handleInputChange = (setState) => (e) => {
+    const sanitizedValue = sanitizeInput(e.target.value);
+    setState(sanitizedValue);
+  };
+
   return (
     <Container>
       <Form onSubmit={handleSignup}>
@@ -69,7 +81,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="CEP"
                   value={cep}
-                  onChange={(e) => setCep(e.target.value)}
+                  onChange={handleInputChange(setCep)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -79,7 +91,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="Rua"
                   value={rua}
-                  onChange={(e) => setRua(e.target.value)}
+                  onChange={handleInputChange(setRua)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -91,7 +103,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="Número"
                   value={numero}
-                  onChange={(e) => setNumero(e.target.value)}
+                  onChange={handleInputChange(setNumero)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -101,7 +113,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="Bairro"
                   value={bairro}
-                  onChange={(e) => setBairro(e.target.value)}
+                  onChange={handleInputChange(setBairro)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -111,7 +123,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="Cidade"
                   value={cidade}
-                  onChange={(e) => setCidade(e.target.value)}
+                  onChange={handleInputChange(setCidade)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -121,7 +133,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="UF"
                   value={uf}
-                  onChange={(e) => setUf(e.target.value)}
+                  onChange={handleInputChange(setUf)}
                   required
                 />
               </CamposMenoresSubdivisao2>
@@ -131,7 +143,7 @@ function CadastroEndereco() {
                   type="text"
                   placeholder="País"
                   value={pais}
-                  onChange={(e) => setPais(e.target.value)}
+                  onChange={handleInputChange(setPais)}
                   required
                 />
               </CamposMenoresSubdivisao2>

@@ -3,6 +3,11 @@ import apiCliente from '../../services/apiCliente';
 import StarRating from '../../components/Rating';
 import { FormContainer, RatingContainer, ContainerEspacamento } from './style'; // Importando os estilos
 
+// Função de sanitização para remover caracteres perigosos
+const sanitizeInput = (input) => {
+  return input.replace(/[<>"/'&;]/g, ""); // Remove <, >, ", ', &, ;
+};
+
 const CadastroAvaliacao = () => {
   const [avaliacao, setAvaliacao] = useState({
     idProduto: '',
@@ -15,9 +20,13 @@ const CadastroAvaliacao = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    // Sanitiza o valor antes de atualizar o estado
+    const sanitizedValue = sanitizeInput(value);
+
     setAvaliacao(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: sanitizedValue
     }));
   };
 
@@ -30,10 +39,12 @@ const CadastroAvaliacao = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const dataAtualizada = {
       ...avaliacao,
       dataAvaliacao: new Date().toISOString()
     };
+
     try {
       const response = await apiCliente.post(`/api/Avaliacao`, dataAtualizada);
       console.log('Avaliação enviada:', response.data);
@@ -47,8 +58,6 @@ const CadastroAvaliacao = () => {
         ativo: true
       });
       alert('Avaliação enviada com sucesso!');
-      // Aqui pode ser adicionada lógica para atualizar a lista de avaliações na página do produto, se necessário
-      // Pode ser feito através de um callback passado como propriedade para este componente
     } catch (error) {
       console.error('Erro ao enviar avaliação:', error);
       alert('Erro ao enviar avaliação. Por favor, tente novamente mais tarde.');

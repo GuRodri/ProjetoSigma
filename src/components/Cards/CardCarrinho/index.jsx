@@ -1,32 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SubTitle } from "../../../containers/Home/style";
 import { CardHome2, ContainerEspacamento, ContainerTexto, Select1, Container } from "./style";
+import apiCliente from '../../../services/apiCliente';
 
-const selectOptions = Array.from({ length: 13 }, (_, i) => i);
+const CardCarrinho = ({ idCarrinho }) => {
+  const [carrinhoItem, setCarrinhoItem] = useState(null);
+  const [quantidade, setQuantidade] = useState(1);
 
-function CardCarrinho() {
+  useEffect(() => {
+    const fetchCarrinhoItem = async () => {
+      try {
+        // Faz a requisição para buscar os dados do item no carrinho
+        const response = await apiCliente.get(`/api/Carrinho/${idCarrinho}`); // Substitua pelo endpoint correto
+        setCarrinhoItem(response.data); // Supondo que a resposta contenha os dados do item
+      } catch (error) {
+        console.error('Erro ao buscar dados do carrinho:', error);
+      }
+    };
+
+    if (idCarrinho) {
+      fetchCarrinhoItem();
+    }
+  }, [idCarrinho]);
+
+  // Se não houver item no carrinho, exibe uma mensagem de carregamento ou nada
+  if (!carrinhoItem) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <CardHome2>
       <Container>
-        <img src="https://via.placeholder.com/150" alt="Avatar" style={{ width: "100%" }} />
+        <img 
+          src={carrinhoItem.urlImagem || "https://via.placeholder.com/150"} 
+          alt="Produto" 
+          style={{ width: "100%" }} 
+        />
         <ContainerTexto>
           <ContainerEspacamento>
-            <SubTitle>Notebook acer nitro 5 core i25, 5tbmmmmmnnnnnnnnnnnnnnnmmmmmmmmmmmmm</SubTitle>
+            <SubTitle>{carrinhoItem.descricaoProduto}</SubTitle>
           </ContainerEspacamento>
           <ContainerEspacamento>
-            <Select1>
-              {selectOptions.map(value => (
-                <option key={value} value={value}>{value}</option>
+            <Select1 value={quantidade} onChange={(e) => setQuantidade(e.target.value)}>
+              {Array.from({ length: 13 }, (_, i) => (
+                <option key={i} value={i + 1}>{i + 1}</option>
               ))}
             </Select1>
           </ContainerEspacamento>
           <ContainerEspacamento>
-            <SubTitle>R$ 5000,00</SubTitle>
+            <SubTitle>R$ {carrinhoItem.precoUnitario.toFixed(2)}</SubTitle>
           </ContainerEspacamento>
         </ContainerTexto>
       </Container>
     </CardHome2>
   );
-}
+};
 
 export default CardCarrinho;

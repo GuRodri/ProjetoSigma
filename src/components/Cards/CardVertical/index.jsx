@@ -63,7 +63,7 @@ const CardVertical = ({ produtos = [], searchTerm }) => {
             <NomeProd>
               <h2>{produto.nomeProduto}</h2>
             </NomeProd>
-            <Title>{produto.preco}</Title>
+            <Title>R$ {produto.preco}</Title>
             <StarRating 
               value={parseFloat(calcularMediaAvaliacao(avaliacoes[produto.idProduto]))} 
               readOnly 

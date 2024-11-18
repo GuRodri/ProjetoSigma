@@ -7,6 +7,15 @@ export const FooterContainer = styled.footer`
   color: #d9d9d9;
   font-family: 'Roboto', sans-serif;
   min-height: auto;
+
+  a {
+    color: inherit; /* Herda a cor do pai, removendo cor dos links */
+    text-decoration: none; /* Remove sublinhado dos links */
+  }
+
+  a:hover {
+    text-decoration: underline; /* Sublinhado ao passar o mouse */
+  }
 `;
 
 export const FooterContainerCentral = styled.div`
@@ -34,7 +43,6 @@ export const FooterContainerColunas = styled.div`
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
-  text-decoration: none;
   align-self: first baseline;
   width: 80%;
   margin-top: 1.25em;
@@ -64,11 +72,11 @@ export const FooterContainerEndereço = styled.div`
   margin-top: 1.25em;
   padding: 0 3em;
 
-    @media (max-width: 768px) {
-   p{
-    text-align: center;
-    font-size: 6px;
-   }
+  @media (max-width: 768px) {
+    p {
+      text-align: center;
+      font-size: 6px;
+    }
   }
 `;
 

@@ -1,19 +1,26 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { ContainerEspacamento } from './style';
+import { CarouselContainer, ContainerEspacamento, ImagemCarrossel } from './style';
 
 const CarrosselProduto = ({ imagens }) => {
   return (
-    <Carousel>
-      <ContainerEspacamento>
+    <CarouselContainer>
+      <Carousel 
+        showThumbs={false} /* Remove thumbnails */
+        infiniteLoop={true} 
+        autoPlay={true} 
+        interval={3000} 
+        transitionTime={600} 
+        showStatus={false} /* Remove o contador de slides */
+      >
         {imagens.map((url, index) => (
-          <div key={index}>
-            <img src={url} alt={`Imagem ${index}`} style={{ width: "60%", borderRadius: "10px" }} />
-          </div>
+          <ContainerEspacamento key={index}>
+            <ImagemCarrossel src={url} alt={`Imagem ${index}`} />
+          </ContainerEspacamento>
         ))}
-      </ContainerEspacamento>
-    </Carousel>
+      </Carousel>
+    </CarouselContainer>
   );
 };
 

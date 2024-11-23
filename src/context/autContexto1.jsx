@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '../firebase/firebaseConfig';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
 // Criando o contexto de autenticação
@@ -18,9 +18,22 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const setAuthPersistence = async () => {
+      try {
+        // Garantir persistência de autenticação
+        await setPersistence(auth, browserLocalPersistence);
+      } catch (err) {
+        console.error('Erro ao configurar persistência de autenticação', err);
+      }
+    };
+
+    setAuthPersistence(); // Chama antes de configurar o listener do auth
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setLoading(true);
       if (user) {
         try {
+          // Buscar dados do usuário do Firestore
           const userDoc = await getDoc(doc(db, 'usuarios', user.uid));
           const userData = userDoc.data();
 
@@ -43,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     return unsubscribe;
-  }, []);
+  }, []); // Certifique-se de que a persistência seja configurada apenas uma vez
 
   const logout = async () => {
     try {

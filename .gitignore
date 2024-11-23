@@ -14,7 +14,6 @@ dist-ssr
 
 # Ignorar arquivos de configuração sensíveis
 .env
-firebaseConfig.js  # Adicione este arquivo se armazenar configurações do Firebase aqui
 
 # Diretórios e arquivos do editor
 .vscode/*

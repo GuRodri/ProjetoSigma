@@ -51,19 +51,19 @@ export const MenuOptions = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.1); /* Fundo semitransparente */
+  /*background-color: #101419; *//* Fundo semitransparente */
   backdrop-filter: blur(10px); /* Desfoque */
   -webkit-backdrop-filter: blur(10px); /* Compatibilidade com navegadores WebKit */
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 1);
   z-index: 1;
-  width: 300px;
+  width: 250px;
   height: 100vh;
   border-radius: 0 0 0 0.5em;
-  border-bottom: 1px solid #141516;
+  border-bottom: 1px solid #141500;
   padding-top: 40px;
 
   a {
-    color: black;
+    color: #d9d9d9;
     padding: 12px 16px;
     text-decoration: none;
     display: block;

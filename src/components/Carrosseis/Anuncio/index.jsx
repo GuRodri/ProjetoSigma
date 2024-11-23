@@ -23,7 +23,16 @@ function CAnuncio() {
     const fetchAnuncios = async () => {
       try {
         const response = await apiCliente.get('/api/anuncio');
-        setAnuncios(response.data);
+
+        // Certifique-se de que a resposta seja um array
+        if (Array.isArray(response.data)) {
+          // Filtra os anúncios com campo 'ativo' igual a 1
+          const anunciosAtivos = response.data.filter((anuncio) => anuncio.ativo === true);
+          
+          setAnuncios(anunciosAtivos);
+        } else {
+          console.error('A resposta da API não é um array:', response.data);
+        }
       } catch (error) {
         console.error('Erro ao buscar anúncios:', error);
       }
@@ -34,15 +43,19 @@ function CAnuncio() {
 
   return (
     <StyledSliderContainer>
-      <Slider {...settings}>
-        {anuncios.map((anuncio) => (
-          <Link key={anuncio.idAnuncio} to={`/produto/${anuncio.idProduto}`} target="_blank" rel="noopener noreferrer">
-            <StyledSliderSlide>
-              <StyledSliderImage src={anuncio.referenciaImagem} alt={anuncio.titulo} />
-            </StyledSliderSlide>
-          </Link>
-        ))}
-      </Slider>
+      {anuncios.length === 0 ? (
+        <p>Não há anúncios ativos para exibir.</p> // Mensagem de fallback
+      ) : (
+        <Slider {...settings}>
+          {anuncios.map((anuncio) => (
+            <Link key={anuncio.idAnuncio} to={`/produto/${anuncio.idProduto}`} target="_blank" rel="noopener noreferrer">
+              <StyledSliderSlide>
+                <StyledSliderImage src={anuncio.referenciaImagem} alt={anuncio.titulo} />
+              </StyledSliderSlide>
+            </Link>
+          ))}
+        </Slider>
+      )}
     </StyledSliderContainer>
   );
 }

@@ -13,9 +13,7 @@ function AnuncioSetupGamer() {
                     <h1>Monte seu PC gamer agora mesmo</h1>
                 </ContainerTexto>
                 <ContainerButton>
-                    <NavLink to={'/setupGamer-page1'}>
-                        <BCliqueAqui/>
-                    </NavLink>
+                        <BCliqueAqui to={'/setupGamer-page1'}></BCliqueAqui>
                 </ContainerButton>  
             </ContainerSuperior>
             <ContainerImagem>

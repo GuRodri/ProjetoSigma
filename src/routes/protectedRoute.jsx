@@ -3,7 +3,12 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/autContexto1';
 
 const ProtectedRoute = ({ element, requiredRole }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
+
+  // Se ainda está carregando, não renderize nada para evitar redirecionamentos errados
+  if (loading) {
+    return null;  // Ou um carregando spinner, se preferir
+  }
 
   if (!currentUser) {
     console.log('User not logged in, redirecting to login');

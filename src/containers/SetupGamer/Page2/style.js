@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding: 3em;
-  height: 77.8vh;
+  height: auto;
 `;
 
 export const Coluna = styled.div`
@@ -23,7 +23,7 @@ export const ContainerEspacamento = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 40%;
   color: #d9d9d9;
   gap: 3em;
 `;
@@ -32,8 +32,8 @@ export const Campo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 8em;
-  height: 8em;
+  width: 5em;
+  height: 5em;
   border: ${(props) => (props.selected ? "2px solid blue" : "none")};
   border-radius: 5px;
   cursor: pointer;

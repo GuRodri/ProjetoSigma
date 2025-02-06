@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ContainerCarrinho, Container, ListagemJogos, ContainerTitulo, ContainerEspacamento3 } from './style';
+import { ContainerCarrinho, Container, ListagemJogos,ContainerBotao, ContainerTitulo, ContainerEspacamento3 } from './style';
 import apiCliente from '../../../services/apiCliente';
 import CardSelecaoJogo from '../../../components/Cards/CardSelecaoJogo';
 import { useSearch } from '../../../context/searchCoxtexto';
@@ -88,10 +88,12 @@ const SetupGamerPage3 = () => {
             ))}
           </ListagemJogos>
         </ContainerCarrinho>
+      </ContainerEspacamento3>
+      <ContainerBotao>
         <NavLink to={'/setupGamer-page4'}>
           <BContinuar />
         </NavLink>
-      </ContainerEspacamento3>
+      </ContainerBotao>
     </Container>
   );
 };

@@ -27,7 +27,7 @@ const SetupGamerPage2 = () => {
   return (
     <Container>
       <ContainerEspacamento>
-        <h1>De que mais gosta?</h1>
+        <h2>De que mais gosta?</h2>
         <Coluna>
           <Campo
             onClick={() => toggleCategoria("Aventura")}

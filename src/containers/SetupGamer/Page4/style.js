@@ -14,7 +14,7 @@ export const Coluna = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
+    width: 60%;
     padding: 1em;
     color: #d9d9d9;
     gap: 1em;

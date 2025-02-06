@@ -3,18 +3,18 @@ import styled from "styled-components"
 export const Container = styled.div `
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const ContainerEspacamento3 = styled.div `
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     padding: 1em;
-    min-height: 77.8vh;
     width:80%;
     color: #d9d9d9;
-    padding: 3em;
+    padding-top: 3em;
     gap: 2em;
     p{
         margin-bottom: 1em;
@@ -27,7 +27,6 @@ export const ContainerCarrinho = styled.div `
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 2em;
     gap: 1em;
     align-items: end;
     padding: 1em;
@@ -37,9 +36,9 @@ export const ContainerCarrinho = styled.div `
 `;
 
 export const ListagemJogos = styled.ul `
-    height: 30em; /* Defina a altura fixa desejada */
+  height: 15em; /* Defina a altura fixa desejada */
   overflow-y: scroll;
-  width: 30em;
+  width: 15em;
 
   /* Custom Scrollbar Styles */
   ::-webkit-scrollbar {
@@ -107,12 +106,8 @@ export const ContainerMenor = styled.div `
 `;  
 export const ContainerBotao= styled.div `
     display: flex;
-    flex-direction: row;
-    justify-content: end;
-    width: 100%;
-    align-items: center;
-    margin-top: 1em;
-    align-self:flex-end;
+    justify-content: center;
+    margin: 2em;
 `;
 
 

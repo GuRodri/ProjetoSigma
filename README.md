@@ -26,7 +26,7 @@ Para executar o projeto localmente, siga os passos abaixo:
 Clone o Repositório
 
 Código
-git clone https://github.com/seuusuario/ProjetoSigma.git
+git clone https://github.com/GuRodri/ProjetoSigma.git
 cd ProjetoSigma
 Instale as Dependências
 

@@ -8,7 +8,7 @@ export const Container = styled.div`
   background-color: #252C37;
   min-height: 100vh;
   padding: 1em;
-  width: 80%;
+  width: 100%;
 `;
 
 export const ContainerEspacamento = styled.div`

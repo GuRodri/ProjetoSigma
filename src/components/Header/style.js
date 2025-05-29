@@ -103,20 +103,20 @@ export const Container = styled.div`
 
 export const UserName = styled.span`
   color: black;
-  font-size: 0.875em;
   padding: 0.5em;
 `;
 
 export const LoggedInMenu = styled.div`
   position: absolute;
-  top: 60px; /* Ajuste a posição conforme necessário */
+  top: 40px; /* Ajuste a posição conforme necessário */
   right: 0;
-  background-color: white;
+  background-color:rgb(199, 203, 200);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 5px;
   overflow: hidden;
   padding-top: .5em;
+  font-size: .875em;
 
   @media (max-width: 375px) {
     width: 100%; /* Para ocupar a largura total no mobile */
@@ -139,26 +139,21 @@ export const UserCircle = styled.div`
      display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #dadedf;
-    color: black;
+    color: white;
     width: .6em;
     height: .6em;
     border-radius: 50%;
-    font-size: 1.5em;
+    font-size: 1.1em;
     cursor: pointer;
     margin: .2em 1em .5em 1em;
     padding: .7em;
-    border: 5px solid #454a99;
+    border: 3px solid rgb(18, 223, 31);
 
   @media (max-width: 768px) {
-    width: .4em;
-    height: .4em;
-    font-size: 1.2em;
+    font-size: .875em;
   }
 
   @media (max-width: 375px) {
-    width: 2.5em;
-    height: 2.5em;
     font-size: 1em;
   }
 `;

@@ -61,6 +61,7 @@ export const MenuOptions = styled.div`
   border-radius: 0 0 0 0.5em;
   border-bottom: 1px solid #141500;
   padding-top: 40px;
+  font-size: .875em;
 
   a {
     color: #d9d9d9;

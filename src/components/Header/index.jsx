@@ -95,7 +95,7 @@ const Header = () => {
                 <NavLink to={currentUser.role === 0 ? '/ambiente-usuario' : '/ambiente-administrador'}>
                   <UserName>{currentUser.email.split('@')[0]}</UserName>
                 </NavLink>
-                <MenuOption onClick={handleLogout}>Logout</MenuOption>
+                <MenuOption onClick={handleLogout}>sair</MenuOption>
               </LoggedInMenu>
             )}
           </>

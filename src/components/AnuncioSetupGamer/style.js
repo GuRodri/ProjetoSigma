@@ -1,108 +1,94 @@
 import styled from "styled-components";
 
 export const ContainerSetup = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(84, 84, 84, 0.3);
-    width: 80%;
-    margin: 1em 5em 0 5em;
-    padding-bottom: 1em;
+  width: 80%;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: rgba(35, 58, 74, 0.7);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  cursor: pointer;
 
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  h1 {
+    color: #ffffff;
+    font-size: 1.75rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5em;
     h1 {
-        color: #d9d9d9;
+      font-size: 1.2rem;
     }
+  }
 
-    // Responsividade para telas menores
-    @media (max-width: 768px) {
-        margin: 1em 2em;
-        width: 80%;
+  @media (max-width: 480px) {
+    padding: 1em;
+    h1 {
+      font-size: 1rem;
     }
-
-    @media (max-width: 480px) {
-        margin: 1em 0em;
-        width: 100%;
-    }
-`;
-
-export const ContainerTexto = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h1{
-        font-size: 22px;
-    }
-
-    // Responsividade para telas menores
-    @media (max-width: 768px) {
-       margin: 0.5em;
-
-       h1{
-        font-size: 14px;
-       }
-    }
-
-    @media (max-width: 560px) {
-        margin: 0.2em;
-        font-size: 8px;
-    }
-`;
-
-export const ContainerButton = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1em;
-
-    // Responsividade para telas menores
-    @media (max-width: 768px) {
-        margin: 0.5em;
-    }
-
-    @media (max-width: 480px) {
-        margin: 0.2em;
-    }
-`;
-
-export const ContainerImagem = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 12em;
-
-    img {
-        width: 90%;
-        height: 100%;
-        border-radius: 10px;
-    }
-
-    // Responsividade para telas menores
-    @media (max-width: 768px) {
-        height: 10em;
-    }
-
-    @media (max-width: 480px) {
-        height: 8em;
-    }
+  }
 `;
 
 export const ContainerSuperior = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 0 1em;
-    margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
 
-    // Responsividade para telas menores
-    @media (max-width: 768px) {
-        flex-direction: row; // Coloca os itens em coluna em vez de linha
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+`;
 
-    @media (max-width: 480px) {
-        flex-direction: row; // Mantém os itens em coluna em celulares
+export const ContainerTexto = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+export const ContainerButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ContainerImagem = styled.div`
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    max-height: 16em;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+
+  img:hover {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    img {
+      max-height: 12em;
     }
+  }
+
+  @media (max-width: 480px) {
+    img {
+      max-height: 10em;
+    }
+  }
 `;

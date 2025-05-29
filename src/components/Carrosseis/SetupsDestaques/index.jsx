@@ -77,9 +77,7 @@ function CDestaques() {
         <StyledSliderContainer>
           {isLoading && <div>Carregando...</div>}
           {hasError && (
-            <div>
-              Erro ao carregar produtos. Por favor, tente novamente mais tarde.
-            </div>
+            <div>Erro ao carregar produtos. Por favor, tente novamente mais tarde.</div>
           )}
           {!isLoading && !hasError && produtos.length > 0 && (
             <Slider {...settings}>

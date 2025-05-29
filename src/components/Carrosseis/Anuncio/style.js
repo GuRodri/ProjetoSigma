@@ -1,41 +1,75 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledSliderContainer = styled.div`
-  width: 80%;
-  background-color: rgba(84, 84, 84, 0.3);
-  padding: 1em; /* Espaçamento interno ao redor do carrossel */
+  width: 88%;
+  margin: 1em auto;
+  border-radius: 1rem;
+  padding: 1.5em;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 
-  // Responsividade para telas menores
+  .slick-dots {
+    display: flex !important;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  .slick-dots li button:before {
+    font-size: 0;
+  }
+
   @media (max-width: 768px) {
-    width: 90%; /* Ajusta a largura para dispositivos menores */
+    width: 95%;
+    padding: 1em;
   }
 
   @media (max-width: 480px) {
-    width: 100%; /* Largura total em celulares menores */
-    padding: 0.5em;
+    padding: 0.75em;
   }
 `;
 
 export const StyledSliderSlide = styled.div`
-  display: flex; /* Utiliza flexbox para alinhamento */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  text-align: center;
-  padding: 1em; /* Espaçamento entre os slides */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
 `;
 
 export const StyledSliderImage = styled.img`
-  width: 80%; /* Define a largura das imagens */
-  max-height: 14em; /* Limita a altura máxima */
-  object-fit: cover; /* Garante que a imagem preencha sem distorcer */
-  object-position: center; /* Centraliza o conteúdo visível da imagem */
+  width: 100%;
+  max-height: 20em;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
 
-  // Responsividade para telas menores
+  &:hover {
+    transform: scale(1.015);
+  }
+
   @media (max-width: 768px) {
-    max-height: 12em; /* Altura ajustada para tablets */
+    max-height: 16em;
   }
 
   @media (max-width: 480px) {
-    max-height: 10em; /* Altura ajustada para celulares */
+    max-height: 12em;
+  }
+`;
+
+export const StyledMessage = styled.p`
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  font-size: 1em;
+`;
+
+export const StyledDotStyle = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: background 0.3s ease;
+
+  .slick-active & {
+    background: #00ffcc;
   }
 `;

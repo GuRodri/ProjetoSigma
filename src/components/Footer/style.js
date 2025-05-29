@@ -88,4 +88,10 @@ export const SmallTitle1 = styled.p`
   justify-content: center;
   gap: .5em;
   align-items: center;
+
+  a{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  }
 `;

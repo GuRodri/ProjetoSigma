@@ -1,23 +1,19 @@
 import React from 'react';
 import { CardHome2, ContainerEspacamento, ContainerTexto, P1, P5 } from './style';
 
-const cardTexts = [
-  { component: P1, text: 'Imagem:' },
-  { component: 'p', text: 'ID:' },
-  { component: 'p', text: 'Título:' },
-  { component: 'p', text: 'Preço:' },
-  { component: P5, text: 'Ações:' }
-];
-
 const CardCabecalhoAnuncios = () => {
   return (
     <CardHome2>
       <ContainerEspacamento>
-        {cardTexts.map((item, index) => (
-          <ContainerTexto key={index}>
-            {React.createElement(item.component, {}, item.text)}
-          </ContainerTexto>
-        ))}
+        <ContainerTexto>
+          <P1>Imagem</P1>
+        </ContainerTexto>
+        <ContainerTexto>
+          <p>Título</p>
+        </ContainerTexto>
+        <ContainerTexto>
+          <P5>Ações</P5>
+        </ContainerTexto>
       </ContainerEspacamento>
     </CardHome2>
   );

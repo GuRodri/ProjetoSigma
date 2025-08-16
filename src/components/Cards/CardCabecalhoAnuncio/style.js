@@ -2,59 +2,90 @@ import styled from 'styled-components';
 
 export const CardHome2 = styled.div`
   display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #545454;
-  border-radius: 2px;
-  margin: 1em 0;
-  //background-color: #101419;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1d23;
+  border-radius: 12px;
+  padding: 1em;
+  margin-bottom: 1em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const ContainerEspacamento = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: .4em;
+  gap: 1em;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const ContainerTexto = styled.div`
-  flex: 1;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
 
   p {
     margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #E0E0E0;
+    word-break: break-word;
   }
 `;
 
 export const ContainerBotao = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  gap: 0.8em;
 
-  .BExcluir {
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5em 1em;
+  button, svg {
     cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.8;
+
+    &:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
   }
+`;
 
-  .BDetalhes {
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5em 1em;
-    cursor: pointer;
+export const ImagemAnuncio = styled.img`
+  width: 100px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
   }
 `;
 
 export const P1 = styled.p`
-  font-weight: bold;
-  width: 14.5em;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #E0E0E0;
 `;
 
 export const P5 = styled.p`
-  font-weight: bold;
-  width: 16.5em;
-`
+  font-weight: 600;
+  font-size: 1rem;
+  color: #E0E0E0;
+`;

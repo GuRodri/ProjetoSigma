@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 2rem 1rem;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   position: relative;
   overflow: hidden;
@@ -30,6 +30,7 @@ export const Container = styled.div`
     max-width: 1200px;
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
   }
 
   /* Estilos para loading e erro */
@@ -105,25 +106,23 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 1024px) {
-    > *:not(div:first-of-type) {
-      max-width: 95%;
-    }
-  }
-
-  @media (max-width: 768px) {
-    padding: 1.5rem;
+  @media (max-width: 1200px) {
+    padding: 1.5rem 0.5rem;
     gap: 1.5rem;
-    
     > *:not(div:first-of-type) {
-      max-width: 95%;
+      max-width: 98%;
     }
   }
-
-  @media (max-width: 480px) {
-    padding: 1.25rem;
-    gap: 1.25rem;
-    
+  @media (max-width: 900px) {
+    padding: 1rem 0.25rem;
+    gap: 1rem;
+    > *:not(div:first-of-type) {
+      max-width: 100%;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0.5rem 0.1rem;
+    gap: 0.5rem;
     > *:not(div:first-of-type) {
       max-width: 100%;
     }
@@ -139,16 +138,14 @@ export const ContainerEspacamento = styled.div`
   backdrop-filter: blur(15px);
   border-radius: 0.875rem;
   padding: 1.5rem;
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.15);
   position: relative;
   z-index: 1;
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
   gap: 1.5rem;
-  min-height: 400px;
+  min-height: 350px;
 
   &:hover {
     transform: translateY(-2px);
@@ -160,11 +157,12 @@ export const ContainerEspacamento = styled.div`
 
   /* Ambos os componentes ficam no mesmo card, lado a lado */
   > * {
-    flex: 1; /* Cada componente ocupa 50% do espaço */
+    flex: 1;
     display: flex;
     flex-direction: column;
     height: 100%;
     box-sizing: border-box;
+    min-width: 0;
   }
 
   /* Card da esquerda - CProdutoFirestore */
@@ -182,90 +180,84 @@ export const ContainerEspacamento = styled.div`
     padding-left: 0.75rem;
   }
 
-  @media (max-width: 1024px) {
-    max-width: 95%;
+  @media (max-width: 1200px) {
+    max-width: 98%;
     padding: 1.25rem;
     gap: 1.25rem;
-    min-height: 350px;
+    min-height: 300px;
   }
-
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     flex-direction: column;
-    width: 95%;
-    padding: 1.25rem;
-    gap: 1.25rem;
-    margin-bottom: 1.25rem;
-    min-height: auto;
-
-    > * {
-      flex: none;
-      width: 100%;
-    }
-
-    /* CProdutoFirestore - fica em cima */
-    > *:first-child {
-      min-height: 280px;
-      padding: 0;
-      padding-bottom: 1rem;
-      border-right: none;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-      justify-content: center;
-      align-items: center;
-      order: 1;
-    }
-
-    /* InformacaoProduto - fica em baixo */
-    > *:last-child {
-      min-height: 250px;
-      padding: 0;
-      padding-top: 1rem;
-      justify-content: flex-start;
-      align-items: flex-start;
-      order: 2;
-    }
-  }
-
-  @media (max-width: 480px) {
     width: 100%;
     padding: 1rem;
-    border-radius: 0.625rem;
     gap: 1rem;
     margin-bottom: 1rem;
-    
-    /* CProdutoFirestore - fica em cima */
-    > *:first-child {
-      min-height: 220px;
-      padding-bottom: 0.75rem;
-      order: 1;
+    min-height: auto;
+    > * {
+      width: 100%;
+      min-height: unset;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
     }
-
-    /* InformacaoProduto - fica em baixo */
+    > *:first-child {
+      order: 1;
+      border-right: none;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+      padding-bottom: 0.5rem;
+    }
     > *:last-child {
-      min-height: 200px;
-      padding-top: 0.75rem;
       order: 2;
+      border-bottom: none;
+      padding-top: 0.5rem;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+    gap: 0.5rem;
+    border-radius: 0.625rem;
+    margin-bottom: 0.5rem;
+    > * {
+      width: 100%;
+      min-height: unset;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+    }
+    > *:first-child {
+      order: 1;
+      border-right: none;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+      padding-bottom: 0.25rem;
+    }
+    > *:last-child {
+      order: 2;
+      border-bottom: none;
+      padding-top: 0.25rem;
     }
   }
 `;
 export const ContainerEspacamento2 = styled.div`
-  display: flex;  
+  display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 
-  @media (max-width: 1024px) {
-    max-width: 95%;
+  @media (max-width: 1200px) {
+    max-width: 98%;
   }
-
-  @media (max-width: 768px) {
-    width: 95%;
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 900px) {
     width: 100%;
+    margin: 0 auto 0.5rem auto;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 0 auto 0.25rem auto;
+    padding: 0.25rem;
   }
 `;

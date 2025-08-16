@@ -146,8 +146,7 @@ const AvaliacaoProdutoVisualizacao = ({ idProduto }) => {
           <Ul>
             {avaliacoes.map((avaliacao) => (
               <Li key={avaliacao.idAvaliacao}>
-                <CardImagem src="https://via.placeholder.com/100" alt="Imagem do produto" />
-                <Coluna>
+               <Coluna>
                   <p>{avaliacao.comentario}</p>
                   <StarRating value={avaliacao.classificacao} readOnly />
                 </Coluna>

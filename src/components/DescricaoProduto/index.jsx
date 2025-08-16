@@ -4,14 +4,17 @@ import {
   ProductDescriptionTitle, 
   ProductDescriptionText, 
   ContainerEspacamento 
-} from './style'; // Ajuste o caminho se necessário
+} from './style';
 
 const DescricaoProduto = ({ fichaTecnica }) => {
   return (
-    <ProductDescriptionContainer>
-      <ContainerEspacamento>
-        <ProductDescriptionTitle>Ficha Técnica</ProductDescriptionTitle>
+    <ProductDescriptionContainer className="produto-descricao-container">
+      <ContainerEspacamento className="produto-descricao-espacamento">
+        <ProductDescriptionTitle className="produto-descricao-titulo">
+          Ficha Técnica
+        </ProductDescriptionTitle>
         <ProductDescriptionText 
+          className="produto-descricao-texto"
           dangerouslySetInnerHTML={{ __html: fichaTecnica }}
         />
       </ContainerEspacamento>

@@ -104,11 +104,27 @@ const CProdutoFirestore = ({ produtoId }) => {
   }, [produtoId]);
 
   if (loading) {
-    return <div>Carregando imagens...</div>;
+    return (
+      <CarouselContainer>
+        <div>Carregando imagens...</div>
+      </CarouselContainer>
+    );
   }
 
   if (error) {
-    return <div>Erro ao carregar imagens: {error}</div>;
+    return (
+      <CarouselContainer>
+        <div>Erro ao carregar imagens</div>
+      </CarouselContainer>
+    );
+  }
+
+  if (imagens.length === 0) {
+    return (
+      <CarouselContainer>
+        <div>Nenhuma imagem disponível</div>
+      </CarouselContainer>
+    );
   }
 
   return (

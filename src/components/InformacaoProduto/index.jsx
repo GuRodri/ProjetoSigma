@@ -46,30 +46,107 @@ import {
 import BComprar from '../../components/Button/Comprar';
 import { useNavigate } from 'react-router-dom';
 import apiCliente from '../../services/apiCliente';
+import { useAuth } from '../../context/autContexto1';
 
 const InformacaoProduto = ({ idProduto, nomeProduto, descricaoProduto, preco, quantidadeEstoque, mediaAvaliacao, urlImagem }) => {
   const navigate = useNavigate();
   const [quantidade, setQuantidade] = useState(1); // Estado para a quantidade selecionada
+  const { currentUser } = useAuth();
 
   const handleAdicionarCarrinho = async () => {
-    const idCarrinho = 1; // Substitua por uma lógica para obter o ID correto do carrinho
+    if (!currentUser || !currentUser.idUsuario) {
+      alert('Usuário não autenticado!');
+      return;
+    }
+    const idUsuario = currentUser.idUsuario;
+    let idCarrinho = null;
 
-    const itemCarrinho = {
-      idCarrinho: idCarrinho,
-      idProduto: idProduto,
-      quantidade: quantidade,
-      precoUnitario: preco,
-      urlImagem: urlImagem,
-      descricaoProduto: descricaoProduto,
-      ativo: true
-    };
-
+    // 1. Buscar carrinho do usuário na API
     try {
-      await apiCliente.post('/api/ItemCarrinho', itemCarrinho);
-      alert('Produto adicionado ao carrinho com sucesso!');
+      const resCarrinho = await apiCliente.get(`/api/carrinhoCompra/${idUsuario}`);
+      // Busca qualquer carrinho com idUsuario igual ao logado
+      let carrinhoUsuario = null;
+      if (Array.isArray(resCarrinho.data) && resCarrinho.data.length > 0) {
+        carrinhoUsuario = resCarrinho.data.find(c => c.idUsuario === idUsuario);
+      } else if (resCarrinho.data && resCarrinho.data.idCarrinho && resCarrinho.data.idUsuario === idUsuario) {
+        carrinhoUsuario = resCarrinho.data;
+      }
+      if (carrinhoUsuario) {
+        idCarrinho = carrinhoUsuario.idCarrinho;
+      } else {
+        // Só cria se realmente não houver nenhum carrinho para esse usuário
+        const now = new Date().toISOString();
+        const resNovo = await apiCliente.post('/api/carrinhoCompra', {
+          idUsuario: idUsuario,
+          dataHoraCriacaoCarrinho: now,
+          ativo: true,
+          usuarioIDUsuario: idUsuario
+        });
+        if (Array.isArray(resNovo.data) && resNovo.data.length > 0) {
+          idCarrinho = resNovo.data[0].idCarrinho;
+        } else if (resNovo.data && resNovo.data.idCarrinho) {
+          idCarrinho = resNovo.data.idCarrinho;
+        }
+      }
+    } catch (err) {
+      // Se não encontrar, criar novo carrinho
+      if (err.response && err.response.status === 404) {
+        const now = new Date().toISOString();
+        const resNovo = await apiCliente.post('/api/carrinhoCompra', {
+          idUsuario: idUsuario,
+          dataHoraCriacaoCarrinho: now,
+          ativo: true,
+          usuarioIDUsuario: idUsuario
+        });
+        if (Array.isArray(resNovo.data) && resNovo.data.length > 0) {
+          idCarrinho = resNovo.data[0].idCarrinho;
+        } else if (resNovo.data && resNovo.data.idCarrinho) {
+          idCarrinho = resNovo.data.idCarrinho;
+        }
+      } else {
+        alert('Erro ao buscar carrinho de compras.');
+        return;
+      }
+    }
+
+    if (!idCarrinho) {
+      alert('Não foi possível obter/criar o carrinho de compras.');
+      return;
+    }
+
+    // Verifica se o produto já está no carrinho
+    try {
+      const resItens = await apiCliente.get(`/api/ItemCarrinho?idCarrinho=${idCarrinho}`);
+      let itemExistente = null;
+      if (Array.isArray(resItens.data)) {
+        itemExistente = resItens.data.find(item => item.idProduto === idProduto);
+      }
+
+      if (itemExistente) {
+        // Atualiza a quantidade do item existente
+        const novaQuantidade = itemExistente.quantidade + quantidade;
+        await apiCliente.put(`/api/ItemCarrinho/${itemExistente.idItemCarrinho}`, {
+          ...itemExistente,
+          quantidade: novaQuantidade
+        });
+        alert('Quantidade do produto atualizada no carrinho!');
+      } else {
+        // Adiciona novo item ao carrinho
+        const itemCarrinho = {
+          idCarrinho: idCarrinho,
+          idProduto: idProduto,
+          quantidade: quantidade,
+          precoUnitario: preco,
+          urlImagem: urlImagem,
+          descricaoProduto: descricaoProduto,
+          ativo: true
+        };
+        await apiCliente.post('/api/ItemCarrinho', itemCarrinho);
+        alert('Produto adicionado ao carrinho com sucesso!');
+      }
     } catch (error) {
-      console.error('Erro ao adicionar produto ao carrinho:', error);
-      alert('Erro ao adicionar produto ao carrinho. Tente novamente.');
+      console.error('Erro ao adicionar/atualizar produto no carrinho:', error);
+      alert('Erro ao adicionar/atualizar produto no carrinho. Tente novamente.');
     }
   };
 

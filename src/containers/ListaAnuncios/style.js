@@ -75,3 +75,23 @@ export const ContainerBotao= styled.div `
     margin-top: 1em;
     align-self:flex-end;
 `;
+
+export const CabecalhoFixo = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #1a1d23;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #333;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      text-align: left;
+      padding: 0.5em;
+      color: #fff;
+    }
+  }
+`;

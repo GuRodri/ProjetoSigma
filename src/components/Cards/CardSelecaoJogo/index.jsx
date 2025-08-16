@@ -6,9 +6,7 @@ const CardSelecaoJogo = ({ jogo, onAdd, onRemove, isAdded }) => {
     <CardHome2 key={jogo.idJogo}>
       <ContainerEspacamento>
         <ContainerTexto>
-          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='30em' border-radius='5px' />
-        </ContainerTexto>
-        <ContainerTexto>
+          <img src={jogo.referenciaImagemJogo} alt="Imagem do Jogo" width='24px' height='24px' />
           <p>{jogo.nomeJogo}</p>
         </ContainerTexto>
       </ContainerEspacamento>

@@ -22,7 +22,7 @@ function CSetupsMaisVendidos() {
       try {
         const response = await apiCliente.get('/api/Produto');
         const produtosAtivos = response.data.filter(produto => produto.ativo);
-        setProdutos(produtosAtivos);
+        setProdutos(produtosAtivos.slice(0, 12)); // Limita a 12 produtos
         setIsLoading(false);
       } catch (error) {
         console.error('Erro ao buscar produtos:', error);
@@ -36,30 +36,30 @@ function CSetupsMaisVendidos() {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: produtos.length > 4,
     speed: 500,
-    slidesToShow: 4, // Mostrar 4 slides por vez em telas grandes
-    slidesToScroll: 4,
-    autoplay: true,
-    autoplaySpeed: 5000,
+    slidesToShow: Math.min(4, produtos.length),
+    slidesToScroll: Math.min(4, produtos.length),
+    autoplay: produtos.length > 4,
+    autoplaySpeed: 4000,
     pauseOnHover: true,
     responsive: [
       {
-        breakpoint: 1024, // Para telas menores que 1024px (tablets)
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: Math.min(3, produtos.length),
+          slidesToScroll: Math.min(3, produtos.length),
         },
       },
       {
-        breakpoint: 768, // Para telas menores que 768px (celulares)
+        breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: Math.min(2, produtos.length),
+          slidesToScroll: Math.min(2, produtos.length),
         },
       },
       {
-        breakpoint: 480, // Para telas menores que 480px (celulares pequenos)
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -75,9 +75,11 @@ function CSetupsMaisVendidos() {
       </ContainerTitulo>
       <ContainerSetups>
         <StyledSliderContainer>
-          {isLoading && <div>Carregando...</div>}
+          {isLoading && <div style={{ color: '#fff', padding: '2rem' }}>Carregando...</div>}
           {hasError && (
-            <div>Erro ao carregar produtos. Por favor, tente novamente mais tarde.</div>
+            <div style={{ color: '#ff6b6b', padding: '2rem', textAlign: 'center' }}>
+              Erro ao carregar produtos. Por favor, tente novamente mais tarde.
+            </div>
           )}
           {!isLoading && !hasError && produtos.length > 0 && (
             <Slider {...settings}>
@@ -89,7 +91,9 @@ function CSetupsMaisVendidos() {
             </Slider>
           )}
           {!isLoading && !hasError && produtos.length === 0 && (
-            <div>Nenhum produto disponível.</div>
+            <div style={{ color: '#ccc', padding: '2rem', textAlign: 'center' }}>
+              Nenhum produto disponível.
+            </div>
           )}
         </StyledSliderContainer>
       </ContainerSetups>

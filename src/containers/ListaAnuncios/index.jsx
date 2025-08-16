@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ContainerCarrinho, Container, ContainerBotao } from './style';
+import { ContainerCarrinho, Container, ContainerBotao, CabecalhoFixo } from './style';
 import apiCliente from '../../services/apiCliente';
 import CardListaAnuncios from '../../components/Cards/CardListaAnuncios';
 import { useSearch } from '../../context/searchCoxtexto';
-import CardCabecalhoAnuncios from '../../components/Cards/CardCabecalhoAnuncio';
 
 const ListaAnuncios = () => {
   const [anuncios, setAnuncios] = useState([]);
   const [filteredAnuncios, setFilteredAnuncios] = useState([]);
-  const { globalSearchTerm, setGlobalSearchTerm } = useSearch(); // Obtendo o termo de pesquisa global do contexto
+  const { globalSearchTerm, setGlobalSearchTerm } = useSearch();
 
   useEffect(() => {
     const fetchAnuncios = async () => {
@@ -37,26 +36,40 @@ const ListaAnuncios = () => {
   }, [globalSearchTerm, anuncios]);
 
   useEffect(() => {
-    // Limpa o termo de busca global ao montar a página ListaAnuncios
     setGlobalSearchTerm('');
   }, [setGlobalSearchTerm]);
 
   return (
     <Container>
       <h2>Lista de Anúncios</h2>
+
+      <ContainerBotao>
+        <NavLink className='adicionar' to="/cadastro-anuncios">Adicionar</NavLink>
+      </ContainerBotao>
+
+      <CabecalhoFixo>
+        <table>
+          <thead>
+            <tr>
+              <th>Imagem</th>
+              <th>Título</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+        </table>
+      </CabecalhoFixo>
+
       <ContainerCarrinho>
-        <ul>
-          <ContainerBotao>
-            <NavLink className='adicionar' to="/cadastro-anuncios">Adicionar</NavLink>
-          </ContainerBotao>
-          <CardCabecalhoAnuncios />
-          {filteredAnuncios.map((anuncio) => (
-            <CardListaAnuncios
-              key={anuncio.idAnuncio}
-              anuncio={anuncio}
-            />
-          ))}
-        </ul>
+        <table>
+          <tbody>
+            {filteredAnuncios.map((anuncio) => (
+              <CardListaAnuncios
+                key={anuncio.idAnuncio}
+                anuncio={anuncio}
+              />
+            ))}
+          </tbody>
+        </table>
       </ContainerCarrinho>
     </Container>
   );

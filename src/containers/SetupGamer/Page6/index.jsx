@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ContainerHome, ContainerListagem, ContainerOrdenacao, Select } from "./style";
+import { ContainerHome, ContainerListagem, ContainerOrdenacao, Select, MensagemNenhumProduto } from "./style";
 import { SearchContext } from '../../../context/searchCoxtexto';
 import CardVertical from "../../../components/Cards/CardVertical";
 import apiCliente from '../../../services/apiCliente';
@@ -45,21 +45,45 @@ const SetupGamerPage6 = () => {
   };
 
   if (isLoading) {
-    return <div>Carregando...</div>;
+    return (
+      <ContainerHome>
+        <ContainerListagem>
+          <MensagemNenhumProduto>
+            Carregando produtos...
+          </MensagemNenhumProduto>
+        </ContainerListagem>
+      </ContainerHome>
+    );
   }
 
   if (hasError) {
-    return <div>Erro ao carregar produtos.</div>;
+    return (
+      <ContainerHome>
+        <ContainerListagem>
+          <MensagemNenhumProduto>
+            Erro ao carregar produtos. Tente novamente.
+          </MensagemNenhumProduto>
+        </ContainerListagem>
+      </ContainerHome>
+    );
   }
 
   if (produtos.length === 0) {
-    return <div>Nenhum produto encontrado.</div>;
+    return (
+      <ContainerHome>
+        <ContainerListagem>
+          <MensagemNenhumProduto>
+            Nenhum produto encontrado.
+          </MensagemNenhumProduto>
+        </ContainerListagem>
+      </ContainerHome>
+    );
   }
 
   return (
     <ContainerHome>
       <ContainerOrdenacao>
-        <label htmlFor="sortOrder">Ordenar por preço: </label>
+        <label htmlFor="sortOrder">Ordenar por preço:</label>
         <Select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
           <option value="asc">Menor Preço</option>
           <option value="desc">Maior Preço</option>

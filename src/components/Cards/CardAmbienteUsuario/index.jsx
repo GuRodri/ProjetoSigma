@@ -5,15 +5,15 @@ import {
   History,
   Heart,
   UserCog,
-  HelpCircle
+  ShoppingCart
 } from 'lucide-react';
 
 const CardAmbienteUsuario = () => {
   const cardItems = [
-    { to: '', description: 'Histórico de Compras', Icon: History, color: '#f97316' }, // laranja
+    { to: '/historico-de-compras', description: 'Histórico de Compras', Icon: History, color: '#f97316' }, // laranja
     { to: '/favoritos', description: 'Favoritos', Icon: Heart, color: '#ef4444' },     // vermelho
-    { to: '/atualizar-dados', description: 'Atualize seus dados', Icon: UserCog, color: '#0ea5e9' }, // azul
-    { to: '/ajuda', description: 'Ajuda?', Icon: HelpCircle, color: '#10b981' }        // verde
+    { to: '/carrinho-compras', description: 'Carrinho de Compras', Icon: ShoppingCart, color: '#10b981' }, // verde
+    { to: '/atualizar-dados', description: 'Atualize seus dados', Icon: UserCog, color: '#0ea5e9' } // azul
   ];
 
   return (

@@ -32,24 +32,40 @@ const useSignup = () => {
         data: new Date().toISOString()
       });
 
-      // Formata a data para ISO 8601
-      const formattedDate = new Date(dataNascimento).toISOString();
+
+      // Formata a data de nascimento para o formato aceito pela API (ISO 8601 ou yyyy-MM-dd)
+      let formattedDate = dataNascimento;
+      if (dataNascimento && dataNascimento.length <= 10) {
+        // Se vier como yyyy-MM-dd, já está ok
+        formattedDate = dataNascimento;
+      } else if (dataNascimento) {
+        // Tenta converter para ISO
+        formattedDate = new Date(dataNascimento).toISOString().substring(0, 10);
+      }
       const currentDate = new Date().toISOString();
 
       // Envia os dados do usuário para o backend
-      await apiCliente.post('/api/usuario', {
-        email,
-        nome,
-        sobrenome,
-        cpf,
-        senha: password,
-        genero,
-        dataNascimento: formattedDate,
-        telefone,
-        role,
-        ativo: true,
-        data: currentDate
-      });
+      try {
+        await apiCliente.post('/api/usuario', {
+          email,
+          nome,
+          sobrenome,
+          cpf,
+          senha: password,
+          genero,
+          dataNascimento: formattedDate,
+          telefone,
+          role,
+          ativo: true,
+          data: currentDate
+        });
+      } catch (apiErr) {
+        console.error('Erro ao cadastrar usuário na API:', apiErr);
+        setError(apiErr);
+        setLoading(false);
+        alert('Erro ao cadastrar usuário na API. Verifique os dados e tente novamente.');
+        return;
+      }
 
       setLoading(false);
       alert('Usuário cadastrado com sucesso!');

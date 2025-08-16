@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Coluna, ContainerEspacamento, Input } from "./style";
+import { Container, Coluna, ContainerEspacamento, Input, ErrorMessage } from "./style";
 import BContinuar from "../../../components/Button/Continuar";
 import { NavLink } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const SetupGamerPage1 = () => {
         <Container>
             <ContainerEspacamento>
                 <h1>Vamos começar...</h1>
-                {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+                {error && <ErrorMessage>{error}</ErrorMessage>}
                 <Coluna>
                     <label>Nome</label>
                     <Input

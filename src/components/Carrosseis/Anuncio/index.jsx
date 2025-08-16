@@ -7,6 +7,7 @@ import {
   StyledSliderImage,
   StyledSliderSlide,
   StyledMessage,
+  StyledDotStyleWrapper,
   StyledDotStyle
 } from './style';
 import apiCliente from '../../../services/apiCliente';
@@ -28,7 +29,9 @@ function CAnuncio() {
       <ul style={{ margin: "0.5em 0" }}>{dots}</ul>
     ),
     customPaging: i => (
-      <StyledDotStyle />
+      <StyledDotStyleWrapper>
+        <StyledDotStyle />
+      </StyledDotStyleWrapper>
     )
   };
 
@@ -57,9 +60,18 @@ function CAnuncio() {
       ) : (
         <Slider {...settings}>
           {anuncios.map((anuncio) => (
-            <Link key={anuncio.idAnuncio} to={`/produto/${anuncio.idProduto}`} target="_blank" rel="noopener noreferrer">
+            <Link
+              key={anuncio.idAnuncio}
+              to={`/produto/${anuncio.idProduto}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Ver anúncio: ${anuncio.titulo}`}
+            >
               <StyledSliderSlide>
-                <StyledSliderImage src={anuncio.referenciaImagem} alt={anuncio.titulo} />
+                <StyledSliderImage
+                  src={anuncio.referenciaImagem || '/img/default.jpg'}
+                  alt={anuncio.titulo}
+                />
               </StyledSliderSlide>
             </Link>
           ))}

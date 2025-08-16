@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '../firebase/firebaseConfig';
 import { onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import apiCliente from '../services/apiCliente';
 
 // Criando o contexto de autenticação
 export const AuthContext = createContext();
@@ -37,14 +38,26 @@ export const AuthProvider = ({ children }) => {
           const userDoc = await getDoc(doc(db, 'usuarios', user.uid));
           const userData = userDoc.data();
 
+          let userRole = null;
           if (userData && userData.role !== undefined) {
-            const userRole = userData.role;
-            console.log('Usuário logado:', user.email, 'Função:', userRole);
-            setCurrentUser({ ...user, role: userRole });
-          } else {
-            console.error('Função não definida para o usuário:', user.uid);
-            setCurrentUser({ ...user, role: null });
+            userRole = userData.role;
           }
+
+          // Buscar idUsuario do banco de dados via API
+          let idUsuario = null;
+          try {
+            const res = await apiCliente.get('/api/usuario');
+            if (res.data && Array.isArray(res.data)) {
+              const usuarioApi = res.data.find(u => u.email === user.email);
+              if (usuarioApi) {
+                idUsuario = usuarioApi.idUsuario;
+              }
+            }
+          } catch (apiErr) {
+            console.error('Erro ao buscar idUsuario na API:', apiErr);
+          }
+
+          setCurrentUser({ ...user, role: userRole, idUsuario });
         } catch (err) {
           console.error('Erro ao buscar dados do usuário:', err);
           setError('Erro ao buscar dados do usuário.');

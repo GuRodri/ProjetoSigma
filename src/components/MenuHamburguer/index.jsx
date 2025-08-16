@@ -52,6 +52,10 @@ const HamburgerMenu = () => {
         {currentUser && currentUser.role === 1 && (
           <>
             <NavLink to="/ambiente-administrador" onClick={closeMenu}>Perfil Administrador</NavLink>
+            <NavLink to="/ambiente-usuario" onClick={closeMenu}>Perfil Usuário</NavLink>
+            <NavLink to="/favoritos" onClick={closeMenu}>Favoritos</NavLink>
+            <NavLink to="/historico-de-compras" onClick={closeMenu}>Histórico de Compras</NavLink>
+            <NavLink to="/carrinho-compras" onClick={closeMenu}>Carrinho de Compras</NavLink>
           </>
         )}
         <NavLink to="/sobre-nos" onClick={closeMenu}>Sobre Nós</NavLink>

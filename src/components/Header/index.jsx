@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, Container, UserName, LoggedInMenu, MenuOption, UserCircle } from './style';
+import { SearchBarContainer, Logo, SearchInputContainer, SearchInput, SearchIcon, Container, UserName, LoggedInMenu, MenuOption, UserCircle, CartIcon, UserIcon } from './style';
 import PesquisarIcon from '../../assets/icons/search-normal.svg';
 import LogoImage from '../../assets/icons/logo.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import MenuHamburguer from '../MenuHamburguer';
 import { useSearch } from '../../context/searchCoxtexto';
 import { useAuth } from '../../context/autContexto1';
 import { FaUser } from 'react-icons/fa';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 // Função de sanitização para remover caracteres perigosos
 const sanitizeSearchTerm = (term) => {
@@ -85,6 +86,13 @@ const Header = () => {
         </a>
       </SearchInputContainer>
       <Container ref={menuRef} onMouseLeave={handleMouseLeave}>
+        {currentUser && (
+          <NavLink to="/carrinho-compras" style={{ textDecoration: 'none' }}>
+            <CartIcon>
+              <AiOutlineShoppingCart />
+            </CartIcon>
+          </NavLink>
+        )}
         {currentUser ? (
           <>
             <UserCircle onClick={toggleMenu}>
@@ -92,16 +100,18 @@ const Header = () => {
             </UserCircle>
             {menuOpen && (
               <LoggedInMenu>
-                <NavLink to={currentUser.role === 0 ? '/ambiente-usuario' : '/ambiente-administrador'}>
+                <NavLink to={currentUser.role === 0 ? '/ambiente-usuario' : '/ambiente-administrador'} style={{ textDecoration: 'none' }}>
                   <UserName>{currentUser.email.split('@')[0]}</UserName>
                 </NavLink>
-                <MenuOption onClick={handleLogout}>sair</MenuOption>
+                <MenuOption onClick={handleLogout}>Sair</MenuOption>
               </LoggedInMenu>
             )}
           </>
         ) : (
-          <NavLink to="/login">
-            <FaUser style={{ width: '1.5em', height: '1.5em', cursor: 'pointer', color: '#d9d9d9', margin: '.2em 1em .5em 1em' }} />
+          <NavLink to="/login" style={{ textDecoration: 'none' }}>
+            <UserIcon>
+              <FaUser />
+            </UserIcon>
           </NavLink>
         )}
         <MenuHamburguer />

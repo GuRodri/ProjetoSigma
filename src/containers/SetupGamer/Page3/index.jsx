@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ContainerCarrinho, Container, ListagemJogos,ContainerBotao, ContainerTitulo, ContainerEspacamento3 } from './style';
+import { Container, ListagemJogos, ContainerBotao, ContainerTitulo, ContainerEspacamento3, LinkCustom } from './style';
 import apiCliente from '../../../services/apiCliente';
 import CardSelecaoJogo from '../../../components/Cards/CardSelecaoJogo';
 import { useSearch } from '../../../context/searchCoxtexto';
@@ -54,40 +54,22 @@ const SetupGamerPage3 = () => {
   return (
     <Container>
       <ContainerEspacamento3>
-        <ContainerCarrinho>
-          <ContainerTitulo>
-            <h2>Selecione o seu jogo</h2>
-          </ContainerTitulo>
-          <ListagemJogos className="listagemJogos">
-            <CardCabecalhoSelecaoJogo />
-            {filteredJogos.map((jogo) => (
-              <CardSelecaoJogo
-                key={jogo.idJogo}
-                jogo={jogo}
-                onAdd={handleAddJogo}
-                onRemove={handleRemoveJogo}
-                isAdded={addedJogos.some(j => j.idJogo === jogo.idJogo)}
-              />
-            ))}
-          </ListagemJogos>
-          <a href="#">Não tem meu jogo</a>
-        </ContainerCarrinho>
-        <ContainerCarrinho>
-          <ContainerTitulo>
-            <h2>Jogos Adicionados</h2>
-          </ContainerTitulo>
-          <ListagemJogos>
-            <CardCabecalhoSelecaoJogo />
-            {addedJogos.map((jogo, index) => (
-              <CardSelecaoJogo
-                key={index}
-                jogo={jogo}
-                onRemove={handleRemoveJogo}
-                isAdded={true}
-              />
-            ))}
-          </ListagemJogos>
-        </ContainerCarrinho>
+        <ContainerTitulo>
+          <h2>Selecione seus jogos favoritos</h2>
+        </ContainerTitulo>
+        <ListagemJogos className="listagemJogos">
+          <CardCabecalhoSelecaoJogo />
+          {filteredJogos.map((jogo) => (
+            <CardSelecaoJogo
+              key={jogo.idJogo}
+              jogo={jogo}
+              onAdd={handleAddJogo}
+              onRemove={handleRemoveJogo}
+              isAdded={addedJogos.some(j => j.idJogo === jogo.idJogo)}
+            />
+          ))}
+        </ListagemJogos>
+        <LinkCustom href="#">Não encontrou seu jogo? Clique aqui</LinkCustom>
       </ContainerEspacamento3>
       <ContainerBotao>
         <NavLink to={'/setupGamer-page4'}>

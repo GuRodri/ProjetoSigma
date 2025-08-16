@@ -12,7 +12,7 @@ import axios from 'axios';
 
 // Base URL da API do backend
 const apiCliente = axios.create({
-  baseURL: 'http://www.portalmantec.com.br:5001/',
+  baseURL: 'https://www.portalmantec.com.br/mantec/',
 });
 
 export default apiCliente;

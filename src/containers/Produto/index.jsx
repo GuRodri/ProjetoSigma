@@ -6,7 +6,7 @@ import apiCliente from '../../services/apiCliente';
 import { useParams } from 'react-router-dom';
 import { Container, ContainerEspacamento, ContainerEspacamento2 } from './style';
 import CProdutoFirestore from '../../components/Carrosseis/CProdutoFirestore';
-import CadastroAvaliacao from '../Avaliacao/Cadastrar';
+import CadastroAvaliacao from '../../containers/CadastrarAvaliacao';
 
 const Produto = () => {
   const { id } = useParams();

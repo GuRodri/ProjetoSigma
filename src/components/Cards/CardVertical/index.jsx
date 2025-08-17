@@ -7,7 +7,7 @@ import apiCliente from '../../../services/apiCliente';
 
 const CardVertical = ({ produtos = [], searchTerm }) => {
   const navigate = useNavigate();
-  const [avaliacoes, setAvaliacoes] = useState({});
+  //const [avaliacoes, setAvaliacoes] = useState({});
 
   /*useEffect(() => {
     const fetchAvaliacoes = async () => {

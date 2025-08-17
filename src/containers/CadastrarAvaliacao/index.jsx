@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import apiCliente from '../../services/apiCliente';
 import StarRating from '../../components/Rating';
-import { FormContainer, RatingContainer, ContainerEspacamento } from './style'; // Importando os estilos
+import { FormContainer, RatingContainer, ContainerEspacamento } from './style';
 
-// Função de sanitização para remover caracteres perigosos
+// Função de sanitização para remover apenas caracteres perigosos básicos
 const sanitizeInput = (input) => {
-  return input.replace(/[<>"/'&;]/g, ""); // Remove <, >, ", ', &, ;
+  return input.replace(/[<>"]/g, ""); // remove <, >, "
 };
 
 const CadastroAvaliacao = () => {
@@ -13,15 +13,13 @@ const CadastroAvaliacao = () => {
     idProduto: '',
     idUsuario: '',
     comentario: '',
-    classificacao: 0,
+    classificacao: 1, // não iniciar com 0
     dataAvaliacao: new Date().toISOString(),
     ativo: true
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    // Sanitiza o valor antes de atualizar o estado
     const sanitizedValue = sanitizeInput(value);
 
     setAvaliacao(prevState => ({
@@ -40,23 +38,28 @@ const CadastroAvaliacao = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Converte IDs para números antes de enviar
     const dataAtualizada = {
       ...avaliacao,
+      idProduto: Number(avaliacao.idProduto),
+      idUsuario: Number(avaliacao.idUsuario),
       dataAvaliacao: new Date().toISOString()
     };
 
     try {
       const response = await apiCliente.post(`/api/Avaliacao`, dataAtualizada);
       console.log('Avaliação enviada:', response.data);
-      // Limpar formulário após o envio da avaliação
+
+      // Limpar formulário após envio
       setAvaliacao({
         idProduto: '',
         idUsuario: '',
         comentario: '',
-        classificacao: 0,
+        classificacao: 1,
         dataAvaliacao: new Date().toISOString(),
         ativo: true
       });
+
       alert('Avaliação enviada com sucesso!');
     } catch (error) {
       console.error('Erro ao enviar avaliação:', error);
@@ -72,20 +75,22 @@ const CadastroAvaliacao = () => {
           <div>
             <label>ID do Produto:</label>
             <input
-              type="text"
+              type="number"
               name="idProduto"
               value={avaliacao.idProduto}
               onChange={handleChange}
+              min="1"
               required
             />
           </div>
           <div>
             <label>ID do Usuário:</label>
             <input
-              type="text"
+              type="number"
               name="idUsuario"
               value={avaliacao.idUsuario}
               onChange={handleChange}
+              min="1"
               required
             />
           </div>
@@ -102,7 +107,10 @@ const CadastroAvaliacao = () => {
           <div>
             <label>Classificação:</label>
             <RatingContainer>
-              <StarRating value={avaliacao.classificacao} onChange={handleRatingChange} />
+              <StarRating
+                value={avaliacao.classificacao}
+                onRate={handleRatingChange}
+              />
             </RatingContainer>
           </div>
           <button type="submit">Enviar Avaliação</button>

@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarRatingStyles from './style';
 
 const { StarRatingContainer, StarIcon } = StarRatingStyles;
 
 const StarRating = ({ totalStars = 5, value = 0, onRate }) => {
-  const [selectedStars, setSelectedStars] = useState(0);
+  const [selectedStars, setSelectedStars] = useState(value);
 
-  // Se value for passado, modo apenas visualização
-  const isReadOnly = value !== undefined && value !== null;
-  const displayRating = isReadOnly ? Math.round(value) : selectedStars;
+  const isReadOnly = !onRate; // modo leitura apenas se não houver onRate
+
+  useEffect(() => {
+    if (!isReadOnly) {
+      setSelectedStars(value);
+    }
+  }, [value, isReadOnly]);
 
   const handleStarClick = (starIndex) => {
-    if (isReadOnly) return; // não permite clique em leitura
+    if (isReadOnly) return;
 
-    const newRating = starIndex + 1 === selectedStars ? 0 : starIndex + 1;
+    const newRating = starIndex + 1;
     setSelectedStars(newRating);
-    if (onRate) onRate(newRating);
+    onRate && onRate(newRating);
   };
 
   return (
@@ -23,18 +27,12 @@ const StarRating = ({ totalStars = 5, value = 0, onRate }) => {
       {[...Array(totalStars)].map((_, index) => (
         <StarIcon
           key={index}
-          selected={index < displayRating}
+          selected={index < selectedStars}
           onClick={() => handleStarClick(index)}
-          readOnly={isReadOnly}
         >
           &#9733;
         </StarIcon>
       ))}
-      {isReadOnly && (
-        <span style={{ marginLeft: '0.375rem', color: '#cbd5e1', fontSize: '0.75rem' }}>
-          ({value.toFixed(1)})
-        </span>
-      )}
     </StarRatingContainer>
   );
 };

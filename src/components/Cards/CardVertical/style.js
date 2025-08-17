@@ -1,5 +1,25 @@
 import styled from "styled-components";
 
+// Container principal
+export const Container = styled.div`
+  width: 100%;
+  padding: 1rem;
+`;
+
+export const Ul = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const Li = styled.li`
+  list-style: none;
+`;
+
+// === Card estilizado ===
 export const CardHome2 = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,7 +33,6 @@ export const CardHome2 = styled.div`
   text-align: center;
   border-radius: 1rem;
   padding: 1rem;
-  margin: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
     0 10px 15px -3px rgba(0, 0, 0, 0.2),
@@ -60,7 +79,7 @@ export const CardHome2 = styled.div`
   p {
     font-size: 0.9rem;
     color: #cbd5e1;
-    margin: 0.75rem 0;
+    margin: 0.5rem 0;
     line-height: 1.4;
   }
 
@@ -72,34 +91,16 @@ export const CardHome2 = styled.div`
     margin: 0.75rem 0;
     border: 2px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-
-    @media (max-width: 768px) {
-      height: 120px;
-    }
-
-    @media (max-width: 480px) {
-      height: 100px;
-    }
-  }
-
-  .Ajusteimagem {
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    margin-bottom: 1rem;
-    border-radius: 0.75rem;
-    padding: 0.5rem;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   span {
     color: #fbbf24;
+    font-weight: 600;
   }
 
   @media (max-width: 768px) {
     max-width: 200px;
     min-height: 300px;
-    margin: 0.5rem;
     padding: 0.875rem;
   }
 
@@ -157,51 +158,21 @@ export const Button = styled.button`
   font-size: 0.875rem;
   font-weight: 600;
   margin-top: 1rem;
-  box-shadow: 
-    0 4px 6px -1px rgba(16, 185, 129, 0.3),
-    0 2px 4px -1px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: left 0.5s;
-  }
-
   &:hover {
     background: linear-gradient(135deg, #059669 0%, #047857 100%);
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-      0 10px 15px -3px rgba(16, 185, 129, 0.4),
-      0 4px 6px -2px rgba(0, 0, 0, 0.1);
-
-    &::before {
-      left: 100%;
-    }
   }
 
   &:active {
     transform: translateY(0) scale(1);
-    box-shadow: 
-      0 4px 6px -1px rgba(16, 185, 129, 0.3),
-      0 2px 4px -1px rgba(0, 0, 0, 0.1);
   }
 
   @media (max-width: 480px) {
     font-size: 0.8rem;
     height: 2.25rem;
-    padding: 0.5rem 1rem;
   }
 `;

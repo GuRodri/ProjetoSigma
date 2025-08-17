@@ -9,7 +9,7 @@ const CardVertical = ({ produtos = [], searchTerm }) => {
   const navigate = useNavigate();
   const [avaliacoes, setAvaliacoes] = useState({});
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchAvaliacoes = async () => {
       try {
         const responses = await Promise.all(
@@ -33,7 +33,7 @@ const CardVertical = ({ produtos = [], searchTerm }) => {
     if (produtos.length > 0) {
       fetchAvaliacoes();
     }
-  }, [produtos]);
+  }, [produtos]);*/
 
   const filteredProdutos = produtos.filter(produto => {
     const nomeProduto = produto.nomeProduto || '';
@@ -65,7 +65,7 @@ const CardVertical = ({ produtos = [], searchTerm }) => {
             </NomeProd>
             <Title>R$ {produto.preco}</Title>
             <StarRating 
-              value={parseFloat(calcularMediaAvaliacao(avaliacoes[produto.idProduto]))} 
+              //value={parseFloat(calcularMediaAvaliacao(avaliacoes[produto.idProduto]))} 
               readOnly 
             />
             <div>

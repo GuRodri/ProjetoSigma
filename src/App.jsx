@@ -46,7 +46,7 @@ import SetupGamerPage4 from './containers/SetupGamer/Page4';
 import SetupGamerPage5 from './containers/SetupGamer/Page5';
 import SetupGamerPage6 from './containers/SetupGamer/Page6';
 import CadastroAvaliacao from './containers/CadastrarAvaliacao';
-
+import EmConstrucao from './components/EmConstrucao';
 // Configuração do elemento da aplicação para o Modal
 Modal.setAppElement('#root');
 
@@ -74,8 +74,8 @@ const App = () => {
                 <Route path='/setupGamer-page5' element={<SetupGamerPage5 />} />
                 <Route path='/setupGamer-page6' element={<SetupGamerPage6 />} />
                 <Route path='/cadastro-avaliacao' element={<CadastroAvaliacao />} />
-                <Route path='/carrinho-compras' element={<ProtectedRoute element={<CarrinhoCompras />} requiredRole={0} />} />
-                <Route path='/favoritos' element={<ProtectedRoute element={<Favoritos />} requiredRole={0} />} />
+                <Route path='/carrinho-compras' element={<ProtectedRoute element={<CarrinhoCompras />} requiredRole={1} />} />
+                <Route path='/favoritos' element={<ProtectedRoute element={<EmConstrucao />} requiredRole={0} />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/lista-usuarios' element={<ProtectedRoute element={<ListaUsuarios />} requiredRole={1} />} />
                 <Route path='/lista-produtos' element={<ProtectedRoute element={<ListaProdutos />} requiredRole={1} />} />

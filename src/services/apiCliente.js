@@ -13,6 +13,7 @@ import axios from 'axios';
 // Base URL da API do backend
 const apiCliente = axios.create({
   baseURL: 'https://www.portalmantec.com.br/sigma/',
+  timeout: 30000
 });
 
 export default apiCliente;

@@ -1,11 +1,22 @@
 import React from 'react';
+import { UnauthorizedContainer, Card, Icon, Title, Message, Button } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const Unauthorized = () => {
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate('/'); // Redireciona para a home
+  };
+
   return (
-    <div>
-      <h1>403 - Acesso Negado</h1>
-      <p>Você não tem permissão para acessar esta página.</p>
-    </div>
+    <UnauthorizedContainer>
+      <Card>
+        <Icon>🚫</Icon>
+        <Title>403 - Acesso Negado</Title>
+        <Message>Você não tem permissão para acessar esta página.<br />Se acha que isso é um erro, entre em contato com o suporte.</Message>
+        <Button onClick={handleBack}>Voltar</Button>
+      </Card>
+    </UnauthorizedContainer>
   );
 };
 

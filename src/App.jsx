@@ -47,6 +47,7 @@ import SetupGamerPage5 from './containers/SetupGamer/Page5';
 import SetupGamerPage6 from './containers/SetupGamer/Page6';
 import CadastroAvaliacao from './containers/CadastrarAvaliacao';
 import EmConstrucao from './components/EmConstrucao';
+import CadastrarImagemAnuncio from './containers/Anuncios/CadastrarImagem';
 // Configuração do elemento da aplicação para o Modal
 Modal.setAppElement('#root');
 
@@ -99,6 +100,7 @@ const App = () => {
                 <Route path='/editar-imagens' element={<ProtectedRoute element={<CadastroImagens />} requiredRole={1} />} />
                 <Route path='/detalhes-imagens' element={<ProtectedRoute element={<CadastroImagens />} requiredRole={1} />} />
                 <Route path='/lista-imagens' element={<ProtectedRoute element={<ListaImagens />} requiredRole={1} />} />
+                <Route path='/cadastrar-imagem-anuncio/:id' element={<ProtectedRoute element={<CadastrarImagemAnuncio />} requiredRole={1} />} />
               </Routes>
             </ErrorBoundary>
           </div>

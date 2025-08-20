@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { debounce } from "lodash";
-import {  Campos,  Container,  Form,  InputContainer,  Input,  Texto,  EyeIconButton,} from "./style";
+import { Campos, Container, Form, InputContainer, Input, Texto, EyeIconButton, ValidationMessage } from "./style";
+import { MdErrorOutline } from "react-icons/md";
 import BContinuar from "../../components/Button/Continuar";
 import useAuthentication from "../../hooks/userAuthentication";
 import { NavLink } from "react-router-dom";
@@ -82,7 +83,12 @@ const Login = () => {
             onChange={handleEmailChange}
             required
           />
-          {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+          {emailError && (
+            <ValidationMessage>
+              <MdErrorOutline size={18} />
+              {emailError}
+            </ValidationMessage>
+          )}
         </Campos>
         <Campos>
           <label>Senha</label>
@@ -116,7 +122,12 @@ const Login = () => {
         <BContinuar type="submit" disabled={loading}>
           {loading ? "Carregando..." : "Continuar"}
         </BContinuar>
-        {error && <p>Ocorreu um erro ao fazer login: {error.message}</p>}
+        {error && (
+          <ValidationMessage>
+            <MdErrorOutline size={18} />
+            Ocorreu um erro ao fazer login: {error.message}
+          </ValidationMessage>
+        )}
       </Form>
     </Container>
   );

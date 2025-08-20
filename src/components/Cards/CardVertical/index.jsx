@@ -45,12 +45,12 @@ const CardVertical = ({ produtos = [], searchTerm }) => {
     navigate(`/produto/${idProduto}`);
   };
 
-  const calcularMediaAvaliacao = (avaliacoes) => {
+  /*const calcularMediaAvaliacao = (avaliacoes) => {
     if (!avaliacoes || avaliacoes.length === 0) return 0;
     const somaClassificacoes = avaliacoes.reduce((acc, curr) => acc + curr.classificacao, 0);
     const media = somaClassificacoes / avaliacoes.length;
     return media.toFixed(1);
-  };
+  };*/
 
   return (
     <>
@@ -66,7 +66,7 @@ const CardVertical = ({ produtos = [], searchTerm }) => {
             <Title>R$ {produto.preco}</Title>
             <StarRating 
               //value={parseFloat(calcularMediaAvaliacao(avaliacoes[produto.idProduto]))} 
-              readOnly 
+              //readOnly 
             />
             <div>
               <Button onClick={() => handleDetalhesClick(produto.idProduto)}>Detalhes</Button>

@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ContainerCarrinho, Container, ContainerBotao, CabecalhoFixo } from './style';
+import {
+  Container,
+  Header,
+  AddButton,
+  Title,
+  FeedbackMessage,
+  TableWrapper,
+  StyledTable,
+  TableImage,
+  TableAction
+} from './style';
+import { Trash2, Info, Edit2, ImagePlus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import apiCliente from '../../services/apiCliente';
 import CardListaAnuncios from '../../components/Cards/CardListaAnuncios';
 import { useSearch } from '../../context/searchCoxtexto';
@@ -39,38 +51,62 @@ const ListaAnuncios = () => {
     setGlobalSearchTerm('');
   }, [setGlobalSearchTerm]);
 
+  const navigate = useNavigate();
+
+  const handleDisableAnuncio = async (id) => {
+    try {
+      await apiCliente.patch(`/api/Anuncio/${id}/disable`);
+      alert('Anúncio desabilitado com sucesso!');
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao desabilitar anúncio. Verifique o console para mais detalhes.');
+    }
+  };
+
+  const handleDetalhes = (id) => navigate(`/detalhes-anuncios/${id}`);
+  const handleEditar = (id) => navigate(`/editar-anuncios/${id}`);
+  const handleCadastroImagem = (id) => navigate(`/cadastrar-imagem-anuncio/${id}`);
+
   return (
     <Container>
-      <h2>Lista de Anúncios</h2>
+      <Header>
+        <Title>Lista de Anúncios</Title>
+        <AddButton to="/cadastro-anuncios">+ Adicionar Anúncio</AddButton>
+      </Header>
 
-      <ContainerBotao>
-        <NavLink className='adicionar' to="/cadastro-anuncios">Adicionar</NavLink>
-      </ContainerBotao>
-
-      <CabecalhoFixo>
-        <table>
-          <thead>
-            <tr>
-              <th>Imagem</th>
-              <th>Título</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-        </table>
-      </CabecalhoFixo>
-
-      <ContainerCarrinho>
-        <table>
-          <tbody>
-            {filteredAnuncios.map((anuncio) => (
-              <CardListaAnuncios
-                key={anuncio.idAnuncio}
-                anuncio={anuncio}
-              />
-            ))}
-          </tbody>
-        </table>
-      </ContainerCarrinho>
+      {filteredAnuncios.length === 0 ? (
+        <FeedbackMessage>Nenhum anúncio encontrado.</FeedbackMessage>
+      ) : (
+        <TableWrapper>
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>Imagem</th>
+                <th>Título</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredAnuncios.map((anuncio) => (
+                <tr key={anuncio.idAnuncio}>
+                  <td>
+                    <TableImage src={anuncio.referenciaImagem} alt="Imagem do Anúncio" />
+                  </td>
+                  <td>{anuncio.titulo}</td>
+                  <td>
+                    <TableAction>
+                      <Trash2 color="#FF4D4F" size={22} title="Desabilitar" onClick={() => handleDisableAnuncio(anuncio.idAnuncio)} />
+                      <Edit2 color="#FFA500" size={22} title="Editar" onClick={() => handleEditar(anuncio.idAnuncio)} />
+                      <Info color="#25D62C" size={22} title="Detalhes" onClick={() => handleDetalhes(anuncio.idAnuncio)} />
+                      <ImagePlus color="#3BA4D1" size={22} title="Cadastrar Imagem" onClick={() => handleCadastroImagem(anuncio.idAnuncio)} />
+                    </TableAction>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </StyledTable>
+        </TableWrapper>
+      )}
     </Container>
   );
 };

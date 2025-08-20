@@ -98,11 +98,6 @@ const AvaliacaoProdutoVisualizacao = ({ idProduto }) => {
           <Ul>
             {avaliacoes.map((avaliacao, idx) => (
               <Li key={getIdAvaliacao(avaliacao, idx)}>
-                {/* Se suas avaliações tiverem imagem/vídeo, troque o placeholder abaixo */}
-                <CardImagem
-                  src={avaliacao?.referenciaImagem ?? 'https://via.placeholder.com/100'}
-                  alt="Imagem da avaliação"
-                />
                 <Coluna>
                   <p>{getComentario(avaliacao)}</p>
                   <StarRating value={getNota(avaliacao)} readOnly />
